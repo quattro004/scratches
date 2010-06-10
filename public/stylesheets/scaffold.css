@@ -5,6 +5,10 @@ body, p, ol, ul, td {
   font-size:   13px;
   line-height: 18px;
 }
+#mainContent {
+  width: 800px;
+  margin: auto;
+}
 
 pre {
   background-color: #eee;
