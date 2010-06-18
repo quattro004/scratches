@@ -1,4 +1,4 @@
-<%= form_for(@recipe, :html => {:multipart => true}) do |f| %>
+ <%= form_for(@recipe, :html => {:multipart => true}) do |f| %>
   <% if @recipe.errors.any? %>
   <div id="errorExplanation">
     <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -9,44 +9,46 @@
     </ul>
   </div>
   <% end %>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
- <!-- <div class="field">
-    <%= f.label :author %><br />
-    <%= f.text_field :author %>
-  </div>
- -->
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment, :rows => 2 %>
-  </div>
-  <div class="field">
-    <%= f.label :alterations %><br />
-    <%= f.text_area :alterations, :rows => 3 %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %><br />
-    <%= f.text_field :category_id %>
-  </div>
-  <div class="field">
-    <%= f.label :ingredients %><br />
-    <%= f.text_area :ingredients %>
-  </div>
-  <div class="field">
-    <%= f.label :instructions %><br />
-    <%= f.text_area :instructions %>
-  </div>
-  <div class="field">
-    <%= f.label :keywords %><br />
-    <%= f.text_field :keywords %>
-  </div>
-  <div class="field">
-    <%= f.label :picture_id %><br />
-    <%= f.file_field :picture_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <fieldset>
+      <div class="field">
+        <%= f.label :title %><br />
+        <%= f.text_field :title, :size => 60 %>
+      </div>
+      <div class="field">
+        <%= f.label :ingredients %><br />
+        <%= f.text_area :ingredients, :size => '15x7' %>
+      </div>
+      <div class="field">
+        <%= f.label :instructions %><br />
+        <%= f.text_area :instructions, :size => '60x7' %>
+      </div>
+      <div class="field">
+        <%= f.label :picture_id %><br />
+        <%= f.file_field :picture_id %>
+      </div>
+     <!-- <div class="field">
+        <%= f.label :author %><br />
+        <%= f.text_field :author %>
+      </div>
+     -->
+      <div class="field">
+        <%= f.label :comment %><br />
+        <%= f.text_field :comment, :size => 60 %>
+      </div>
+      <div class="field">
+        <%= f.label :alterations %><br />
+        <%= f.text_area :alterations, :size => '60x3' %>
+      </div>
+      <div class="field">
+        <%= f.label :category_id %><br />
+        <%= f.text_field :category_id %>
+      </div>
+      <div class="field">
+        <%= f.label :keywords %><br />
+        <%= f.text_field :keywords, :size => 60 %>
+      </div>
+      <div class="actions">
+        <%= f.submit nil, :class => 'input' %>
+      </div>
+  </fieldset>
 <% end %>
