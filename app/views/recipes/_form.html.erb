@@ -40,8 +40,8 @@
         <%= f.text_area :alterations, :size => '60x3' %>
       </div>
       <div class="field">
-        <%= f.label :category_id %><br />
-        <%= f.text_field :category_id %>
+        <%= f.label :category %><br />
+        <%= collection_select(:recipe, :category_id, Category.all, :id, :name) %>
       </div>
       <div class="field">
         <%= f.label :keywords %><br />
