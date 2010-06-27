@@ -1,4 +1,8 @@
 class RecipesController < ApplicationController
+
+  attr_reader :all_categories
+  before_filter :get_all_categories # Only get the list of categories once.
+  
   # GET /recipes
   # GET /recipes.xml
   def index
@@ -25,7 +29,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new.xml
   def new
     @recipe = Recipe.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @recipe }
@@ -79,5 +83,11 @@ class RecipesController < ApplicationController
       format.html { redirect_to(recipes_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def get_all_categories
+    @all_categories = Category.all
   end
 end
