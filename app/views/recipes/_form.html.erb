@@ -41,7 +41,7 @@
       </div>
       <div class="field">
         <%= f.label :category %><br />
-        <%= collection_select(:recipe, :category_id, Category.all, :id, :name) %>
+        <%= collection_select(:recipe, :category_id, @all_categories, :id, :name) %>
       </div>
       <div class="field">
         <%= f.label :keywords %><br />
