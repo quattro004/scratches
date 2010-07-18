@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20100619152818) do
     t.string   "author",       :limit => 50
     t.integer  "picture_id"
     t.text     "comment"
-    t.text     "alterations"
+    t.text     "variations"
     t.integer  "category_id"
     t.text     "ingredients"
     t.text     "instructions"
