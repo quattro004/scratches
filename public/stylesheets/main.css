@@ -1,4 +1,11 @@
-body { background-color: #fff; color: #333; }
+body { 
+    background-color: #fff;
+    color: #333;
+    background-image: url(../../images/footer.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-attachment: fixed;
+}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
