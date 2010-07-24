@@ -45,6 +45,15 @@
   <%= @recipe.keywords %>
 </p>
 
+<p>
+  <b>Prep Time:</b>
+  <%= @recipe.prep_time %>
+</p>
+
+<p>
+  <b>Cook Time:</b>
+  <%= @recipe.cook_time %>
+</p>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>

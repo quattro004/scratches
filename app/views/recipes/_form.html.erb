@@ -47,6 +47,14 @@
         <%= f.label :keywords %><br />
         <%= f.text_field :keywords, :size => 60 %>
       </div>
+      <div class="field">
+        <%= f.label :prep_time %><br />
+        <%= time_select('recipe', 'prep_time', :ignore_date => true, :prompt => {:hour => 'Choose hour', :minute => 'Choose minute'}) %>
+      </div>
+      <div class="field">
+        <%= f.label :cook_time %><br />
+        <%= time_select('recipe', 'cook_time', :ignore_date => true, :prompt => {:hour => 'Choose hour', :minute => 'Choose minute'}) %>
+      </div>
       <div class="actions">
         <%= f.submit nil, :class => 'input' %>
       </div>
