@@ -44,6 +44,8 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.xml
   def create
+    # TODO: Update recipe's author with current signed on user
+    
     @recipe = Recipe.new(params[:recipe])
 
     respond_to do |format|

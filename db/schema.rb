@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100718163855) do
+ActiveRecord::Schema.define(:version => 20100619152431) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20100718163855) do
     t.string   "content_type"
     t.integer  "size"
     t.binary   "data"
-    t.integer  "recipe_id"
+    t.integer  "recipe_id",    :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,19 +31,21 @@ ActiveRecord::Schema.define(:version => 20100718163855) do
   add_index "pictures", ["recipe_id"], :name => "fk_pictures_recipes"
 
   create_table "recipes", :force => true do |t|
-    t.string   "title",        :limit => 75
-    t.string   "author",       :limit => 50
-    t.integer  "picture_id"
+    t.string   "title",                :limit => 75
+    t.string   "author",               :limit => 50
+    t.integer  "picture_id",           :limit => 8
     t.text     "comment"
     t.text     "variations"
-    t.integer  "category_id"
+    t.integer  "category_id",          :limit => 8
     t.text     "ingredients"
     t.text     "instructions"
-    t.string   "keywords",     :limit => 260
+    t.string   "keywords",             :limit => 260
+    t.integer  "prep_time_in_minutes", :limit => 8
+    t.integer  "cook_time_in_minutes", :limit => 8
+    t.boolean  "is_public"
+    t.boolean  "is_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.time     "prep_time"
-    t.time     "cook_time"
   end
 
   add_index "recipes", ["category_id"], :name => "fk_recipes_categories"

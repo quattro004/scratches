@@ -26,11 +26,6 @@
         <%= f.label :picture_id %><br />
         <%= f.file_field :picture_id %>
       </div>
-     <!-- <div class="field">
-        <%= f.label :author %><br />
-        <%= f.text_field :author %>
-      </div>
-     -->
       <div class="field">
         <%= f.label :comment %><br />
         <%= f.text_field :comment, :size => 60 %>
@@ -48,12 +43,12 @@
         <%= f.text_field :keywords, :size => 60 %>
       </div>
       <div class="field">
-        <%= f.label :prep_time %><br />
-        <%= time_select('recipe', 'prep_time', :ignore_date => true, :prompt => {:hour => 'Choose hour', :minute => 'Choose minute'}) %>
+        <%= f.label :prep_time_in_minutes %><br />
+        <%= f.text_field %>
       </div>
       <div class="field">
-        <%= f.label :cook_time %><br />
-        <%= time_select('recipe', 'cook_time', :ignore_date => true, :prompt => {:hour => 'Choose hour', :minute => 'Choose minute'}) %>
+        <%= f.label :cook_time_in_minutes %><br />
+        <%= f.text_field %>
       </div>
       <div class="actions">
         <%= f.submit nil, :class => 'input' %>
