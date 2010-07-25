@@ -10,8 +10,6 @@ class CreateCategories < ActiveRecord::Migration
 
       t.timestamps
     end
-    # Change the primary key to a bigint
-    change_column :categories, :id, :integer, :limit => 8
 
     add_foreign_key :recipes, :category_id, :categories, :id, 'RESTRICT', 'RESTRICT'
   end

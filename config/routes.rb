@@ -1,4 +1,6 @@
 Recipieces::Application.routes.draw do |map|
+  resources :ingredients
+
   resources :categories
 
   resources :recipes

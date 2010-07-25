@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100619152431) do
+ActiveRecord::Schema.define(:version => 20100725155754) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -18,12 +18,23 @@ ActiveRecord::Schema.define(:version => 20100619152431) do
     t.datetime "updated_at"
   end
 
+  create_table "ingredients", :force => true do |t|
+    t.string   "name"
+    t.string   "amount"
+    t.boolean  "secret"
+    t.integer  "recipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ingredients", ["recipe_id"], :name => "fk_ingredients_recipes"
+
   create_table "pictures", :force => true do |t|
     t.string   "name"
     t.string   "content_type"
     t.integer  "size"
     t.binary   "data"
-    t.integer  "recipe_id",    :limit => 8
+    t.integer  "recipe_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,15 +44,13 @@ ActiveRecord::Schema.define(:version => 20100619152431) do
   create_table "recipes", :force => true do |t|
     t.string   "title",                :limit => 75
     t.string   "author",               :limit => 50
-    t.integer  "picture_id",           :limit => 8
     t.text     "comment"
     t.text     "variations"
-    t.integer  "category_id",          :limit => 8
-    t.text     "ingredients"
+    t.integer  "category_id"
     t.text     "instructions"
     t.string   "keywords",             :limit => 260
-    t.integer  "prep_time_in_minutes", :limit => 8
-    t.integer  "cook_time_in_minutes", :limit => 8
+    t.integer  "prep_time_in_minutes"
+    t.integer  "cook_time_in_minutes"
     t.boolean  "is_public"
     t.boolean  "is_secret"
     t.datetime "created_at"
