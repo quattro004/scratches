@@ -44,11 +44,11 @@
       </div>
       <div class="field">
         <%= f.label :prep_time_in_minutes %><br />
-        <%= f.text_field %>
+        <%= f.text_field :prep_time_in_minutes, :size => 5 %>
       </div>
       <div class="field">
         <%= f.label :cook_time_in_minutes %><br />
-        <%= f.text_field %>
+        <%= f.text_field :cook_time_in_minutes, :size => 5 %>
       </div>
       <div class="actions">
         <%= f.submit nil, :class => 'input' %>
