@@ -1,0 +1,13 @@
+<div class="fields">
+  <p>
+    <%= f.label :amount %>
+    <%= f.text_field :amount, :size => 8 %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.check_box :secret %>Secret
+
+    <%=  link_to_remove_fields 'remove', f  %>
+  </p>
+</div>

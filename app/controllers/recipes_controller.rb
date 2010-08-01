@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1.xml
   def show
     @recipe = Recipe.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @recipe }
@@ -29,6 +29,8 @@ class RecipesController < ApplicationController
   # GET /recipes/new.xml
   def new
     @recipe = Recipe.new
+
+    1.times { @recipe.ingredient.build }
     
     respond_to do |format|
       format.html # new.html.erb
