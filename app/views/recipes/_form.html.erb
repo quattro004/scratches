@@ -15,13 +15,16 @@
         <%= f.text_field :title, :size => 60 %>
       </div>
       <div class="field">
-        <%= f.label :ingredients %><br />
-        <%= f.text_area :ingredients, :size => '15x7' %>
-      </div>
-      <div class="field">
         <%= f.label :instructions %><br />
         <%= f.text_area :instructions, :size => '60x7' %>
       </div>
+      <fieldset>
+      <legend>Ingredients:</legend>
+        <% f.fields_for :ingredient do |builder| %>
+          <% render 'ingredient_fields', :f => builder %>
+        <% end %>
+        <p><%= link_to_add_fields 'Add Ingredient', f, :ingredient %></p>
+      </fieldset>
       <div class="field">
         <%= f.label :picture_id %><br />
         <%= f.file_field :picture_id %>
@@ -29,10 +32,6 @@
       <div class="field">
         <%= f.label :comment %><br />
         <%= f.text_field :comment, :size => 60 %>
-      </div>
-      <div class="field">
-        <%= f.label :variations %><br />
-        <%= f.text_area :variations, :size => '60x3' %>
       </div>
       <div class="field">
         <%= f.label :category %><br />
@@ -49,6 +48,10 @@
       <div class="field">
         <%= f.label :cook_time_in_minutes %><br />
         <%= f.text_field :cook_time_in_minutes, :size => 5 %>
+      </div>
+      <div class="field">
+        <%= f.label :variations %><br />
+        <%= f.text_area :variations, :size => '60x3' %>
       </div>
       <div class="actions">
         <%= f.submit nil, :class => 'input' %>
