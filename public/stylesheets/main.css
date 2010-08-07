@@ -83,8 +83,9 @@ fieldset {
 legend {
 	color: #fff;
 	background: purple;
-	border: 1px solid #6C006C;
-	padding: 2px 6px
+	border: 1px solid;
+	padding: 2px 3px;
+        height: 17px;
 }
 
 .field {

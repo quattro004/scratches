@@ -14,10 +14,6 @@
         <%= f.label :title %><br />
         <%= f.text_field :title, :size => 60 %>
       </div>
-      <div class="field">
-        <%= f.label :instructions %><br />
-        <%= f.text_area :instructions, :size => '60x7' %>
-      </div>
       <fieldset>
       <legend>Ingredients:</legend>
         <% f.fields_for :ingredient do |builder| %>
@@ -26,20 +22,24 @@
         <p><%= link_to_add_fields 'Add Ingredient', f, :ingredient %></p>
       </fieldset>
       <div class="field">
-        <%= f.label :picture_id %><br />
-        <%= f.file_field :picture_id %>
-      </div>
-      <div class="field">
-        <%= f.label :comment %><br />
-        <%= f.text_field :comment, :size => 60 %>
+        <%= f.label :instructions %><br />
+        <%= f.text_area :instructions, :size => '60x7' %>
       </div>
       <div class="field">
         <%= f.label :category %><br />
         <%= collection_select(:recipe, :category_id, @all_categories, :id, :name) %>
       </div>
       <div class="field">
+        <%= f.label :picture_id %><br />
+        <%= f.file_field :picture_id %>
+      </div>
+      <div class="field">
+        <%= f.label :comment %><br />
+        <%= f.text_field :comment, :size => 50 %>
+      </div>
+      <div class="field">
         <%= f.label :keywords %><br />
-        <%= f.text_field :keywords, :size => 60 %>
+        <%= f.text_field :keywords, :size => 40 %>
       </div>
       <div class="field">
         <%= f.label :prep_time_in_minutes %><br />
@@ -48,6 +48,10 @@
       <div class="field">
         <%= f.label :cook_time_in_minutes %><br />
         <%= f.text_field :cook_time_in_minutes, :size => 5 %>
+      </div>
+     <div class="field">
+        <%= f.label :yield %><br />
+        <%= f.text_field :yield, :size => 25 %>
       </div>
       <div class="field">
         <%= f.label :variations %><br />
