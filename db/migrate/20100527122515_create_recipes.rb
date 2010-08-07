@@ -12,6 +12,7 @@ class CreateRecipes < ActiveRecord::Migration
       t.integer :cook_time_in_minutes
       t.boolean :is_public
       t.boolean :is_secret
+      t.string  :yield, :limit => 75
 
       t.timestamps
     end
