@@ -3,6 +3,10 @@
 <p>
   <b>Title:</b>
   <%= @recipe.title %>
+  <br />
+  <% unless @recipe.yield.empty? %>
+    <small><%= @recipe.yield %></small>
+  <% end %>
 </p>
 
 <p>
@@ -10,16 +14,19 @@
   <%= @recipe.author %>
 </p>
 
-<p>
-  <b>Comment:</b>
-  <%= @recipe.comment %>
-</p>
+<% unless @recipe.comment.empty? %>
+  <p>
+    <b>Comment:</b>
+    <%= @recipe.comment %>
+  </p>
+<% end %>
 
-<p>
-  <b>Variations:</b>
-  <%= @recipe.variations %>
-</p>
-
+<% unless @recipe.variations.empty? %>
+  <p>
+    <b>Variations:</b>
+    <%= @recipe.variations %>
+  </p>
+<% end %>
 <p>
   <b>Category:</b>
   <%= @recipe.category_id %>
@@ -30,7 +37,7 @@
   <ul>
     <% for ingredient in @recipe.ingredient %>
       <% unless ingredient.secret %>
-        <li><%=h ingredient.amount %> <%=h ingredient.name %></li>
+        <li><%= ingredient.amount %> <%= ingredient.name %></li>
       <% end %>
     <% end %>
   </ul>
@@ -38,7 +45,11 @@
 
 <p>
   <b>Instructions:</b>
-  <%= @recipe.instructions %>
+  <ol>
+    <%= @recipe.instructions.each_line do |instruction| %>
+      <li><%= instruction %></li>
+    <% end %>
+  </ol>
 </p>
 
 <p>
