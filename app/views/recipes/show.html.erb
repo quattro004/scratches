@@ -46,7 +46,7 @@
 <p>
   <b>Instructions:</b>
   <ol>
-    <%= @recipe.instructions.each_line do |instruction| %>
+    <% @recipe.instructions.split(/\r\n/).each do |instruction| %>
       <li><%= instruction %></li>
     <% end %>
   </ol>
