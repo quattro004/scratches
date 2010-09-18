@@ -31,6 +31,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
 
     1.times { @recipe.ingredient.build }
+    @recipe.cook_time_in_minutes = 0
+    @recipe.prep_time_in_minutes = 0
     
     respond_to do |format|
       format.html # new.html.erb
