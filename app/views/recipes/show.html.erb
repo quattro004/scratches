@@ -21,12 +21,6 @@
   </p>
 <% end %>
 
-<% unless @recipe.variations.empty? %>
-  <p>
-    <b>Variations:</b>
-    <%= @recipe.variations %>
-  </p>
-<% end %>
 <p>
   <b>Category:</b>
   <%= @recipe.category_id %>
@@ -67,5 +61,15 @@
   <%= @recipe.cook_time_in_minutes %>
 </p>
 
+<!-- TODO: display picture -->
+
+<p>
+  <b>Public:</b>
+  <%= @recipe.is_public %>
+  <b>Secret:</b>
+  <%= @recipe.is_secret %>
+</p>
+
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+<%= link_to 'Back', recipes_path %> |
+<%= link_to 'Home', root_path %>

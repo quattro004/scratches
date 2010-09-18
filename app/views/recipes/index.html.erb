@@ -6,7 +6,6 @@
     <th>Author</th>
     <th>Picture</th>
     <th>Comment</th>
-    <th>Variations</th>
     <th>Category</th>
     <th>Ingredients</th>
     <th>Instructions</th>
@@ -21,7 +20,6 @@
     <td><%= recipe.title %></td>
     <td><%= recipe.author %></td>
     <td><%= recipe.comment %></td>
-    <td><%= recipe.variations %></td>
     <td><%= recipe.category_id %></td>
     <td><%= recipe.instructions %></td>
     <td><%= recipe.keywords %></td>
@@ -34,4 +32,5 @@
 
 <br />
 
-<%= link_to 'New Recipe', new_recipe_path %>
+<%= link_to 'New Recipe', new_recipe_path %> |
+<%= link_to 'Home', root_path %>
