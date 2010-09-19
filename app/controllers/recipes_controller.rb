@@ -1,7 +1,8 @@
 class RecipesController < ApplicationController
 
-  attr_reader :all_categories
+  attr_reader   :all_categories
   before_filter :get_all_categories # Only get the list of categories once.
+  attr_reader   :current_category
   
   # GET /recipes
   # GET /recipes.xml
@@ -18,6 +19,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1.xml
   def show
     @recipe = Recipe.find(params[:id])
+    get_current_category
     
     respond_to do |format|
       format.html # show.html.erb
@@ -29,11 +31,8 @@ class RecipesController < ApplicationController
   # GET /recipes/new.xml
   def new
     @recipe = Recipe.new
+    setup_defaults
 
-    1.times { @recipe.ingredient.build }
-    @recipe.cook_time_in_minutes = 0
-    @recipe.prep_time_in_minutes = 0
-    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @recipe }
@@ -95,5 +94,15 @@ class RecipesController < ApplicationController
 
   def get_all_categories
     @all_categories = Category.all
+  end
+  
+  def get_current_category
+    @current_category = @all_categories.find { |category| category.id == @recipe.category_id }
+  end
+
+  def setup_defaults
+    1.times { @recipe.ingredient.build }
+    @recipe.cook_time_in_minutes = 0
+    @recipe.prep_time_in_minutes = 0
   end
 end
