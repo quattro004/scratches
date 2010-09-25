@@ -8,7 +8,7 @@ class CreatePictures < ActiveRecord::Migration
       t.string  :name
       t.string  :content_type
       t.integer :size
-      t.binary  :data
+      t.binary  :data, :limit => 1.megabyte
       t.integer :recipe_id
 
       t.timestamps

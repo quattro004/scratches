@@ -15,8 +15,6 @@
 <% @pictures.each do |picture| %>
   <tr>
     <td><%= picture.name %></td>
-    <td><%= picture.content_type %></td>
-    <td><%= picture.size %></td>
     <td><%= picture.data %></td>
     <td><%= picture.recipe_id %></td>
     <td><%= link_to 'Show', picture %></td>

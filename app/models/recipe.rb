@@ -1,9 +1,9 @@
 class Recipe < ActiveRecord::Base
-  has_many :picture, :dependent => :destroy
-  has_many :ingredient, :dependent => :destroy
-  has_one :category
+  has_many  :picture, :dependent => :destroy
+  has_many  :ingredient, :dependent => :destroy
+  has_one   :category
 
-  accepts_nested_attributes_for :ingredient, :allow_destroy => true #, :reject_if => lambda { |a| a[:name].blank? || a[:amount].blank? }
+  accepts_nested_attributes_for :ingredient, :picture, :allow_destroy => true #, :reject_if => lambda { |a| a[:name].blank? || a[:amount].blank? }
 
   validates_presence_of :title
   validates_presence_of :instructions
