@@ -1,4 +1,4 @@
- <%= form_for(@recipe, :html => {:multipart => true}) do |f| %>
+ <%= form_for(@recipe, :html => { :multipart => true }) do |f| %>
   <% if @recipe.errors.any? %>
   <div id="errorExplanation">
     <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -30,8 +30,10 @@
         <%= collection_select(:recipe, :category_id, @all_categories, :id, :name) %>
       </div>
       <div class="field">
-        <%= f.label :picture_id %><br />
-        <%= f.file_field :picture_id %>
+        <%= f.fields_for :picture do |picture_fields| %>
+          <%= picture_fields.label :picture_id %><br />
+          <%= picture_fields.file_field :uploaded_picture %>
+        <% end %>
       </div>
       <div class="field">
         <%= f.label :comment %><br />

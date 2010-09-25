@@ -14,11 +14,16 @@ class PicturesController < ApplicationController
   # GET /pictures/1.xml
   def show
     @picture = Picture.find(params[:id])
-
+    send_data(@picture.data,
+      :filename => @picture.name,
+      :type => @picture.content_type,
+      :disposition => "inline" )
+=begin
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @picture }
     end
+=end
   end
 
   # GET /pictures/new
