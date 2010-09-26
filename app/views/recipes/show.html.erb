@@ -1,12 +1,16 @@
 <p class="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
-  <%= @recipe.title %>
-  <br />
+  <h2><%= @recipe.title %></h2>
   <% unless @recipe.yield.empty? %>
     <small><%= @recipe.yield %></small>
   <% end %>
+</p>
+
+<p>
+   <% for picture in @recipe.picture %>
+    <img src="<%= url_for(:action => 'show', :id => picture.id, :controller => 'pictures') %>"/>
+   <% end %>
 </p>
 
 <p>
