@@ -30,10 +30,10 @@
         <%= collection_select(:recipe, :category_id, @all_categories, :id, :name) %>
       </div>
       <div class="field">
-        <%= f.fields_for :picture do |picture_fields| %>
-          <%= picture_fields.label :picture_id %><br />
-          <%= picture_fields.file_field :uploaded_picture %>
+        <%= f.fields_for :picture do |builder| %>
+          <% render 'picture_fields', :f => builder %>
         <% end %>
+        <p><%= link_to_add_fields 'Add Picture', f, :picture %></p>
       </div>
       <div class="field">
         <%= f.label :comment %><br />
