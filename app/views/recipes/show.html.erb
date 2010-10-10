@@ -1,77 +1,80 @@
 <p class="notice"><%= notice %></p>
 
-<p>
+<div id="recipe">
   <h2><%= @recipe.title %></h2>
+
   <% unless @recipe.yield.empty? %>
     <small><%= @recipe.yield %></small>
   <% end %>
-</p>
-
-<p>
-   <% for picture in @recipe.picture %>
-    <img src="<%= url_for(:action => 'show', :id => picture.id, :controller => 'pictures') %>"/>
-   <% end %>
-</p>
-
-<p>
-  <b>Author:</b>
-  <%= @recipe.author %>
-</p>
-
-<% unless @recipe.comment.empty? %>
+  
+  <% unless @recipe.picture.empty? %>
+    <img src="<%= url_for(:action => 'show', :id => @recipe.picture[0].id, :controller => 'pictures') %>" class="floatRight"/>
+  <% end %>
+  
   <p>
-    <b>Comment:</b>
-    <%= @recipe.comment %>
-  </p>
-<% end %>
-
-<p>
-  <b>Category:</b>
-  <%= @current_category.name %>
-</p>
-
-<fieldset>
-  <legend>Ingredients:</legend>
-  <ul>
-    <% for ingredient in @recipe.ingredient %>
-      <% unless ingredient.secret %>
-        <li><%= ingredient.amount %> <%= ingredient.name %></li>
+    <b>Ingredients:</b>
+    <ul>
+      <% for ingredient in @recipe.ingredient %>
+        <% unless ingredient.secret %>
+          <li><%= ingredient.amount %> <%= ingredient.name %></li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
-</fieldset>
+    </ul>
+  </p>
 
-<p>
-  <b>Instructions:</b>
-  <ol>
-    <% @recipe.instructions.split(/\r\n/).each do |instruction| %>
-      <li><%= instruction %></li>
-    <% end %>
-  </ol>
-</p>
+  <p>
+    <b>Instructions:</b>
+    <ol>
+      <% @recipe.instructions.split(/\r\n/).each do |instruction| %>
+        <li><%= instruction %></li>
+      <% end %>
+    </ol>
+  </p>
 
-<p>
-  <b>Keywords:</b>
-  <%= @recipe.keywords %>
-</p>
+  <% unless @recipe.comment.empty? %>
+    <p>
+      <b>Comment:</b>
+      <%= @recipe.comment %>
+    </p>
+  <% end %>
 
-<p>
-  <b>Prep Time:</b>
-  <%= @recipe.prep_time_in_minutes %>
-</p>
+  <p>
+    <b>Category:</b>
+    <%= @current_category.name %>
+  </p>
+  
+  <p>
+    <b>Keywords:</b>
+    <%= @recipe.keywords %>
+  </p>
 
-<p>
-  <b>Cook Time:</b>
-  <%= @recipe.cook_time_in_minutes %>
-</p>
+  <p>
+    <table>
+        <tr>
+          <th align="left">Prep</th>
+          <th align="left">Cook</th>
+          <th align="left">Public</th>
+          <th align="left">Secret</th>
+        </tr>
+        <tr>
+          <td>
+            <%= @recipe.prep_time_in_minutes %> min.
+          </td>
+          <td>
+            <%= @recipe.cook_time_in_minutes %> min.
+          </td>
+          <td>
+            <%= @recipe.is_public %>
+          </td>
+          <td>
+            <%= @recipe.is_secret %>
+          </td>
+        </tr>
+      </table>
+  </p>
+  <br/>
 
-<p>
-  <b>Public:</b>
-  <%= @recipe.is_public %>
-  <b>Secret:</b>
-  <%= @recipe.is_secret %>
-</p>
-
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %> |
-<%= link_to 'Home', root_path %>
+  <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+  <%= link_to 'Back', recipes_path %> |
+  <%= link_to 'Home', root_path %>
+</div>

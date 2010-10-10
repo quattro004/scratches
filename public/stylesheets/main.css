@@ -101,3 +101,19 @@ legend {
 .input, h1, div.actions, div.field {
     font-family: cursive;
 }
+
+img.floatRight {
+    float: right;
+    margin: 5px;
+}
+
+#recipe {
+    width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#ingredients {
+    float:left;
+    display:inline;
+}
