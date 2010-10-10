@@ -3,7 +3,11 @@ class Picture < ActiveRecord::Base
 
   validates_format_of :content_type,
                       :with => /^image/,
-                      :message => '--- you can only upload pictures'
+                      :message => '--- you can only upload pictures',
+                      :if => :contains_data
+
+  validates_size_of   :data, :maximum => 1.megabyte, :message => 'cannot be greater than 1mb',
+                      :if => :contains_data
 
   def uploaded_picture=(picture_field)
     self.name         = base_part_of(picture_field.original_filename)
@@ -14,5 +18,11 @@ class Picture < ActiveRecord::Base
 
   def base_part_of(file_name)
     File.basename(file_name).gsub(/[^\w._-]/, '' )
+  end
+
+  private
+  
+  def contains_data
+    !self.data.blank?
   end
 end

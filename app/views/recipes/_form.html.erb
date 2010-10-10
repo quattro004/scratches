@@ -16,7 +16,7 @@
       </div>
       <fieldset>
       <legend>Ingredients:</legend>
-        <% f.fields_for :ingredient do |builder| %>
+        <%= f.fields_for :ingredient do |builder| %>
           <% render 'ingredient_fields', :f => builder %>
         <% end %>
         <p><%= link_to_add_fields 'Add Ingredient', f, :ingredient %></p>
@@ -44,20 +44,36 @@
         <%= f.text_field :keywords, :size => 40 %>
       </div>
       <div class="field">
-        <%= f.label :prep_time_in_minutes %><br />
-        <%= f.text_field :prep_time_in_minutes, :size => 3 %>
-      </div>
-      <div class="field">
-        <%= f.label :cook_time_in_minutes %><br />
-        <%= f.text_field :cook_time_in_minutes, :size => 3 %>
-      </div>
-      <div class="field">
         <%= f.label :yield %><br />
         <%= f.text_field :yield, :size => 25 %>
       </div>
       <div class="field">
-        Public<%= f.check_box :is_public %>
-        Secret<%= f.check_box :is_secret %>
+        <table>
+          <tr>
+            <th align="left">
+              <%= f.label 'Prep' %>
+            </th>
+            <th align="left">
+              <%= f.label 'Cook' %>
+            </th>
+            <th>Public</th>
+            <th>Secret</th>
+          </tr>
+          <tr>
+            <td>
+              <%= f.text_field :prep_time_in_minutes, :size => 2 %>min.
+            </td>
+            <td>
+              <%= f.text_field :cook_time_in_minutes, :size => 2 %>min.
+            </td>
+            <td align="center">
+              <%= f.check_box :is_public %>
+            </td>
+            <td align="center">
+              <%= f.check_box :is_secret %>
+            </td>
+          </tr>
+        </table>
       </div>
       <div class="actions">
         <%= f.submit nil, :class => 'input' %>
