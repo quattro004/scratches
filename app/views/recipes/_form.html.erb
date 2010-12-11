@@ -17,7 +17,7 @@
       <fieldset>
         <legend>Ingredients:</legend>
         <%= f.fields_for :ingredient do |builder| %>
-          <% render 'ingredient_fields', :f => builder %>
+          <%= render 'ingredient_fields', :f => builder %>
         <% end %>
         <p><%= link_to_add_fields 'Add Ingredient', f, :ingredient %></p>
       </fieldset>
@@ -31,7 +31,7 @@
       </div>
       <div class="field">
         <%= f.fields_for :picture do |builder| %>
-          <% render 'picture_fields', :f => builder %>
+          <%= render 'picture_fields', :f => builder %>
         <% end %>
         <p><%= link_to_add_fields 'Add Picture', f, :picture %></p>
       </div>
