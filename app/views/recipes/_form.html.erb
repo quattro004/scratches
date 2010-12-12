@@ -29,12 +29,17 @@
         <%= f.label :category %><br />
         <%= collection_select(:recipe, :category_id, @all_categories, :id, :name) %>
       </div>
-      <div class="field">
+      <fieldset>
+            <legend>Pictures:</legend>
         <%= f.fields_for :picture do |builder| %>
-          <%= render 'picture_fields', :f => builder %>
+          <% unless action_name == 'edit' %>
+            <%= render 'picture_fields', :f => builder %>
+          <% else %>
+              <%= render 'picture_fields_edit', :f => builder %>
+          <% end %>
         <% end %>
         <p><%= link_to_add_fields 'Add Picture', f, :picture %></p>
-      </div>
+      </fieldset>
       <div class="field">
         <%= f.label :comment %><br />
         <%= f.text_field :comment, :size => 50 %>
