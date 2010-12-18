@@ -23,19 +23,24 @@
       </fieldset>
       <div class="field">
         <%= f.label :instructions %> <small><i>(separate each by pressing Enter)</i></small><br />
-        <%= f.text_area :instructions, :size => '60x7' %>
+        <%= f.text_area :instructions, :size => '80x7' %>
       </div>
       <div class="field">
         <%= f.label :category %><br />
         <%= collection_select(:recipe, :category_id, @all_categories, :id, :name) %>
       </div>
       <fieldset>
-            <legend>Pictures:</legend>
-        <%= f.fields_for :picture do |builder| %>
-          <% unless action_name == 'edit' %>
-            <%= render 'picture_fields', :f => builder %>
-          <% else %>
-              <%= render 'picture_fields_edit', :f => builder %>
+        <legend>Pictures:</legend>
+        <% for picture in @recipe.picture %>
+          <%= f.fields_for :picture, picture do |builder| %>
+            <% if action_name == 'new' %>
+              <%= render 'picture_fields', :f => builder %>
+            <% else %>
+              <div class="fields">
+                <%= link_to picture.name, picture %>
+                <%=  link_to_remove_fields 'remove', builder  %>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
         <p><%= link_to_add_fields 'Add Picture', f, :picture %></p>
