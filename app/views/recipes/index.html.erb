@@ -1,34 +1,31 @@
-<h1>Listing recipes</h1>
+<div id="recipe-list">
+  <h1>Recipes</h1>
+  
+  <table>
+    <tr>
+      <th align="left">Title</th>
+      <th>Author</th>
+      <th>Comment</th>
+      <th>Keywords</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    
+    <% for recipe in @recipes %>
+      <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+        <td><%= recipe.title %></td>
+        <td><%= recipe.author %></td>
+        <td><%= recipe.comment %></td>
+        <td><%= recipe.keywords %></td>
+        <td><%= link_to 'Show', recipe %></td>
+        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+        <td><%= link_to 'Destroy', recipe, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Picture</th>
-    <th>Comment</th>
-    <th>Category</th>
-    <th>Ingredients</th>
-    <th>Instructions</th>
-    <th>Keywords</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @recipes.each do |recipe| %>
-  <tr>
-    <td><%= recipe.title %></td>
-    <td><%= recipe.author %></td>
-    <td><%= recipe.comment %></td>
-    <td><%= recipe.category_id %></td>
-    <td><%= recipe.instructions %></td>
-    <td><%= recipe.keywords %></td>
-    <td><%= link_to 'Show', recipe %></td>
-    <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-    <td><%= link_to 'Destroy', recipe, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+</div>
 
 <br />
 
