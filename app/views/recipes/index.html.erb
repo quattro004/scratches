@@ -4,6 +4,7 @@
   <table>
     <tr>
       <th align="left">Title</th>
+      <th />
       <th>Author</th>
       <th>Comment</th>
       <th>Keywords</th>
@@ -14,6 +15,7 @@
     
     <% for recipe in @recipes %>
       <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+        <td><img src="<%= url_for(:action => 'thumbnail', :id => recipe.picture[0].id, :controller => 'pictures') %>" /></td>
         <td><%= recipe.title %></td>
         <td><%= recipe.author %></td>
         <td><%= recipe.comment %></td>

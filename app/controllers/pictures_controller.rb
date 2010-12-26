@@ -1,4 +1,7 @@
-class PicturesController < ApplicationController
+require 'RMagick'
+include Magick
+
+class PicturesController < ApplicationController 
   # GET /pictures
   # GET /pictures.xml
   def index
@@ -18,12 +21,6 @@ class PicturesController < ApplicationController
       :filename => @picture.name,
       :type => @picture.content_type,
       :disposition => "inline" )
-=begin
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @picture }
-    end
-=end
   end
 
   # GET /pictures/new
@@ -84,5 +81,14 @@ class PicturesController < ApplicationController
       format.html { redirect_to(pictures_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def thumbnail
+    @picture = Picture.find(params[:id])
+    @image = Image.from_blob(@picture.data).first
+    send_data(@image.thumbnail(60, 60).to_blob,
+      :filename => @picture.name,
+      :type => @picture.content_type,
+      :disposition => "inline" )
   end
 end
