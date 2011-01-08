@@ -38,7 +38,7 @@ div.actions {
 }
 
 .notice {
-  color: green;
+  color: #762f9f;
 }
 
 .alert {
@@ -119,10 +119,15 @@ img.floatRight {
 }
 
 #recipe-list{
-    width: 800px;
+    width: 900px;
 }
 
 #recipe-list .list-line-odd {
-  background: #9773a0;
+  background: #762f9f;
+  color: #fff;
+}
+
+#recipe-list .list-line-even {
+  background: #d598f8;
   color: #fff;
 }
