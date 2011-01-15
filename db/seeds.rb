@@ -14,5 +14,6 @@ Category.create([
   { :name => 'Turkey', :description => 'Meals containing turkey as the main ingredient.'},
   { :name => 'Salads', :description => 'Nutritious and delicious!'},
   { :name => 'Grilling', :description => 'Grillin and chillin!'},
-  { :name => 'Drinks', :description => 'Thirsty anyone?'}
+  { :name => 'Drinks', :description => 'Thirsty anyone?'},
+  { :name => 'Kids', :description => 'For the picky tykes.'}
 ])
