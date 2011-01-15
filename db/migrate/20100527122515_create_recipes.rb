@@ -13,6 +13,7 @@ class CreateRecipes < ActiveRecord::Migration
       t.boolean :is_public
       t.boolean :is_secret
       t.string  :yield, :limit => 75
+      t.string  :original_source, :limit => 75
 
       t.timestamps
     end

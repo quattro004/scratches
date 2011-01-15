@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20100725155754) do
     t.boolean  "is_public"
     t.boolean  "is_secret"
     t.string   "yield",                :limit => 75
+    t.string   "original_source",      :limit => 75
     t.datetime "created_at"
     t.datetime "updated_at"
   end
