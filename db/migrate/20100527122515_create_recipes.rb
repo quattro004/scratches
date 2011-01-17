@@ -4,7 +4,6 @@ class CreateRecipes < ActiveRecord::Migration
       t.string  :title, :limit => 75
       t.string  :author, :limit => 50
       t.text    :comment, :limit => 260
-      t.text    :variations, :limit => 260
       t.integer :category_id
       t.text    :instructions
       t.string  :keywords, :limit => 260

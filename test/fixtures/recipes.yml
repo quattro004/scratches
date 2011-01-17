@@ -5,7 +5,6 @@ one:
   author: MyString
   picture_id: 1
   comment: MyText
-  variations: MyText
   category_id: 1
   ingredients: MyText
   instructions: MyText
@@ -16,7 +15,6 @@ two:
   author: MyString
   picture_id: 1
   comment: MyText
-  variations: MyText
   category_id: 1
   ingredients: MyText
   instructions: MyText

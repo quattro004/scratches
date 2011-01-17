@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(:version => 20100725155754) do
     t.string   "title",                :limit => 75
     t.string   "author",               :limit => 50
     t.text     "comment"
-    t.text     "variations"
     t.integer  "category_id"
     t.text     "instructions"
     t.string   "keywords",             :limit => 260
