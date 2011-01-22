@@ -1,6 +1,6 @@
 class Picture < ActiveRecord::Base
   belongs_to :recipe
-  attr_accessible :name, :content_type, :data, :size
+  attr_accessible :name, :content_type, :data, :size, :uploaded_picture
 
   validates_format_of :content_type,
                       :with => /^image/,
