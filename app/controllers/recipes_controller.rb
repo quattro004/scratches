@@ -1,109 +1,66 @@
+# Responsible for managing the lifeblood of this application, recipes.
 class RecipesController < ApplicationController
-
-  attr_reader   :all_categories
+  respond_to :html, :xml, :json
+  attr_reader :all_categories
   before_filter :get_all_categories # Only get the list of categories once.
-  attr_reader   :current_category
-  
-  # GET /recipes
-  # GET /recipes.xml
+  attr_reader :current_category
+
   def index
     @recipes = Recipe.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @recipes }
-    end
+    respond_with(@recipes)
   end
 
-  # GET /recipes/1
-  # GET /recipes/1.xml
   def show
     @recipe = Recipe.find(params[:id])
     get_current_category
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @recipe }
-    end
+    respond_with(@recipe)
   end
 
-  # GET /recipes/new
-  # GET /recipes/new.xml
   def new
     @recipe = Recipe.new
     setup_defaults
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @recipe }
-    end
+    respond_with(@recipe)
   end
 
-  # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
+    respond_with(@recipe)
   end
 
-  # POST /recipes
-  # POST /recipes.xml
   def create
     # TODO: Update recipe's author with current signed on user
-    
     @recipe = Recipe.new(params[:recipe])
-
-    respond_to do |format|
-      if @recipe.save
-        format.html { redirect_to(@recipe, :notice => 'Recipe was successfully created.') }
-        format.xml  { render :xml => @recipe, :status => :created, :location => @recipe }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @recipe.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Recipe was successfully created.' if @recipe.save
+    respond_with(@recipe)
   end
 
-  # PUT /recipes/1
-  # PUT /recipes/1.xml
   def update
     @recipe = Recipe.find(params[:id])
-
-    respond_to do |format|
-      if @recipe.update_attributes(params[:recipe])
-        format.html { redirect_to(@recipe, :notice => 'Recipe was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @recipe.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Recipe was successfully updated.' if @recipe.update_attributes(params[:recipe])
+    respond_with(@recipe)
   end
 
-  # DELETE /recipes/1
-  # DELETE /recipes/1.xml
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(recipes_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = 'Successfully destroyed recipe.'
+    respond_with(@recipe)
   end
 
   private
 
-  def get_all_categories
-    @all_categories = Category.all
-  end
-  
-  def get_current_category
-    @current_category = @all_categories.find { |category| category.id == @recipe.category_id }
-  end
+    def get_all_categories
+      @all_categories = Category.all
+    end
 
-  def setup_defaults
-    1.times { @recipe.ingredient.build }
-    @recipe.picture.build
-    @recipe.cook_time_in_minutes = 0
-    @recipe.prep_time_in_minutes = 0
-  end
+    def get_current_category
+      @current_category = @all_categories.find { |category| category.id == @recipe.category_id }
+    end
+
+    def setup_defaults
+      @recipe.ingredient.build
+      @recipe.picture.build
+      @recipe.cook_time_in_minutes = 0
+      @recipe.prep_time_in_minutes = 0
+    end
 end
