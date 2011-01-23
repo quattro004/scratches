@@ -7,8 +7,4 @@ is the best.
 .:. Dependencies .:.
 MySql
 Rmagick - and it is magic
-
-.:. Disclaimer .:.
-Please don't try to run this on Windows
-
-TODO: insert copyright jargon here
+Devise
