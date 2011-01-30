@@ -2,5 +2,7 @@
   <%= link_to image_tag('recipieces.png', :border => 0) %>
   <br/><br/>
   <li><%= link_to 'Recipes', recipes_path %> </li>
-  <li><%= link_to 'Categories', categories_path %> </li>
+  <% if can? :manage, :category %>
+    <li><%= link_to 'Categories', categories_path %> </li>
+  <% end %>
 </ul>

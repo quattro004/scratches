@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110123173959) do
+ActiveRecord::Schema.define(:version => 20110126130042) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20110123173959) do
     t.string   "keywords",             :limit => 260
     t.integer  "prep_time_in_minutes"
     t.integer  "cook_time_in_minutes"
-    t.boolean  "is_public"
+    t.boolean  "is_public",                           :default => true
     t.boolean  "is_secret"
     t.string   "yield",                :limit => 75
     t.string   "original_source",      :limit => 75
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20110123173959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

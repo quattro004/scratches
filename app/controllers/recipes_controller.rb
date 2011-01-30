@@ -4,44 +4,39 @@ class RecipesController < ApplicationController
   attr_reader :all_categories
   before_filter :get_all_categories # Only get the list of categories once.
   attr_reader :current_category
+  load_and_authorize_resource
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.public
     respond_with(@recipes)
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
     get_current_category
     respond_with(@recipe)
   end
 
   def new
-    @recipe = Recipe.new
     setup_defaults
     respond_with(@recipe)
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
     respond_with(@recipe)
   end
 
   def create
     # TODO: Update recipe's author with current signed on user
-    @recipe = Recipe.new(params[:recipe])
     flash[:notice] = 'Recipe was successfully created.' if @recipe.save
     respond_with(@recipe)
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     flash[:notice] = 'Recipe was successfully updated.' if @recipe.update_attributes(params[:recipe])
     respond_with(@recipe)
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     @recipe.destroy
     flash[:notice] = 'Successfully destroyed recipe.'
     respond_with(@recipe)
@@ -62,5 +57,6 @@ class RecipesController < ApplicationController
       @recipe.picture.build
       @recipe.cook_time_in_minutes = 0
       @recipe.prep_time_in_minutes = 0
+      @recipe.is_public = true
     end
 end

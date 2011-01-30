@@ -2,6 +2,7 @@ class CreateRecipes < ActiveRecord::Migration
   def self.up
     create_table :recipes do |t|
       t.string  :title, :limit => 75
+      # TODO: change this into author_id and add association, a user has many recipes
       t.string  :author, :limit => 50
       t.text    :comment, :limit => 260
       t.integer :category_id
@@ -9,7 +10,7 @@ class CreateRecipes < ActiveRecord::Migration
       t.string  :keywords, :limit => 260
       t.integer :prep_time_in_minutes
       t.integer :cook_time_in_minutes
-      t.boolean :is_public
+      t.boolean :is_public, :default => true
       t.boolean :is_secret
       t.string  :yield, :limit => 75
       t.string  :original_source, :limit => 75

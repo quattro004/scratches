@@ -70,8 +70,10 @@
             <th align="left">
               <%= f.label 'Cook' %>
             </th>
-            <th>Public</th>
-            <th>Secret</th>
+            <% if can? :update, @recipe %>
+              <th>Public</th>
+              <th>Secret</th>
+            <% end %>
           </tr>
           <tr>
             <td>
@@ -80,12 +82,14 @@
             <td>
               <%= f.text_field :cook_time_in_minutes, :size => 2 %>min.
             </td>
-            <td align="center">
-              <%= f.check_box :is_public %>
-            </td>
-            <td align="center">
-              <%= f.check_box :is_secret %>
-            </td>
+            <% if can? :update, @recipe  %>
+              <td align="center">
+                <%= f.check_box :is_public %>
+              </td>
+              <td align="center">
+                <%= f.check_box :is_secret %>
+              </td>
+            <% end %>
           </tr>
         </table>
       </div>

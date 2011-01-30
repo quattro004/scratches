@@ -79,7 +79,9 @@
   </p>
   <br/>
 
-  <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+  <% if can? :update, @recipe  %>
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+  <% end %>
   <%= link_to 'Recipes', recipes_path %> |
   <%= link_to 'Home', root_path %>
 </div>
