@@ -1,0 +1,21 @@
+<div class="fields">
+  <p>
+    <table>
+    <tr>
+      <th align="left">
+        <%= f.label :picture_id %>
+      </th>
+      <th align="left"></th>
+      <th align="left"></th>
+    </tr>
+    <tr>
+      <td>
+        <%= f.file_field :uploaded_picture %>
+      </td>
+      <td>
+        <%=  link_to_remove_fields 'remove', f  %>
+      </td>
+    </tr>
+  </table>
+  </p>
+</div>
