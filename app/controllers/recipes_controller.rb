@@ -4,6 +4,7 @@ class RecipesController < ApplicationController
   attr_reader :all_categories
   before_filter :get_all_categories # Only get the list of categories once.
   attr_reader :current_category
+  attr_reader :author_name
   load_and_authorize_resource
 
   def index
@@ -13,6 +14,7 @@ class RecipesController < ApplicationController
 
   def show
     get_current_category
+    get_author_name
     respond_with(@recipe)
   end
 
@@ -26,7 +28,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    # TODO: Update recipe's author with current signed on user
+    @recipe.user_id = current_user != nil ? current_user.id : 0
     flash[:notice] = 'Recipe was successfully created.' if @recipe.save
     respond_with(@recipe)
   end
@@ -50,6 +52,10 @@ class RecipesController < ApplicationController
 
     def get_current_category
       @current_category = @all_categories.find { |category| category.id == @recipe.category_id }
+    end
+
+    def get_author_name 
+      @author_name = (@recipe.user_id > 0) ? User.find { |user| user.id == @recipe.user_id }.name : 'Anonymous'
     end
 
     def setup_defaults

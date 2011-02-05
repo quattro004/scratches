@@ -2,8 +2,7 @@ class CreateRecipes < ActiveRecord::Migration
   def self.up
     create_table :recipes do |t|
       t.string  :title, :limit => 75
-      # TODO: change this into author_id and add association, a user has many recipes
-      t.string  :author, :limit => 50
+      t.integer :user_id
       t.text    :comment, :limit => 260
       t.integer :category_id
       t.text    :instructions
@@ -17,6 +16,8 @@ class CreateRecipes < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :recipes, :user_id
   end
 
   def self.down

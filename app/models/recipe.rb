@@ -2,6 +2,7 @@ class Recipe < ActiveRecord::Base
   has_many  :picture, :dependent => :destroy
   has_many  :ingredient, :dependent => :destroy
   has_one   :category
+  belongs_to :user
   attr_accessible :title, :instructions, :prep_time_in_minutes, :cook_time_in_minutes, :comment, :keywords, :is_public, 
     :is_secret, :yield, :original_source, :ingredient_attributes, :picture_attributes, :category_id
 
@@ -12,7 +13,7 @@ class Recipe < ActiveRecord::Base
   validates_numericality_of :cook_time_in_minutes, :greater_than_or_equal_to => 1
   validate :number_of_pictures?
 
-  scope :public, where("is_public = ?", true)
+  scope :public, where('is_public = ?', true)
 
   private
 

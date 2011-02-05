@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20110126130042) do
 
   create_table "recipes", :force => true do |t|
     t.string   "title",                :limit => 75
-    t.string   "author",               :limit => 50
+    t.integer  "user_id"
     t.text     "comment"
     t.integer  "category_id"
     t.text     "instructions"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20110126130042) do
   end
 
   add_index "recipes", ["category_id"], :name => "fk_recipes_categories"
+  add_index "recipes", ["user_id"], :name => "index_recipes_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

@@ -15,7 +15,7 @@
       <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
         <td><img src="<%= url_for(:action => 'thumbnail', :id => recipe.picture[0].id, :controller => 'pictures') %>" /></td>
         <td><%= recipe.title %></td>
-        <td><%= recipe.author %></td>
+        <td align="center"><%= :author_name %></td>
         <td><%= recipe.comment %></td>
         <td><%= recipe.keywords %></td>
         <td><%= link_to 'Show', recipe %></td>

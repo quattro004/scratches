@@ -3,6 +3,10 @@
 <div id="recipe">
   <h2><%= @recipe.title %></h2>
 
+  <small>Author: <%= @author_name %></small>
+
+  <br/>
+
   <% unless @recipe.yield.empty? %>
     <small><%= @recipe.yield %></small>
   <% end %>
