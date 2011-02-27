@@ -8,13 +8,13 @@
   <br/>
 
   <% unless @recipe.yield.empty? %>
-    <small><%= @recipe.yield %></small>
+    <small>Yield: <%= @recipe.yield %></small>
   <% end %>
   
   <% unless @recipe.picture.empty? %>
     <img src="<%= url_for(:action => 'show', :id => @recipe.picture[0].id, :controller => 'pictures') %>" class="floatRight"/>
   <% end %>
-  
+
   <p>
     <b>Ingredients:</b>
     <ul>
@@ -46,7 +46,7 @@
     <b>Category:</b>
     <%= @current_category.name %>
   </p>
-  
+
   <p>
     <b>Keywords:</b>
     <%= @recipe.keywords %>
@@ -81,6 +81,7 @@
         </tr>
       </table>
   </p>
+
   <br/>
 
   <% if can? :update, @recipe  %>

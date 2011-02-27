@@ -8,7 +8,11 @@ class RecipesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @recipes = Recipe.public
+    if current_user != nil
+      @recipes = Recipe.all # Recipe.mine current_user
+    else
+      @recipes = Recipe.public
+    end
     respond_with(@recipes)
   end
 

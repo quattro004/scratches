@@ -14,12 +14,11 @@ class Recipe < ActiveRecord::Base
   validate :number_of_pictures?
 
   scope :public, where('is_public = ?', true)
+  scope :mine, lambda { |user| where('user_id = ?', user.id) }
 
   private
 
     def number_of_pictures?
-      unless picture.size < 4
-        errors.add :recipe, 'can only have a maximum of 4 pictures'
-      end
+        errors.add :recipe, 'can only have a maximum of 4 pictures' unless picture.size < 4
     end
 end

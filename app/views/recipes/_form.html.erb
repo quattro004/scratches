@@ -33,7 +33,7 @@
         <legend>Pictures:</legend>
         <% for picture in @recipe.picture %>
           <%= f.fields_for :picture, picture do |builder| %>
-            <% if action_name == 'new' %>
+            <% if action_name == 'new' || action_name == 'create' %>
               <%= render 'picture_fields', :f => builder %>
             <% else %>
               <div class="fields">
