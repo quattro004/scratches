@@ -22,6 +22,10 @@
         <p><%= link_to_add_fields 'Add Ingredient', f, :ingredient %></p>
       </fieldset>
       <div class="field">
+        <%= f.label :preparation %> <br />
+        <%= f.text_area :preparation, :size => '80x7' %>
+      </div>
+      <div class="field">
         <%= f.label :instructions %> <small><i>(separate each by pressing Enter)</i></small><br />
         <%= f.text_area :instructions, :size => '80x7' %>
       </div>
@@ -29,8 +33,7 @@
         <%= f.label :category %><br />
         <%= collection_select(:recipe, :category_id, @all_categories, :id, :name) %>
       </div>
-      <fieldset>
-        <legend>Pictures:</legend>
+     <div class="field">
         <% for picture in @recipe.picture %>
           <%= f.fields_for :picture, picture do |builder| %>
             <% if action_name == 'new' || action_name == 'create' %>
@@ -44,7 +47,7 @@
           <% end %>
         <% end %>
         <p><%= link_to_add_fields 'Add Picture', f, :picture %></p>
-      </fieldset>
+      </div>
       <div class="field">
         <%= f.label :comment %><br />
         <%= f.text_field :comment, :size => 50 %>

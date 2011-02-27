@@ -1,7 +1,7 @@
 <p class="notice"><%= notice %></p>
 
 <div id="recipe">
-  <h2><%= @recipe.title %></h2>
+  <h1><%= @recipe.title %></h1>
 
   <small>Author: <%= @author_name %></small>
 
@@ -25,6 +25,13 @@
       <% end %>
     </ul>
   </p>
+
+  <% unless @recipe.preparation.empty? %>
+    <p>
+      <b>Preparation:</b>
+      <%= @recipe.preparation %>
+    </p>
+  <% end %>
 
   <p>
     <b>Instructions:</b>

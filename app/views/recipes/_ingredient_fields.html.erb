@@ -9,9 +9,6 @@
         <%= f.label :name %>
       </th>
       <th align="left">
-        <%= f.label :prep %>
-      </th>
-      <th align="left">
         <%= f.label :secret %>
       </th>
       <th align="left"></th>
@@ -21,10 +18,7 @@
         <%= f.text_field :amount, :size => 8 %>
       </td>
       <td>
-        <%= f.text_field :name, :size => 20 %>
-      </td>
-      <td>
-        <%= f.text_field :prep %>
+        <%= f.text_field :name, :size => 40 %>
       </td>
       <td align="center">
         <%= f.check_box :secret %>

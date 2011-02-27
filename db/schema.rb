@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20110126130042) do
     t.string   "amount"
     t.boolean  "secret"
     t.integer  "recipe_id"
-    t.text     "prep"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20110126130042) do
     t.boolean  "is_secret"
     t.string   "yield",                :limit => 75
     t.string   "original_source",      :limit => 75
+    t.text     "preparation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

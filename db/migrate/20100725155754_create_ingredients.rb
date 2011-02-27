@@ -9,7 +9,6 @@ class CreateIngredients < ActiveRecord::Migration
       t.string  :amount
       t.boolean :secret
       t.integer :recipe_id
-      t.text    :prep, :limit => 420
       
       t.timestamps
     end

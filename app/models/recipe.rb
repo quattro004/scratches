@@ -4,7 +4,7 @@ class Recipe < ActiveRecord::Base
   has_one   :category
   belongs_to :user
   attr_accessible :title, :instructions, :prep_time_in_minutes, :cook_time_in_minutes, :comment, :keywords, :is_public, 
-    :is_secret, :yield, :original_source, :ingredient_attributes, :picture_attributes, :category_id
+    :is_secret, :yield, :original_source, :ingredient_attributes, :picture_attributes, :category_id, :preparation
 
   accepts_nested_attributes_for :ingredient, :picture, :allow_destroy => true #, :reject_if => lambda { |a| a[:name].blank? || a[:amount].blank? }
 

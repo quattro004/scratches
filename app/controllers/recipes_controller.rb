@@ -38,7 +38,7 @@ class RecipesController < ApplicationController
   end
 
   def update
-    flash[:notice] = 'Recipe was successfully updated.' if @recipe.update_attributes(params[:recipe])
+    @recipe.update_attributes(params[:recipe])
     respond_with(@recipe)
   end
 
