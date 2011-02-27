@@ -1,8 +1,6 @@
 Recipieces::Application.routes.draw do |map|
   devise_for :users
 
-  resources :ingredients
-
   resources :categories
 
   resources :recipes
