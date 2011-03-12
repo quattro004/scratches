@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    if current_user != nil
+    if user_signed_in?
       @recipes = Recipe.all # Recipe.mine current_user
     else
       @recipes = Recipe.public
@@ -32,7 +32,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe.user_id = current_user != nil ? current_user.id : 0
+    @recipe.user_id = user_signed_in? ? current_user.id : 0
     flash[:notice] = 'Recipe was successfully created.' if @recipe.save
     respond_with(@recipe)
   end

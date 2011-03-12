@@ -16,6 +16,7 @@ Recipieces::Application.configure do
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.smtp_settings = { :enable_starttls_auto => false }
 
   config.active_support.deprecation = :log
 end
