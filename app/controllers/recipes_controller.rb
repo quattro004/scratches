@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
 
   def index
     if user_signed_in?
-      @recipes = Recipe.public_and_user current_user
+      @recipes = Recipe.public_or_user current_user
     else
       @recipes = Recipe.public_only
     end

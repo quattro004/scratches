@@ -15,7 +15,7 @@ class Recipe < ActiveRecord::Base
 
   scope :public_only, where('is_public = ?', true)
   scope :user_only, lambda { |user| where('user_id = ?', user.id) }
-  scope :public_and_user, lambda { |user| where('is_public = true or user_id = ?', user.id) }
+  scope :public_or_user, lambda { |user| where('is_public = true or user_id = ?', user.id) }
 
   private
 
