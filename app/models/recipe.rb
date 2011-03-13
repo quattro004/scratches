@@ -13,8 +13,9 @@ class Recipe < ActiveRecord::Base
   validates_numericality_of :cook_time_in_minutes, :greater_than_or_equal_to => 1
   validate :number_of_pictures?
 
-  scope :public, where('is_public = ?', true)
-  scope :mine, lambda { |user| where('user_id = ?', user.id) }
+  scope :public_only, where('is_public = ?', true)
+  scope :user_only, lambda { |user| where('user_id = ?', user.id) }
+  scope :public_and_user, lambda { |user| where('is_public = true or user_id = ?', user.id) }
 
   private
 
