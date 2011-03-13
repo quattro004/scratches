@@ -17,11 +17,13 @@
         <td><%= recipe.comment %></td>
         <td><%= recipe.keywords %></td>
         <td><%= link_to 'Show', recipe %></td>
-        <% if can? :edit, recipe %>
-          <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <% end %>
-        <% if can? :destroy, recipe %>
-          <td><%= link_to 'Destroy', recipe, :confirm => 'Are you sure?', :method => :delete %></td>
+        <% if user_signed_in? %>
+          <% if ((can? :edit, recipe) && recipe.user_id == current_user.id) %>
+            <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+          <% end %>
+          <% if ((can? :destroy, recipe) && recipe.user_id == current_user.id) %>
+            <td><%= link_to 'Destroy', recipe, :confirm => 'Are you sure?', :method => :delete %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
