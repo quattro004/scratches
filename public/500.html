@@ -3,16 +3,24 @@
 <head>
   <title>We're sorry, but something went wrong (500)</title>
   <style type="text/css">
-    body { background-color: black; color: #666; text-align: center; font-family: arial, sans-serif; }
+    body {
+        background: black;
+        color: #666;
+        text-align: center;
+        font-family: arial, sans-serif;
+    }
     div.dialog {
       width: 25em;
       padding: 0 4em;
       margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    img.centered {
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+    }
+    h1 { font-size: 100%; color: red; line-height: 1.5em; }
+
   </style>
 </head>
 
@@ -20,9 +28,10 @@
   <!-- This file lives in public/500.html -->
   <div class="dialog">
     <h1>Blood and bloody ashes!</h1>
-    <p>A dragon descends on your castle, breathing fire and destroying all in its path. The inhabitants scatter and flee, you're left all alone
-with a sinking sensation that something bad has happened. The local wizard has been notified and will soon appear on the scene to pick
-up the pieces. The castle may have to be rebuilt. If you continue to receive this message please do not give up hope, all is not lost.</p>
+    A dragon descends on your castle, breathing fire and destroying all in its path. The inhabitants scatter and flee, you're left all alone
+       with a sinking sensation that something bad has happened. The local wizard has been notified and will soon appear on the scene to pick
+       up the pieces. The castle may have to be rebuilt. If you continue to receive this message please do not give up hope, all is not lost.       
   </div>
+  <img class="centered" src="images/500.jpg" alt="500.jpg" />
 </body>
 </html>
