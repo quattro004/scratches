@@ -92,7 +92,7 @@
   <br/>
 
   <% if user_signed_in? %>
-    <% if ((can? :edit, @recipe) && @recipe.user_id == current_user.id)  %>
+    <% if ((can? :edit, @recipe) && (@recipe.user_id == current_user.id  || current_user.role?(:admin) ))  %>
       <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
     <% end %>
   <% end %>

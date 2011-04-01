@@ -18,10 +18,10 @@
         <td><%= recipe.keywords %></td>
         <td><%= link_to 'Show', recipe %></td>
         <% if user_signed_in? %>
-          <% if ((can? :edit, recipe) && recipe.user_id == current_user.id) %>
+          <% if ((can? :edit, recipe) && (recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
             <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
           <% end %>
-          <% if ((can? :destroy, recipe) && recipe.user_id == current_user.id) %>
+          <% if ((can? :destroy, recipe) && (recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
             <td><%= link_to 'Destroy', recipe, :confirm => 'Are you sure?', :method => :delete %></td>
           <% end %>
         <% end %>
