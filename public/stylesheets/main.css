@@ -13,7 +13,7 @@ body, p, ol, ul, td {
   line-height: 18px;
 }
 #mainContent {
-  width: 900px;
+  width: 950px;
   margin: auto;
 }
 
@@ -116,10 +116,6 @@ img.floatRight {
 #ingredients {
     float:left;
     display:inline;
-}
-
-#recipe-list{
-    width: 900px;
 }
 
 #recipe-list .list-line-odd {

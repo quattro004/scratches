@@ -44,7 +44,7 @@
 
   <% unless @recipe.comment.empty? %>
     <p>
-      <b>Comment:</b>
+      <b>Comment/Description:</b>
       <%= @recipe.comment %>
     </p>
   <% end %>
@@ -54,23 +54,25 @@
     <%= @current_category.name %>
   </p>
 
-  <p>
-    <b>Keywords:</b>
-    <%= @recipe.keywords %>
-  </p>
-
-   <p>
-    <b>Original Source:</b>
-    <%= @recipe.original_source %>
-  </p>
+  <% unless @recipe.keywords.empty? %>
+    <p>
+      <b>Keywords:</b>
+      <%= @recipe.keywords %>
+    </p>
+  <% end %>
+  
+  <% unless @recipe.original_source.empty? %>
+    <p>
+      <b>Original Source:</b>
+      <%= @recipe.original_source %>
+    </p>
+  <% end %>
 
   <p>
     <table>
         <tr>
           <th align="left">Prep</th>
           <th align="left">Cook</th>
-          <th align="left">Public</th>
-          <th align="left">Secret</th>
         </tr>
         <tr>
           <td>
@@ -78,12 +80,6 @@
           </td>
           <td>
             <%= @recipe.cook_time_in_minutes %> min.
-          </td>
-          <td>
-            <%= @recipe.is_public %>
-          </td>
-          <td>
-            <%= @recipe.is_secret %>
           </td>
         </tr>
       </table>

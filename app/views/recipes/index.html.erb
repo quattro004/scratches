@@ -3,8 +3,7 @@
     <tr>
       <th/>
       <th>Title</th>
-      <th>Comment</th>
-      <th>Keywords</th>
+      <th>Comment/Description</th>
       <th></th>
       <th></th>
       <th></th>
@@ -13,9 +12,8 @@
     <% for recipe in @recipes %>
       <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
         <td><img src="<%= url_for(:action => 'thumbnail', :id => recipe.picture[0].id, :controller => 'pictures') %>" /></td>
-        <td><%= recipe.title %></td>
-        <td><%= recipe.comment %></td>
-        <td><%= recipe.keywords %></td>
+        <td><b><%= recipe.title %></b></td>
+        <td><%= truncate(recipe.comment, :length => 85, :separator => ' ') %></td>
         <td><%= link_to 'Show', recipe %></td>
         <% if user_signed_in? %>
           <% if ((can? :edit, recipe) && (recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
