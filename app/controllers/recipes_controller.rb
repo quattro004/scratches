@@ -33,9 +33,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe.user_id = user_signed_in? ? current_user.id : 0
-    if !@recipe.picture[0].data
-      @recipe.picture.delete_all
-    end
+    @recipe.picture.delete_all if @recipe.picture.size > 0 && !@recipe.picture[0].data
     flash[:notice] = 'Recipe was successfully created.' if @recipe.save
     respond_with(@recipe)
   end
