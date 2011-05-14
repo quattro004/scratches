@@ -59,8 +59,10 @@ class RecipesController < ApplicationController
       @current_category = @all_categories.find { |category| category.id == @recipe.category_id }
     end
 
-    def get_author_name 
-      @author_name = (@recipe.user_id > 0) ? User.find { |user| user.id == @recipe.user_id }.name : 'Anonymous'
+    def get_author_name
+      @author_name = (@recipe.user_id > 0) \
+        ? User.find { |user| user.id == @recipe.user_id }.name \
+        : 'Anonymous'
     end
 
     def setup_defaults
@@ -71,3 +73,4 @@ class RecipesController < ApplicationController
       @recipe.is_public = true
     end
 end
+

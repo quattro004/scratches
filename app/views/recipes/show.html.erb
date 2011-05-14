@@ -10,9 +10,14 @@
   <% unless @recipe.yield.empty? %>
     <small>Yield: <%= @recipe.yield %></small>
   <% end %>
-  
+
   <% unless @recipe.picture.empty? %>
-    <img src="<%= url_for(:action => 'show', :id => @recipe.picture[0].id, :controller => 'pictures') %>" class="floatRight"/>
+    <div class="floatRight">
+      <img src="<%= url_for(:action => 'show', :id => @recipe.picture[0].id, :controller => 'pictures') %>" class="floatRight"/>
+      <% @recipe.picture.each_with_index do |picture, index| %>
+        <%= link_to index + 1, picture_path(picture) %>
+      <% end %>
+    </div>
   <% end %>
 
   <p>
@@ -60,7 +65,7 @@
       <%= @recipe.keywords %>
     </p>
   <% end %>
-  
+
   <% unless @recipe.original_source.empty? %>
     <p>
       <b>Original Source:</b>
@@ -95,3 +100,4 @@
   <%= link_to 'Recipes', recipes_path %> |
   <%= link_to 'Home', root_path %>
 </div>
+
