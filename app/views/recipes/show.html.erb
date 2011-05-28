@@ -14,9 +14,12 @@
   <% unless @recipe.picture.empty? %>
     <div class="floatRight">
       <img src="<%= url_for(:action => 'show', :id => @recipe.picture[0].id, :controller => 'pictures') %>" class="floatRight"/>
-      <% @recipe.picture.each_with_index do |picture, index| %>
-        <%= link_to index + 1, picture_path(picture) %>
-      <% end %>
+      <br/>
+      <center>
+        <% @recipe.picture.each_with_index do |picture, index| %>
+          <%= link_to index + 1, picture_path(picture) %>
+        <% end %>
+      </center>
     </div>
   <% end %>
 

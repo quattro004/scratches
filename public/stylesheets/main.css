@@ -1,4 +1,4 @@
-body { 
+body {
     background-color: #fff;
     color: #333;
     background-image: url(../../images/footer.png);
@@ -102,9 +102,10 @@ legend {
     font-family: cursive;
 }
 
-img.floatRight {
+div.floatRight {
     float: right;
-    margin: 5px;
+    margin: auto;
+    width: 200px;
 }
 
 #recipe {
@@ -127,3 +128,4 @@ img.floatRight {
   background: #d598f8;
   color: #fff;
 }
+
