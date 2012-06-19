@@ -1,7 +1,7 @@
 body {
     background-color: #fff;
     color: #333;
-    background-image: url(../../images/footer.png);
+    background-image: url(/assets/footer.png);
     background-repeat: repeat-x;
     background-position: bottom;
     background-attachment: fixed;

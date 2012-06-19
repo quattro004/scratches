@@ -1,9 +1,7 @@
-Recipieces::Application.routes.draw do |map|
+Recipieces::Application.routes.draw do
   devise_for :users
 
-  resources :categories
-
-  resources :recipes
+  resources :categories, :recipes
 
   resources :pictures do
     member do

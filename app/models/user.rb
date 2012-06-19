@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
   has_many :recipe
-  # Include default devise modules. Others available are:
-  # :token_authenticatable and :timeoutable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
