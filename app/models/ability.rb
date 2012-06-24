@@ -1,3 +1,4 @@
+# Defines the abilities of a user.
 class Ability
   include CanCan::Ability
 
@@ -7,9 +8,6 @@ class Ability
       can :manage, :all
     elsif user.role? :member
       can :manage, Recipe
-    else
-      can :read, Recipe
-      can :create, Recipe
     end
   end
 end

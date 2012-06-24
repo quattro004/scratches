@@ -7,7 +7,7 @@ class Picture < ActiveRecord::Base
                       :message => '--- you can only upload pictures',
                       :if => :contains_data
 
-  validates_size_of   :data, :maximum => 1.megabyte, :message => 'cannot be greater than 1mb',
+  validates_size_of   :data, :maximum => 3.megabyte, :message => 'cannot be greater than 3mb',
                       :if => :contains_data
 
   def uploaded_picture=(picture_field)

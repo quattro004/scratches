@@ -1,4 +1,4 @@
-# Responsible for managing the lifeblood of this application, recipes.
+# Responsible for managing recipes.
 class RecipesController < ApplicationController
   respond_to :html, :xml, :json
   attr_reader :all_categories
@@ -10,8 +10,6 @@ class RecipesController < ApplicationController
   def index
     if user_signed_in?
       @recipes = Recipe.public_or_user current_user
-    else
-      @recipes = Recipe.public_only
     end
     respond_with(@recipes)
   end
@@ -55,7 +53,7 @@ class RecipesController < ApplicationController
       @all_categories = Category.all
     end
 
-    def get_current_category
+	def get_current_category
       @current_category = @all_categories.find { |category| category.id == @recipe.category_id }
     end
 
@@ -73,4 +71,3 @@ class RecipesController < ApplicationController
       @recipe.is_public = true
     end
 end
-
