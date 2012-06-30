@@ -13,9 +13,13 @@ Recipieces::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :enable_starttls_auto => false }
+  # change to false to prevent email from being sent during development
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
 
   config.active_support.deprecation = :log
 
@@ -24,6 +28,9 @@ Recipieces::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Only use best-standards-support built into browsers
+  config.action_dispatch.best_standards_support = :builtin
 
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
