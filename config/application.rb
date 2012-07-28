@@ -35,11 +35,14 @@ module Recipieces
     # config.i18n.default_locale = :de
 
     # Configure generators values. Many other options are available, be sure to check the documentation.
-    # config.generators do |g|
+    config.generators do |g|
+	# don't generate RSpec tests for views and helpers
+	g.view_specs false
+        g.helper_specs false
     #   g.orm             :active_record
     #   g.template_engine :erb
     #   g.test_framework  :test_unit, :fixture => true
-    # end
+    end
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
