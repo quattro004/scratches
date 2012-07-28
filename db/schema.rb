@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(:version => 20110126130042) do
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "ingredients", :force => true do |t|
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(:version => 20110126130042) do
     t.string   "amount"
     t.boolean  "secret"
     t.integer  "recipe_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "ingredients", ["recipe_id"], :name => "fk_ingredients_recipes"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(:version => 20110126130042) do
     t.integer  "size"
     t.binary   "data",         :limit => 16777215
     t.integer  "recipe_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   add_index "pictures", ["recipe_id"], :name => "fk_pictures_recipes"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20110126130042) do
     t.string   "yield",                :limit => 75
     t.string   "original_source",      :limit => 75
     t.text     "preparation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
   end
 
   add_index "recipes", ["category_id"], :name => "fk_recipes_categories"
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(:version => 20110126130042) do
     t.integer  "failed_attempts",        :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "name"
     t.string   "role"
   end
