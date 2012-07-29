@@ -1,8 +1,8 @@
 ### UTILITY METHODS ###
 
 def create_visitor
-  @visitor ||= { :name => "Testy McUserton", :email => "example@example.com",
-    :password => "please", :password_confirmation => "please" }
+  @visitor ||= { :name => "Testy McUserton", :email => "quattro004@gmail.com",
+    :password => "tester", :password_confirmation => "tester" }
 end
 
 def find_user
@@ -154,7 +154,7 @@ Then /^I see a successful sign in message$/ do
 end
 
 Then /^I should see a successful sign up message$/ do
-  page.should have_content "A message with a confirmation link has been sent to your email address."
+  page.should have_content "A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
 end
 
 Then /^I should see an invalid email message$/ do

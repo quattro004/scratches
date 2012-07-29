@@ -9,7 +9,6 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-
 module Recipieces
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -36,9 +35,9 @@ module Recipieces
 
     # Configure generators values. Many other options are available, be sure to check the documentation.
     config.generators do |g|
-	# don't generate RSpec tests for views and helpers
-	g.view_specs false
-        g.helper_specs false
+	    # don't generate RSpec tests for views and helpers
+	    g.view_specs false
+      g.helper_specs false
     #   g.orm             :active_record
     #   g.template_engine :erb
     #   g.test_framework  :test_unit, :fixture => true
@@ -48,7 +47,7 @@ module Recipieces
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :password_confirmation]
 
     # Enable the asset pipeline
     config.assets.enabled = true
