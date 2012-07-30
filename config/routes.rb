@@ -1,5 +1,7 @@
 Recipieces::Application.routes.draw do
+
   devise_for :users
+  resources :users, :only => [:show, :index]
 
   resources :categories, :recipes
 
@@ -8,7 +10,7 @@ Recipieces::Application.routes.draw do
       get 'thumbnail'
     end
   end
-  
+
   root :to=> 'home#index'
 
 end

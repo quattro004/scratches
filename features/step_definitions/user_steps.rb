@@ -129,7 +129,7 @@ When /^I edit my account details$/ do
 end
 
 When /^I look at the list of users$/ do
-  visit '/'
+  visit '/users'
 end
 
 ### THEN ###
@@ -186,7 +186,6 @@ Then /^I should see an account edited message$/ do
 end
 
 Then /^I should see my name$/ do
-  pending
   create_user
   page.should have_content @user[:name]
 end
