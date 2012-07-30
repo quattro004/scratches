@@ -42,7 +42,7 @@ def sign_in
   visit '/users/sign_in'
   fill_in "Email", :with => @visitor[:email]
   fill_in "Password", :with => @visitor[:password]
-  click_button "Sign in"
+  click_button "Login"
 end
 
 ### GIVEN ###
@@ -186,6 +186,7 @@ Then /^I should see an account edited message$/ do
 end
 
 Then /^I should see my name$/ do
+  pending
   create_user
   page.should have_content @user[:name]
 end
