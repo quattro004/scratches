@@ -5,5 +5,6 @@ Feature: Show Users
 
     Scenario: Viewing users
       Given I exist as a user
+        And I am logged in
       When I look at the list of users
       Then I should see my name
