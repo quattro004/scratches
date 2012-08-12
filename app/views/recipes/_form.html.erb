@@ -1,38 +1,46 @@
  <%= form_for(@recipe, :html => { :multipart => true }) do |f| %>
   <% if @recipe.errors.any? %>
-  <div id="errorExplanation">
-    <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
-    <ul>
-    <% @recipe.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
+    <div id="errorExplanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+      <ul>
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
+
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, :size => 60 %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
   </div>
-  <fieldset>
-    <legend>Ingredients:</legend>
+
+  <label>Ingredients</label>
+  <div class="form-inline">
     <%= f.fields_for :ingredient do |builder| %>
       <%= render 'ingredient_fields', :f => builder %>
     <% end %>
     <p><%= link_to_add_fields 'Add Ingredient', f, :ingredient %></p>
-  </fieldset>
+  </div>
+
   <div class="field">
-    <%= f.label :preparation %> <br />
+    <%= f.label :preparation %>
     <%= f.text_area :preparation, :size => '80x7' %>
   </div>
+
   <div class="field">
-    <%= f.label :instructions %> <small><i>(separate each by pressing Enter)</i></small><br />
+    <%= f.label :instructions do %>
+      Instructions <em>(separate each by pressing Enter)</em>
+    <% end %>
     <%= f.text_area :instructions, :size => '80x7' %>
   </div>
+
   <div class="field">
-    <%= f.label :category %><br />
+    <%= f.label :category %>
     <%= collection_select(:recipe, :category_id, @all_categories, :id, :name) %>
   </div>
- <div class="field">
+
+  <div class="field">
     <% for picture in @recipe.picture %>
       <%= f.fields_for :picture, picture do |builder| %>
         <% if action_name == 'new' || action_name == 'create' %>
@@ -47,22 +55,27 @@
     <% end %>
     <p><%= link_to_add_fields 'Add Picture', f, :picture %></p>
   </div>
+
   <div class="field">
-    <%= f.label 'Comment/Description' %><br />
+    <%= f.label 'Comment/Description' %>
     <%= f.text_field :comment, :size => 50 %>
   </div>
+
   <div class="field">
-    <%= f.label :keywords %><br />
+    <%= f.label :keywords %>
     <%= f.text_field :keywords, :size => 40 %>
   </div>
+
   <div class="field">
-    <%= f.label :yield %><br />
+    <%= f.label :yield %>
     <%= f.text_field :yield, :size => 25 %>
   </div>
+
   <div class="field">
-    <%= f.label :original_source %><br />
+    <%= f.label :original_source %>
     <%= f.text_field :original_source, :size => 25 %>
   </div>
+
   <div class="field">
     <table>
       <tr>
@@ -73,8 +86,8 @@
           <%= f.label 'Cook' %>
         </th>
         <% if can? :update, @recipe %>
-          <th>Public</th>
-          <th>Secret</th>
+          <th></th>
+          <th></th>
         <% end %>
       </tr>
       <tr>
@@ -86,16 +99,21 @@
         </td>
         <% if can? :update, @recipe  %>
           <td align="center">
-            <%= f.check_box :is_public %>
+            <%= f.label :is_public, :class => "checkbox" do %>
+              <%= f.check_box :is_public %>Public
+            <% end %>
           </td>
           <td align="center">
-            <%= f.check_box :is_secret %>
+           <%= f.label :is_secret, :class => "checkbox" do %>
+              <%= f.check_box :is_secret %>Secret
+            <% end %>
           </td>
         <% end %>
       </tr>
     </table>
   </div>
+
   <div class="actions">
-    <%= f.submit nil, :class => 'input' %>
+    <%= f.submit nil, :class => 'btn btn-success btn-large' %>
   </div>
 <% end %>

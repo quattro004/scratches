@@ -1,32 +1,11 @@
 <div class="fields">
-  <p>
-  <table>
-    <tr>
-      <th align="left">
-        <%= f.label :amount %>
-      </th>
-      <th align="left">
-        <%= f.label :name %>
-      </th>
-      <th align="left">
-        <%= f.label :secret %>
-      </th>
-      <th align="left"></th>
-    </tr>
-    <tr>
-      <td>
-        <%= f.text_field :amount, :size => 8 %>
-      </td>
-      <td>
-        <%= f.text_field :name, :size => 40 %>
-      </td>
-      <td align="center">
-        <%= f.check_box :secret %>
-      </td>
-      <td>
-        <%=  link_to_remove_fields 'remove', f  %>
-      </td>
-    </tr>
-  </table>
-  </p>
-</div>
+  <%= f.text_field :amount, :class => "input-small", :placeholder => "Amount" %>
+
+  <%= f.text_field :name, :placeholder => "Name" %>
+
+  <%= f.label :secret, :class => "checkbox" do %>
+      <%= f.check_box :secret %>Secret
+  <% end %>
+
+  <%=  link_to_remove_fields 'remove', f  %>
+ </div>

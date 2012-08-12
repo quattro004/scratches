@@ -1,0 +1,42 @@
+// Reference: http://twitter.github.com/bootstrap/index.html
+
+$linkColor: #FFFFFF;
+$tableBackgroundAccent: #E0C2E0;
+$tableBackgroundHover: #198D19;
+
+@import "bootstrap";
+body {
+  padding-top: 60px;
+  background-color: #E0C2E0;
+}
+@import "bootstrap-responsive";
+
+label {
+  font-weight: bold;
+  color: #E0C2E0;
+}
+
+.content {
+  background-color: #993399;
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  border-radius: 6px 6px 6px 6px;
+  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.30);
+  -moz-box-shadow: 0 3px 4px rgba(0,0,0,.30);
+  box-shadow: 0 3px 4px rgba(0,0,0,.30);
+}
+
+footer{
+  padding:20px;
+  margin: 20px -20px 0 -20px;
+  -webkit-border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  border-radius: 6px 6px 6px 6px;
+  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.30);
+  -moz-box-shadow: 0 3px 4px rgba(0,0,0,.30);
+  box-shadow: 0 3px 4px rgba(0,0,0,.30);
+  color: #993399;
+  background:url(/assets/footer.png) repeat left top;
+}

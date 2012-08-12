@@ -1,108 +1,94 @@
 <p class="notice"><%= notice %></p>
 
-<div id="recipe">
-  <h1><%= @recipe.title %></h1>
+<div class="recipe">
 
-  <small>Author: <%= @author_name %></small>
-
-  <br/>
-
-  <% unless @recipe.yield.empty? %>
-    <small>Yield: <%= @recipe.yield %></small>
-  <% end %>
+  <div class="page-header">
+    <h1><%= @recipe.title %></h1>
+    <small>Author: <label class="text"><em><%= @author_name %></em></label></small>
+    <% unless @recipe.yield.empty? %>
+      <small style="float: right;">Yield: <label class="text"><em><%= @recipe.yield %></em></label></small>
+    <% end %>
+  </div>
 
   <% unless @recipe.picture.empty? %>
-    <div class="floatRight">
-      <img src="<%= url_for(:action => 'show', :id => @recipe.picture[0].id, :controller => 'pictures') %>" class="floatRight"/>
+    <div>
       <% if @recipe.picture.size > 1 %>
-        <br/>
-        <center>
+          <label style="display: inline;">Pictures:</label>
           <% @recipe.picture.each_with_index do |picture, index| %>
-            <%= link_to index + 1, picture_path(picture) %>
+            <strong><%= link_to index + 1, picture_path(picture) %></strong>
           <% end %>
-        </center>
       <% end %>
+      <img src="<%= url_for(:action => 'show', :id => @recipe.picture[0].id, :controller => 'pictures') %>"/>
     </div>
   <% end %>
 
-  <p>
-    <b>Ingredients:</b>
+  <% unless @recipe.comment.empty? %>
+    <label>Comment/Description:
+      <label class="text"><%= @recipe.comment %></label>
+    </label>
+  <% end %>
+
+  <label>Category:
+    <label class="text"><%= @current_category.name %></label>
+  </label>
+
+  <% unless @recipe.keywords.empty? %>
+    <label>Keywords:
+      <label class="text"><%= @recipe.keywords %></label>
+    </label>
+  <% end %>
+
+  <% unless @recipe.preparation.empty? %>
+      <label>Preparation:
+        <label class="text"><%= @recipe.preparation %></label>
+      </label>
+  <% end %>
+
+  <label>Ingredients:
     <ul>
       <% for ingredient in @recipe.ingredient %>
         <% unless ingredient.secret %>
-          <li><%= ingredient.amount %> <%= ingredient.name %></li>
+          <label class="text"><li><%= ingredient.amount %> <%= ingredient.name %></label></li>
         <% end %>
       <% end %>
     </ul>
-  </p>
+  </label>
 
-  <% unless @recipe.preparation.empty? %>
-    <p>
-      <b>Preparation:</b>
-      <%= @recipe.preparation %>
-    </p>
-  <% end %>
-
-  <p>
-    <b>Instructions:</b>
+  <label>Instructions:
     <ol>
       <% @recipe.instructions.split(/\r\n/).each do |instruction| %>
-        <li><%= instruction %></li>
+        <label class="text"><li><%= instruction %></li></label>
       <% end %>
     </ol>
-  </p>
-
-  <% unless @recipe.comment.empty? %>
-    <p>
-      <b>Comment/Description:</b>
-      <%= @recipe.comment %>
-    </p>
-  <% end %>
-
-  <p>
-    <b>Category:</b>
-    <%= @current_category.name %>
-  </p>
-
-  <% unless @recipe.keywords.empty? %>
-    <p>
-      <b>Keywords:</b>
-      <%= @recipe.keywords %>
-    </p>
-  <% end %>
+  </label>
 
   <% unless @recipe.original_source.empty? %>
-    <p>
-      <b>Original Source:</b>
-      <%= @recipe.original_source %>
-    </p>
+    <label>Original Source:
+      <label class="text"><%= @recipe.original_source %></label>
+    </label>
   <% end %>
 
-  <p>
+  <label>
     <table>
-        <tr>
-          <th align="left">Prep</th>
-          <th align="left">Cook</th>
-        </tr>
-        <tr>
-          <td>
-            <%= @recipe.prep_time_in_minutes %> min.
-          </td>
-          <td>
-            <%= @recipe.cook_time_in_minutes %> min.
-          </td>
-        </tr>
-      </table>
-  </p>
-
-  <br/>
+      <tr>
+        <th align="left">Prep</th>
+        <th align="left">Cook</th>
+      </tr>
+      <tr>
+        <td>
+          <label class="text"><%= @recipe.prep_time_in_minutes %> min.</label>
+        </td>
+        <td>
+          <label class="text"><%= @recipe.cook_time_in_minutes %> min.</label>
+        </td>
+      </tr>
+    </table>
+  </label>
 
   <% if user_signed_in? %>
     <% if ((can? :edit, @recipe) && (@recipe.user_id == current_user.id  || current_user.role?(:admin) ))  %>
       <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
     <% end %>
   <% end %>
-  <%= link_to 'Recipes', recipes_path %> |
-  <%= link_to 'Home', root_path %>
+  <%= link_to 'Recipes', recipes_path %>
 </div>
-
