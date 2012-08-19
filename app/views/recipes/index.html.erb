@@ -22,8 +22,8 @@
           <td><label class="text"><%= truncate(recipe.comment, :length => 85, :separator => ' ') %></td>
           <td>
             <%= link_to(recipe, class: "btn btn-small btn-success") do %>
-                  <i class="icon-eye-open icon-white"></i> View
-                <% end %>
+              <i class="icon-eye-open icon-white"></i> View
+            <% end %>
           </td>
           <% if user_signed_in? %>
             <% if ((can? :edit, recipe) && (recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
