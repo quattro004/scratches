@@ -37,6 +37,14 @@
         <%= link_to 'Categories', categories_path %>
       </li>
     <% end %>
+    <% if can? :manage, :user %>
+      <li class="<%= 'active' if current_page?(users_path) %>">
+        <%= link_to 'All users', users_path %>
+      </li>
+      <li class="<%= 'active' if current_page?(users_path) %>">
+        <%= link_to 'Users awaiting approval', users_path(:approved => false) %>
+      </li>
+    <% end %>
   <% else %>
     <li class="<%= 'active' if current_page?(new_user_session_path) %>">
       <%= link_to(new_user_session_path) do %>

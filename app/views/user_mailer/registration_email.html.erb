@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h4>Dude, <%= @user.name %> wants to sign up.</h4>
+    <p>
+      The following login was selected: <%= @user.email %>.<br/>
+    </p>
+    <p>
+      To review users awaiting approval, just follow this link:
+      <%= link_to 'Users awaiting approval', registration_url(@user, :approved => false) %>.
+    </p>
+  </body>
+</html>

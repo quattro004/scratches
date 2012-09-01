@@ -1,0 +1,9 @@
+Dude, <%= @user.name %> wants to sign up.
+===============================================
+
+He or she has successfully signed up to recipieces.com, username is: <%= @user.email %>.
+
+To review pending approvals, just follow this link:
+<%= link_to 'Users awaiting approval', registration_url(@user, :approved => false) %>.
+
+Get back to work!
