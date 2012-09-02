@@ -4,6 +4,6 @@ FactoryGirl.define do
     email 'testy@recipieces.com'
     password 'tester'
     password_confirmation 'tester'
-    confirmed_at Time.now
+    approved true
   end
 end

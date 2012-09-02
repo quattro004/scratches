@@ -134,7 +134,7 @@ end
 
 ### THEN ###
 Then /^I should be signed in$/ do
-  page.should have_content "Logout"
+  page.should have_content "Log off"
   page.should_not have_content "Sign up"
   page.should_not have_content "Login"
 end
@@ -150,11 +150,11 @@ Then /^I see an unconfirmed account message$/ do
 end
 
 Then /^I see a successful sign in message$/ do
-  page.should have_content "Signed in successfully."
+  page.should have_content "Logged in successfully."
 end
 
 Then /^I should see a successful sign up message$/ do
-  page.should have_content "A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
+  page.should have_content "You have signed up successfully but your account has not been approved by the webmaster yet. Your account will be reviewed as soon as possible."
 end
 
 Then /^I should see an invalid email message$/ do
@@ -174,7 +174,7 @@ Then /^I should see a mismatched password message$/ do
 end
 
 Then /^I should see a signed out message$/ do
-  page.should have_content "Signed out successfully."
+  page.should have_content "Logged off successfully."
 end
 
 Then /^I see an invalid login message$/ do
