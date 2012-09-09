@@ -1,2 +1,16 @@
-<p>User: <%= @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
+<label>Name:
+  <label class="text"><%= @user.name %></label>
+</label>
+<label>Email:
+  <label class="text"><%= mail_to @user.email %></label>
+</label>
+<br/>
+<% if can? :edit, :users %>
+  <%= link_to(edit_user_path(@user), class: "btn btn-large btn-success") do %>
+    <i class="icon-edit icon-white"></i> Edit
+  <% end %>
+<% end %>
+
+<%= link_to(users_path, class: "btn btn-large btn-success") do %>
+  <i class="icon-th-list icon-white"></i> List
+<% end %>

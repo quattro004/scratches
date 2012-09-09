@@ -30,21 +30,34 @@
             <i class="icon-plus"></i> Create
           <% end %>
         </li>
+        <% if can? :manage, :category %>
+          <li>
+            <%= link_to (categories_path) do %>
+              <i class="icon-tags"></i> Categories
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </li>
-    <% if can? :manage, :category %>
-      <li class="<%= 'active' if current_page?(categories_path) %>">
-        <%= link_to 'Categories', categories_path %>
-      </li>
-    <% end %>
-    <% if can? :manage, :user %>
-      <li class="<%= 'active' if current_page?(users_path) %>">
-        <%= link_to 'All users', users_path %>
-      </li>
-      <li class="<%= 'active' if current_page?(users_path) %>">
-        <%= link_to 'Users awaiting approval', users_path(:approved => false) %>
-      </li>
-    <% end %>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Users<b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <%= link_to(users_path) do %>
+            <i class="icon-th-list"></i> List
+          <% end %>
+        </li>
+        <% if can? :manage, :user %>
+          <li>
+            <%= link_to (users_path(:approved => false)) do %>
+            <i class="icon-user"></i> Users awaiting approval
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
   <% else %>
     <li class="<%= 'active' if current_page?(new_user_session_path) %>">
       <%= link_to(new_user_session_path) do %>

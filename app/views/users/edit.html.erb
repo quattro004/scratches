@@ -1,0 +1,40 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this category from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :approved, :class => "checkbox" do %>
+      <%= f.check_box :approved %>Approved
+    <% end %>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= f.submit nil, :class => 'btn btn-success btn-large' %>
+  </div>
+<% end %>
+
+<%= link_to(@user, class: "btn btn-small btn-success") do %>
+  <i class="icon-eye-open icon-white"></i> View
+<% end %>
+
+<%= link_to(users_path, class: "btn btn-small btn-success") do %>
+  <i class="icon-th-list icon-white"></i> List
+<% end %>

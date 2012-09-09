@@ -6,8 +6,12 @@
         <th><h2>Title</h2></th>
         <th><h2>Comment/Description<h2></th>
         <th></th>
-        <th></th>
-        <th></th>
+        <% if (can? :edit, :recipe) %>
+          <th></th>
+        <% end %>
+        <% if (can? :destroy, :recipe) %>
+          <th></th>
+        <% end %>
       </tr>
     <thead>
     <tbody>
@@ -47,6 +51,6 @@
   </table>
 </div>
 
-<%= link_to(new_recipe_path, class: "btn btn-success") do %>
+<%= link_to(new_recipe_path, class: "btn btn-large btn-success") do %>
   <i class="icon-plus icon-white"></i> New Recipe
 <% end %>

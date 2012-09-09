@@ -90,5 +90,8 @@
       <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
     <% end %>
   <% end %>
-  <%= link_to 'Recipes', recipes_path %>
+<br/>
+  <%= link_to(recipes_path, class: "btn btn-large btn-success") do %>
+    <i class="icon-th-list icon-white"></i> List
+  <% end %>
 </div>

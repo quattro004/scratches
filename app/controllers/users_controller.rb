@@ -15,4 +15,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     respond_with(@user)
   end
+
+  def edit
+    @user = User.find(params[:id])
+    respond_with(@user)
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(params[:user])
+    respond_with(@user)
+  end
 end

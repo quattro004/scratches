@@ -1,9 +1,7 @@
 Recipieces::Application.routes.draw do
-
   devise_for :users
-  resources :users, :only => [:show, :index]
 
-  resources :categories, :recipes
+  resources :users, :categories, :recipes
 
   resources :pictures do
     member do
@@ -12,5 +10,4 @@ Recipieces::Application.routes.draw do
   end
 
   root :to=> 'home#index'
-
 end
