@@ -3,6 +3,6 @@ class UserMailer < ActionMailer::Base
 
   def registration_email(user)
     @user = user
-    mail(:to => "quattro004@gmail.com", :subject => "New User Registration")
+    mail(:to => APP_CONFIG['webmaster_email'], :subject => "New User Registration")
   end
 end

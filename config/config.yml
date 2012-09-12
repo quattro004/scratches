@@ -1,0 +1,8 @@
+development:
+  webmaster_email: quattro004@gmail.com
+
+test:
+  webmaster_email: quattro004@gmail.com
+
+production:
+  webmaster_email: quattro004@gmail.com
