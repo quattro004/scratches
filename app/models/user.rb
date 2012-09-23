@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :recipe
+  has_many :picture
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :approved

@@ -11,40 +11,45 @@
   </div>
 
   <% unless @recipe.picture.empty? %>
-    <div>
-      <% if @recipe.picture.size > 1 %>
-          <label style="display: inline;">Pictures:</label>
+    <% if @recipe.picture.size > 1 %>
+        <label style="display:inline;"><h4>Pictures
           <% @recipe.picture.each_with_index do |picture, index| %>
             <strong><%= link_to index + 1, picture_path(picture) %></strong>
           <% end %>
-      <% end %>
-      <img src="<%= url_for(:action => 'show', :id => @recipe.picture[0].id, :controller => 'pictures') %>"/>
-    </div>
+          </h4>
+        </label>
+    <% end %>
+    <img src="<%= url_for(:action => 'thumbnail', :id => @recipe.picture[0].id, :controller => 'pictures', :height => 256, :width => 256) %>" />
   <% end %>
 
   <% unless @recipe.comment.empty? %>
-    <label>Comment/Description:
+    <label><h4>Comment/Description</h4>
       <label class="text"><%= @recipe.comment %></label>
     </label>
+    <br/>
   <% end %>
 
-  <label>Category:
+  <label><h4>Category</h4>
     <label class="text"><%= @current_category.name %></label>
   </label>
+  <br/>
 
   <% unless @recipe.keywords.empty? %>
-    <label>Keywords:
+    <label><h4>Keywords</h4>
       <label class="text"><%= @recipe.keywords %></label>
     </label>
+    <br/>
   <% end %>
 
   <% unless @recipe.preparation.empty? %>
-      <label>Preparation:
+      <label><h4>Preparation</h4>
         <label class="text"><%= @recipe.preparation %></label>
       </label>
+      <br/>
   <% end %>
 
-  <label>Ingredients:
+  <br/><br/>
+  <label><h4>Ingredients</h4>
     <ul>
       <% for ingredient in @recipe.ingredient %>
         <% unless ingredient.secret %>
@@ -54,7 +59,7 @@
     </ul>
   </label>
 
-  <label>Instructions:
+  <label><h4>Instructions</h4>
     <ol>
       <% @recipe.instructions.split(/\r\n/).each do |instruction| %>
         <label class="text"><li><%= instruction %></li></label>
@@ -63,7 +68,7 @@
   </label>
 
   <% unless @recipe.original_source.empty? %>
-    <label>Original Source:
+    <label><h4>Original Source</h4>
       <label class="text"><%= @recipe.original_source %></label>
     </label>
   <% end %>
@@ -71,8 +76,8 @@
   <label>
     <table>
       <tr>
-        <th align="left">Prep</th>
-        <th align="left">Cook</th>
+        <th align="left"><h4>Prep</h4></th>
+        <th align="left"><h4>Cook</h4></th>
       </tr>
       <tr>
         <td>
@@ -84,13 +89,14 @@
       </tr>
     </table>
   </label>
-
+  <br/>
   <% if user_signed_in? %>
     <% if ((can? :edit, @recipe) && (@recipe.user_id == current_user.id  || current_user.role?(:admin) ))  %>
-      <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+      <%= link_to(edit_recipe_path(@recipe), class: "btn btn-large btn-success") do %>
+        <i class="icon-edit icon-white"></i> Edit
+      <% end %>
     <% end %>
   <% end %>
-<br/>
   <%= link_to(recipes_path, class: "btn btn-large btn-success") do %>
     <i class="icon-th-list icon-white"></i> List
   <% end %>

@@ -1,7 +1,7 @@
 require 'RMagick'
 include Magick
 
-# Responsible for manipulating pictures for a recipe.
+# Responsible for manipulating pictures.
 class PicturesController < ApplicationController
   respond_to :html, :xml, :json
 
@@ -12,12 +12,14 @@ class PicturesController < ApplicationController
       :type => @picture.content_type,
       :disposition => "inline" )
   end
-  
+
   def thumbnail
     @picture = Picture.find(params[:id])
     @image = Image.from_blob(@picture.data).first
-    
-    send_data(@image.thumbnail(60, 60).to_blob,
+    width = params[:width] == nil ? 64 : params[:width].to_i
+    height = params[:height] == nil ? 64 : params[:height].to_i
+
+    send_data(@image.thumbnail(width, height).to_blob,
       :filename => @picture.name,
       :type => @picture.content_type,
       :disposition => "inline" )

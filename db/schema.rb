@@ -37,11 +37,14 @@ ActiveRecord::Schema.define(:version => 20120822130014) do
     t.integer  "size"
     t.binary   "data",         :limit => 16777215
     t.integer  "recipe_id"
+    t.integer  "user_id"
+    t.string   "description"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
 
-  add_index "pictures", ["recipe_id"], :name => "fk_pictures_recipes"
+  add_index "pictures", ["recipe_id"], :name => "index_pictures_on_recipe_id"
+  add_index "pictures", ["user_id"], :name => "index_pictures_on_user_id"
 
   create_table "recipes", :force => true do |t|
     t.string   "title",                :limit => 75
