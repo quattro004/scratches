@@ -8,6 +8,7 @@ class Ability
       can :manage, :all
     elsif user.role? :member
       can :manage, Recipe
+      can :manage, Picture
     end
   end
 end

@@ -1,2 +1,50 @@
-<h1>Pictures#index</h1>
-<p>Find me in app/views/pictures/index.html.erb</p>
+<div id="picture-list">
+  <table class="table table-striped table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th/>
+        <th><h2>Description<h2></th>
+        <% if (can? :edit, :picture) %>
+          <th></th>
+        <% end %>
+        <% if (can? :destroy, :picture) %>
+          <th></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% for picture in @pictures %>
+        <tr>
+          <td><img src="<%= url_for(:action => 'thumbnail', :id => picture.id, :controller => 'pictures') %>" alt="picture thumbnail" /></td>
+          <td><label class="text"><%= picture.description %></label></td>
+          <td>
+            <%= link_to(picture, class: "btn btn-small btn-success") do %>
+              <i class="icon-eye-open icon-white"></i> View
+            <% end %>
+          </td>
+          <% if user_signed_in? %>
+            <% if ((can? :edit, picture) && (picture.user_id == current_user.id || current_user.role?(:admin) )) %>
+              <td>
+                <%= link_to(edit_picture_path(picture), class: "btn btn-small btn-success") do %>
+                  <i class="icon-edit icon-white"></i> Edit
+                <% end %>
+              </td>
+            <% end %>
+            <% if ((can? :destroy, picture) && (picture.user_id == current_user.id || current_user.role?(:admin) )) %>
+              <td>
+                <%= link_to(picture, class: "btn btn-small btn-danger",
+                  :data => { :confirm => "Are you sure you want to delete this picture?" }, :method => :delete) do %>
+                  <i class="icon-trash icon-white"></i> Delete
+                <% end %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+     </tbody>
+  </table>
+</div>
+
+<%= link_to(new_picture_path, class: "btn btn-large btn-success") do %>
+  <i class="icon-plus icon-white"></i> New picture
+<% end %>

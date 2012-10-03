@@ -4,6 +4,16 @@ include Magick
 # Responsible for manipulating pictures.
 class PicturesController < ApplicationController
   respond_to :html, :xml, :json
+  load_and_authorize_resource
+
+  def create
+    flash[:notice] = 'Picture was successfully created.' if @picture.save
+    respond_with(@picture)
+  end
+
+  def new
+    respond_with(@picture)
+  end
 
   def show
     @picture = Picture.find(params[:id])
