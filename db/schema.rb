@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822130014) do
+ActiveRecord::Schema.define(:version => 20121022123307) do
+
+  create_table "album_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "album_type_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "albums", ["album_type_id"], :name => "fk_albums_album_types"
+  add_index "albums", ["user_id"], :name => "index_albums_on_user_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -41,8 +59,10 @@ ActiveRecord::Schema.define(:version => 20120822130014) do
     t.string   "description"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.integer  "album_id"
   end
 
+  add_index "pictures", ["album_id"], :name => "index_pictures_on_album_id"
   add_index "pictures", ["recipe_id"], :name => "index_pictures_on_recipe_id"
   add_index "pictures", ["user_id"], :name => "index_pictures_on_user_id"
 

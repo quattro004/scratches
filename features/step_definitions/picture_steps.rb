@@ -1,5 +1,5 @@
 Given /^I have filled in all required fields$/ do
-  create_user
+  create_visitor
   sign_in
   visit new_picture_path
   fill_in 'Name', :with => 'SweetPic.png'

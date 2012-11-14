@@ -7,11 +7,19 @@ class PicturesController < ApplicationController
   load_and_authorize_resource
 
   def create
+    @picture.user_id = user_signed_in? ? current_user.id : 0
     flash[:notice] = 'Picture was successfully created.' if @picture.save
-    respond_with(@picture)
+    respond_with_picture_or_album
+  end
+
+  def destroy
+    @picture.destroy
+    flash[:notice] = 'Successfully destroyed picture.'
+    respond_with_picture_or_album
   end
 
   def new
+    @picture.album_id = params[:album_id]
     respond_with(@picture)
   end
 
@@ -34,4 +42,14 @@ class PicturesController < ApplicationController
       :type => @picture.content_type,
       :disposition => "inline" )
   end
+
+  private
+
+    def respond_with_picture_or_album
+      if (@picture.album_id == nil || @picture.album_id <= 0)
+        respond_with(@picture)
+      else
+        redirect_to(album_path(@picture.album_id))
+      end
+    end
 end

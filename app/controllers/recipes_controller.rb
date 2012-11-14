@@ -1,8 +1,6 @@
 # Responsible for managing recipes.
 class RecipesController < ApplicationController
   respond_to :html, :xml, :json
-  attr_reader :all_categories
-  before_filter :get_all_categories # Only get the list of categories once.
   attr_reader :current_category
   attr_reader :author_name
   load_and_authorize_resource
@@ -49,12 +47,8 @@ class RecipesController < ApplicationController
 
   private
 
-    def get_all_categories
-      @all_categories = Category.all
-    end
-
-	def get_current_category
-      @current_category = @all_categories.find { |category| category.id == @recipe.category_id }
+	  def get_current_category
+      @current_category = Category.all.find { |category| category.id == @recipe.category_id }
     end
 
     def get_author_name
@@ -68,6 +62,6 @@ class RecipesController < ApplicationController
       @recipe.picture.build
       @recipe.cook_time_in_minutes = 0
       @recipe.prep_time_in_minutes = 0
-      @recipe.is_public = true
+      @recipe.is_public = false
     end
 end

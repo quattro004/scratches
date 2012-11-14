@@ -17,3 +17,9 @@ Category.create([
   { :name => 'Drinks', :description => 'Thirsty anyone?'},
   { :name => 'Kids', :description => 'For the picky tykes.'}
 ])
+
+AlbumType.create([
+  { :name => 'Pictures'},
+  { :name => 'Video'},
+  { :name => 'Music'}
+])

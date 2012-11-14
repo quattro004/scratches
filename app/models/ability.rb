@@ -9,6 +9,7 @@ class Ability
     elsif user.role? :member
       can :manage, Recipe
       can :manage, Picture
+      can :manage, Album
     end
   end
 end

@@ -19,6 +19,8 @@
     <%= f.file_field :uploaded_picture %>
   </div>
 
+  <%= f.hidden_field :album_id, :value => params[:album_id] %>
+
   <br/>
   <div class="actions">
     <%= f.submit nil, :class => 'btn btn-success btn-large' %>

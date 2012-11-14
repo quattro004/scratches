@@ -1,4 +1,6 @@
 Recipieces::Application.routes.draw do
+  resources :albums
+
   devise_for :users
 
   resources :users, :categories, :recipes

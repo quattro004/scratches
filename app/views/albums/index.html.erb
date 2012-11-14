@@ -1,0 +1,47 @@
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <% if (can? :edit, :album) %>
+      <th></th>
+    <% end %>
+    <% if (can? :destroy, :album) %>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @albums.each do |album| %>
+  <tr>
+    <td><%= album.name %></td>
+    <td><%= album.description %></td>
+    <td><%= link_to(album, class: "btn btn-small btn-success") do %>
+          <i class="icon-eye-open icon-white"></i> View
+        <% end %>
+    </td>
+    <% if user_signed_in? %>
+      <% if ((can? :edit, album) && (album.user_id == current_user.id || current_user.role?(:admin) )) %>
+        <td>
+          <%= link_to(edit_album_path(album), class: "btn btn-small btn-success") do %>
+            <i class="icon-edit icon-white"></i> Edit
+          <% end %>
+        </td>
+      <% end %>
+      <% if ((can? :destroy, album) && (album.user_id == current_user.id || current_user.role?(:admin) )) %>
+        <td>
+          <%= link_to(album, class: "btn btn-small btn-danger",
+            :data => { :confirm => "Are you sure you want to delete #{album.name}?" }, :method => :delete) do %>
+            <i class="icon-trash icon-white"></i> Delete
+          <% end %>
+        </td>
+      <% end %>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to(new_album_path(:album_type => params[:album_type]), class: "btn btn-large btn-success") do %>
+  <i class="icon-plus icon-white"></i> New Album
+<% end %>

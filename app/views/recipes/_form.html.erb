@@ -37,7 +37,7 @@
 
   <div class="field">
     <%= f.label :category %>
-    <%= collection_select(:recipe, :category_id, @all_categories, :id, :name) %>
+    <%= collection_select(:recipe, :category_id, Category.all, :id, :name) %>
   </div>
 
   <div class="field">
