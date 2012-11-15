@@ -1,4 +1,4 @@
-<%= form_for(@album) do |f| %>
+<%= form_for(@album, :html => {:class => "form-inline"}) do |f| %>
   <% if @album.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
@@ -11,24 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+  <%= f.text_field :name, :class => 'input-small', :placeholder => 'Name' %>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
+  <%= f.text_field :description, :placeholder => 'Description' %>
 
   <%= f.hidden_field :album_type_id, :value => @album.album_type_id %>
 
-  <div class="actions">
+
     <% if action_name == 'new' %>
       <%= f.submit "Create #{ @current_album_type.name.singularize } Album", :class => 'btn btn-success btn-large' %>
     <% else %>
       <%= f.submit "Update #{ @current_album_type.name.singularize } Album", :class => 'btn btn-success btn-large' %>
     <% end %>
-  </div>
 
 <% end %>

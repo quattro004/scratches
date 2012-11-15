@@ -1,20 +1,13 @@
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-inline'}) do |f| %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+    <%= f.text_field :email, :placeholder => 'Email' %>
+
+    <%= f.password_field :password, :placeholder => 'Password' %>
 
   <% if devise_mapping.rememberable? -%>
-    <div class="field">
       <%= f.label :remember_me, :class => "checkbox" do %>
         <%= f.check_box :remember_me %>Remember me
       <% end %>
-    </div>
   <% end -%>
 
   <%= f.submit "Login", :class => 'btn btn-success btn-large' %>

@@ -1,8 +1,6 @@
-<div>
-  <label><h4>Name: <label class="text"><%= @album.name %></label></h4><label>
-  <label><h4>Description: <label class="text"><%= @album.description %></label></h4></label>
-  <label><h5>Author: <label class="text"><%= @author_name %></label></h5></label>
-</div>
+<div class="page-header">
+  <h2><%= @album.name %> - <small><%= @album.description %></small></h2>
+  <label><h5>by <label class="text"><%= @author_name %></label></h5></label>
 
 <% if user_signed_in? %>
   <% if ((can? :edit, @album) && (@album.user_id == current_user.id  || current_user.role?(:admin) ))  %>
@@ -12,11 +10,13 @@
   <% end %>
 <% end %>
 
-<%= link_to(new_picture_path(:album_id => @album.id), class: "btn btn-large btn-success") do %>
-  <i class="icon-plus icon-white"></i> Add <%= @current_album_type.name.singularize %>
+<% if @current_album_type.name.singularize == 'Picture' %>
+  <%= link_to(new_picture_path(:album_id => @album.id), class: "btn btn-large btn-success") do %>
+    <i class="icon-plus icon-white"></i> Add <%= @current_album_type.name.singularize %>
+  <% end %>
 <% end %>
 
-<br/><br/>
+</div>
 
 <ul class="thumbnails">
   <% @album.picture.each do |picture| %>
