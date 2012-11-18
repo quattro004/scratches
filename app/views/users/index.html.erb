@@ -1,6 +1,6 @@
 <table class="table table-striped table-bordered table-condensed">
   <thead>
-    <tr class="user">
+    <tr>
       <th><h2>Name</h2></th>
       <th><h2>Last Sign In</h2></th>
       <th><h2>Member Since<h2></th>
@@ -10,10 +10,10 @@
   <tbody>
     <% for user in @users %>
       <tr>
-        <td><%= link_to user.name, user %></td>
-        <td><%= user.last_sign_in_at %></td>
-        <td><%= user.created_at.to_date %></td>
-        <td><%= user.last_sign_in_ip %></td>
+        <td><h3><%= link_to user.name, user %></h3></td>
+        <td><h3><%= user.last_sign_in_at %><h3></td>
+        <td><h3><%= user.created_at.to_date %></h3></td>
+        <td><h3><%= user.last_sign_in_ip %></h3></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,6 +1,6 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-inline'}) do |f| %>
 
-    <%= f.text_field :email, :placeholder => 'Email' %>
+    <%= f.text_field :email, :placeholder => 'Email', :autofocus => true %>
 
     <%= f.password_field :password, :placeholder => 'Password' %>
 

@@ -29,6 +29,7 @@ class AlbumsController < ApplicationController
   def create
     @album.user_id = user_signed_in? ? current_user.id : 0
     flash[:notice] = 'Album was successfully created.' if @album.save
+    get_current_album_type
     respond_with(@album)
   end
 

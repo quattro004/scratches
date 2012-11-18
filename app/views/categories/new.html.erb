@@ -1,5 +1,5 @@
-<h1>New category</h1>
-
 <%= render 'form' %>
 
-<%= link_to 'Categories', categories_path %>
+<%= link_to(categories_path, class: "btn btn-large btn-success") do %>
+  <i class="icon-th-list icon-white"></i> List
+<% end %>

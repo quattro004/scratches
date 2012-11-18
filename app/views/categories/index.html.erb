@@ -10,8 +10,8 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= category.name %></td>
-        <td><%= category.description %></td>
+        <td><h3><%= category.name %></h3></td>
+        <td><h3><%= category.description %></h3></td>
         <td>
           <%= link_to(edit_category_path(category), class: "btn btn-small btn-success") do %>
             <i class="icon-edit icon-white"></i> Edit
@@ -27,6 +27,6 @@
   </tbody>
 </table>
 
-<%= link_to(new_category_path, class: "btn btn-success") do %>
+<%= link_to(new_category_path, class: "btn btn-large btn-success") do %>
   <i class="icon-plus icon-white"></i> New Category
 <% end %>

@@ -22,8 +22,8 @@
           <% else %>
             <td><%= image_tag('add_photo.png', :border => 0) %></td>
           <% end %>
-          <td><h3 class="text"><%= recipe.title %></h3></td>
-          <td><h3 class="text"><%= truncate(recipe.comment, :length => 85, :separator => ' ') %></h3></td>
+          <td><h3><%= recipe.title %></h3></td>
+          <td><h3><%= truncate(recipe.comment, :length => 85, :separator => ' ') %></h3></td>
           <td>
             <%= link_to(recipe, class: "btn btn-small btn-success") do %>
               <i class="icon-eye-open icon-white"></i> View

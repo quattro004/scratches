@@ -15,8 +15,8 @@
   <tbody>
     <% @albums.each do |album| %>
       <tr>
-        <td><h3 class="text"><%= album.name %></h3></td>
-        <td><h3 class="text"><%= album.description %></h3></td>
+        <td><h3><%= album.name %></h3></td>
+        <td><h3><%= album.description %></h3></td>
         <td><%= link_to(album, class: "btn btn-small btn-success") do %>
               <i class="icon-eye-open icon-white"></i> View
             <% end %>
