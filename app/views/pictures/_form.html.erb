@@ -11,17 +11,17 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :picture %>
+    <%= f.file_field :uploaded_picture, :autofocus => true %>
+  </div>
+
+  <div class="field">
     <%= f.label :description %>
     <%= f.text_field :description %>
   </div>
 
-  <div class="field">
-    <%= f.file_field :uploaded_picture %>
-  </div>
-
   <%= f.hidden_field :album_id, :value => params[:album_id] %>
 
-  <br/>
   <div class="actions">
     <%= f.submit nil, :class => 'btn btn-success btn-large' %>
   </div>

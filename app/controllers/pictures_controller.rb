@@ -37,7 +37,10 @@ class PicturesController < ApplicationController
     width = params[:width] == nil ? 64 : params[:width].to_i
     height = params[:height] == nil ? 64 : params[:height].to_i
 
-    send_data(@image.thumbnail(width, height).to_blob,
+    @image.change_geometry!("#{width}x#{height}") { |cols, rows, img|
+      img.resize!(cols, rows)
+    }
+    send_data(@image.to_blob,
       :filename => @picture.name,
       :type => @picture.content_type,
       :disposition => "inline" )
