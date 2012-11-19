@@ -53,7 +53,7 @@
 <% else %>
   <ul class="thumbnails">
     <% @album.picture.each do |picture| %>
-      <li class="span2">
+      <li class="span4">
           <div class="thumbnail">
             <% if ((can? :destroy, picture) && (@album.user_id == current_user.id || current_user.role?(:admin) )) %>
               <%= link_to(picture, class: "btn btn-small btn-danger",
@@ -63,7 +63,7 @@
             <% end %>
             <%= link_to(picture_path(picture), class: "thumbnail") do %>
               <img
-                src="<%= url_for(:action => 'thumbnail', :id => picture.id, :controller => 'pictures', :height => 120, :width => 160) %>"
+                src="<%= url_for(:action => 'thumbnail', :id => picture.id, :controller => 'pictures', :height => 180, :width => 260) %>"
                 alt="<%= picture.name %>"
                 title="<%= picture.name %>"
               />
