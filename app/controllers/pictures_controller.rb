@@ -9,13 +9,13 @@ class PicturesController < ApplicationController
   def create
     @picture.user_id = user_signed_in? ? current_user.id : 0
     flash[:notice] = 'Picture was successfully created.' if @picture.save
-    respond_with_picture_or_album
+    respond_or_redirect
   end
 
   def destroy
     @picture.destroy
     flash[:notice] = 'Successfully destroyed picture.'
-    respond_with_picture_or_album
+    respond_or_redirect
   end
 
   def new
@@ -48,11 +48,13 @@ class PicturesController < ApplicationController
 
   private
 
-    def respond_with_picture_or_album
-      if (@picture.album_id == nil || @picture.album_id <= 0)
-        respond_with(@picture)
-      else
+    def respond_or_redirect
+      if (@picture.album_id != nil && @picture.album_id > 0)
         redirect_to(album_path(@picture.album_id))
+      elsif (@picture.recipe_id != nil && @picture.recipe_id > 0)
+        redirect_to(recipe_path(@picture.recipe_id))
+      else
+        respond_with(@picture)
       end
     end
 end

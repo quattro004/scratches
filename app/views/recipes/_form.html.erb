@@ -1,4 +1,4 @@
- <%= form_for(@recipe, :html => { :multipart => true }) do |f| %>
+ <%= form_for(@recipe, :html => { :multipart => true, :class => "form-horizontal" }) do |f| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -10,119 +10,108 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title, :autofocus => true %>
-  </div>
+  <fieldset>
+    <legend><h2><%= action_name.capitalize %> Recipe</h2></legend>
 
-  <label>Ingredients</label>
-  <div class="form-inline">
-    <%= f.fields_for :ingredient do |builder| %>
-      <%= render 'ingredient_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields 'Add Ingredient', f, :ingredient %></p>
-  </div>
+    <div class="control-group">
+      <%= f.label :title, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :title, :autofocus => true %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :preparation %>
-    <%= f.text_area :preparation, :size => '80x7' %>
-  </div>
+    <div class="control-group">
+      <label class="control-label">Ingredients</label>
+      <div class="controls" id="ingredient-list">
+        <%= render 'ingredient_fields' %>
+      </div>
+      <br/>
+      <div class="controls">
+        <%= link_to 'Add Ingredient', '#add', :id => 'add-ingredient', :class => 'btn btn-small btn-success' %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :instructions do %>
-      Instructions <em>(separate each by pressing Enter)</em>
-    <% end %>
-    <%= f.text_area :instructions, :size => '80x7' %>
-  </div>
+    <div class="control-group">
+      <%= f.label :preparation, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :preparation, :class => "input-xxlarge", :rows => 5 %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :category %>
-    <%= collection_select(:recipe, :category_id, Category.all, :id, :name) %>
-  </div>
-
-  <div class="field">
-    <label>Pictures</label>
-    <table>
-      <tr>
-        <th/>
-        <th/>
-      </tr>
-      <% for picture in @recipe.picture %>
-        <%= f.fields_for :picture, picture do |builder| %>
-          <% if action_name == 'new' || action_name == 'create' %>
-            <%= render 'picture_fields', :f => builder %>
-          <% else %>
-            <tr class="fields">
-                <td><%= link_to picture.name, picture %></td>
-                <td><%= link_to_remove_fields 'Remove', builder %></td>
-            </tr>
-          <% end %>
-        <% end %>
+    <div class="control-group">
+      <%= f.label :instructions, :class => "control-label" do %>
+        Instructions
+        <span class="help-block"><label><em>(separate each by pressing Enter)</em></label></span>
       <% end %>
-    </table>
-    <p>
-      <%= link_to_add_fields 'Add Picture', f, :picture %>
-    </p>
-  </div>
+      <div class="controls">
+        <%= f.text_area :instructions, :class => "input-xxlarge", :rows => 13 %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label 'Comment/Description' %>
-    <%= f.text_field :comment, :size => 50 %>
-  </div>
+    <div class="control-group">
+      <%= f.label :category, :class => "control-label" %>
+      <div class="controls">
+        <%= collection_select(:recipe, :category_id, Category.all, :id, :name) %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :keywords %>
-    <%= f.text_field :keywords, :size => 40 %>
-  </div>
+    <div class="control-group">
+      <%= f.label 'Comment / Description', :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :comment, :class => "input-xxlarge" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :yield %>
-    <%= f.text_field :yield, :size => 25 %>
-  </div>
+    <div class="control-group">
+      <%= f.label :keywords, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :keywords, :class => "input-xlarge" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :original_source %>
-    <%= f.text_field :original_source, :size => 25 %>
-  </div>
+    <div class="control-group">
+      <%= f.label :yield, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :yield %>
+      </div>
+    </div>
 
-  <div class="field">
-    <table>
-      <tr>
-        <th align="left">
-          <%= f.label 'Prep' %>
-        </th>
-        <th align="left">
-          <%= f.label 'Cook' %>
-        </th>
-        <% if can? :update, @recipe %>
-          <th></th>
-          <th></th>
-        <% end %>
-      </tr>
-      <tr>
-        <td>
-          <%= f.text_field :prep_time_in_minutes, :size => 2 %>min.
-        </td>
-        <td>
-          <%= f.text_field :cook_time_in_minutes, :size => 2 %>min.
-        </td>
-        <% if can? :update, @recipe  %>
-          <td align="center">
-            <%= f.label :is_public, :class => "checkbox" do %>
-              <%= f.check_box :is_public %>Public
+    <div class="control-group">
+      <%= f.label :original_source, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :original_source %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label 'Prep', :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :prep_time_in_minutes, :class => "input-mini" %>
+        <span class="help-inline"><label>minutes</label></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label 'Cook', :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :cook_time_in_minutes, :class => "input-mini" %>
+        <span class="help-inline"><label>minutes</label></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">Pictures</label>
+      <div class="controls">
+        <ul class="thumbnails">
+          <% for picture in @recipe.picture %>
+            <%= f.fields_for :picture, picture do |builder| %>
+              <%= render 'picture_fields', :f => builder, :picture => picture %>
             <% end %>
-          </td>
-          <td align="center">
-           <%= f.label :is_secret, :class => "checkbox" do %>
-              <%= f.check_box :is_secret %>Secret
-            <% end %>
-          </td>
-        <% end %>
-      </tr>
-    </table>
-  </div>
-  <br/>
-  <div class="actions">
-    <%= f.submit nil, :class => 'btn btn-success btn-large' %>
-  </div>
-<% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <%= f.submit nil, :class => 'btn btn-success btn-large btn-primary' %>
+  </fieldset>
+<% end %> 

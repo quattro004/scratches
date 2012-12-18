@@ -58,7 +58,7 @@ class RecipesController < ApplicationController
     end
 
     def setup_defaults
-      @recipe.ingredient.build
+      3.times { @recipe.ingredient.build }
       @recipe.picture.build
       @recipe.cook_time_in_minutes = 0
       @recipe.prep_time_in_minutes = 0
