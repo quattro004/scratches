@@ -1,16 +1,11 @@
-<% for ingredient in @recipe.ingredient %>
-  <div class="form-inline" id="ingredient-fields">
-    <%= fields_for "recipe[ingredient_attributes][]", ingredient do |i| %>
+<div class="form-inline">
+    <%= f.text_field :amount, :class => "input-mini", :placeholder => "Amount" %>
 
-      <%= i.text_field :amount, :class => "input-mini", :placeholder => "Amount" %>
+    <%= f.text_field :name, :placeholder => "Name" %>
 
-      <%= i.text_field :name, :placeholder => "Name" %>
-
-      <%= i.label :secret, :class => "checkbox inline" do %>
-          <%= i.check_box :secret %>Secret
-      <% end %>
-
-      <%= link_to("Remove", "#delete", :class => "btn btn-small btn-danger delete-ingredient") %>
+    <%= f.label :secret, :class => "checkbox inline" do %>
+        <%= f.check_box :secret %>Secret
     <% end %>
-  </div>
-<% end %>
+
+    <%= f.link_to_remove "Remove", :class => "btn btn-small btn-danger" %>
+</div>

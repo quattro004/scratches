@@ -11,6 +11,7 @@ class Recipe < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :instructions
   validate :number_of_pictures?
+  validate :number_of_ingredients?
 
   scope :public_only, where('is_public = ?', true)
   scope :user_only, lambda { |user| where('user_id = ?', user.id) }
@@ -21,5 +22,8 @@ class Recipe < ActiveRecord::Base
     def number_of_pictures?
         errors.add :recipe, 'can only have a maximum of 4 pictures' unless picture.size < 5
     end
-end
 
+    def number_of_ingredients?
+      errors.add :recipe, 'must have at least one ingredient ' unless ingredient.size > 0
+    end
+end

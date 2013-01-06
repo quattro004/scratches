@@ -1,23 +1,4 @@
-<div class="fields">
-  <% if action_name == 'new' || action_name == 'create' %>
-    <%= f.file_field :uploaded_picture %>
-  <% else %>
-    <li class="span1">
-      <div class="thumbnail">
-        <% if ((can? :destroy, picture) && (@recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
-          <%= link_to(picture, class: "btn btn-small btn-danger",
-            :data => { :confirm => "Are you sure you want to delete #{picture.name}?" }, :method => :delete) do %>
-            <i class="icon-trash icon-white"></i>
-          <% end %>
-        <% end %>
-        <%= link_to(picture_path(picture), class: "thumbnail") do %>
-          <img
-            src="<%= url_for(:action => 'thumbnail', :id => picture.id, :controller => 'pictures') %>"
-            alt="<%= picture.name %>"
-            title="<%= picture.name %>"
-          />
-        <% end %>
-      </div>
-    </li>
-  <% end %>
-</div>
+<%= f.file_field :uploaded_picture %>
+<!-- Allow space for the browse button from the file_field, need to determine a better way to do this -->
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= f.link_to_remove 'Remove', :class => 'btn btn-small btn-danger' %>
