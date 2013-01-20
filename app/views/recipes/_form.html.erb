@@ -1,4 +1,4 @@
- <%= nested_form_for(@recipe, :html => { :multipart => true, :class => "form-horizontal" }) do |f| %>
+ <%= form_for(@recipe, :html => { :multipart => true, :class => "form-horizontal" }) do |f| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -22,11 +22,11 @@
 
     <div class="control-group">
       <label class="control-label">Ingredients</label>
+        <%= f.fields_for :ingredient do |builder| %>
+          <%= render 'ingredient_fields', :f => builder %>
+        <% end %>
       <div class="controls">
-        <%= f.fields_for :ingredient %>
-      </div>
-      <div class="controls">
-        <%= f.link_to_add 'Add Ingredient', :ingredient, :class => 'btn btn-small btn-success' %>
+        <%= link_to_add_fields 'Add Ingredient', f, :ingredient %>
       </div>
     </div>
 
@@ -100,33 +100,36 @@
 
     <div class="control-group">
       <label class="control-label">Pictures</label>
-        <div class="controls">
-          <% if action_name == 'edit' %>
-            <ul class="thumbnails">
-              <% for picture in @recipe.picture %>
-                <li class="span1">
-                  <div class="thumbnail">
-                    <% if ((can? :destroy, picture) && (@recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
-                      <%= link_to(picture, class: "btn btn-small btn-danger",
-                        :data => { :confirm => "Are you sure you want to delete #{picture.name}?" }, :method => :delete) do %>
-                        <i class="icon-trash icon-white"></i>
-                      <% end %>
-                    <% end %>
-                    <%= link_to(picture_path(picture), class: "thumbnail") do %>
-                      <img
-                        src="<%= url_for(:action => 'thumbnail', :id => picture.id, :controller => 'pictures') %>"
-                        alt="<%= picture.name %>"
-                        title="<%= picture.name %>"
-                      />
-                    <% end %>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
+      <% if action_name == 'edit' %>
+        <ul class="thumbnails">
+          <% for picture in @recipe.picture %>
+            <li class="span1">
+              <div class="thumbnail">
+                <% if ((can? :destroy, picture) && (@recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
+                  <%= link_to(picture, class: "btn btn-small btn-danger",
+                    :data => { :confirm => "Are you sure you want to delete #{picture.name}?" }, :method => :delete) do %>
+                    <i class="icon-trash icon-white"></i>
+                  <% end %>
+                <% end %>
+                <%= link_to(picture_path(picture), class: "thumbnail") do %>
+                  <img
+                    src="<%= url_for(:action => 'thumbnail', :id => picture.id, :controller => 'pictures') %>"
+                    alt="<%= picture.name %>"
+                    title="<%= picture.name %>"
+                  />
+                <% end %>
+              </div>
+            </li>
           <% end %>
-          <%= f.fields_for :picture %>
-          <%= f.link_to_add 'Add Picture', :picture, :class => 'btn btn-small btn-success' %>
-        </div>
+        </ul>
+      <% else %>
+        <%= f.fields_for :picture do |builder| %>
+          <%= render 'picture_fields', :f => builder %>
+        <% end %>
+      <% end %>
+      <div class="controls">
+        <%= link_to_add_fields 'Add Picture', f, :picture %>
+      </div>
     </div>
 
     <%= f.submit nil, :class => 'btn btn-success btn-large btn-primary' %>

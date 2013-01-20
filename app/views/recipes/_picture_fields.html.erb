@@ -1,4 +1,6 @@
-<%= f.file_field :uploaded_picture %>
-<!-- Allow space for the browse button from the file_field, need to determine a better way to do this -->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<%= f.link_to_remove 'Remove', :class => 'btn btn-small btn-danger' %>
+<div class="fields controls">
+  <%= f.file_field :uploaded_picture %>
+  <span style="padding-left:80px">
+      <%= link_to_remove_fields 'Remove', f %>
+  </span>
+</div>
