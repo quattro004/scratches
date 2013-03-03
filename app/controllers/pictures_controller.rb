@@ -48,13 +48,18 @@ class PicturesController < ApplicationController
 
   private
 
+    # Since both albums and recipes contain pictures we need some special redirect/response logic.
     def respond_or_redirect
-      if (@picture.album_id != nil && @picture.album_id > 0)
-        redirect_to(album_path(@picture.album_id))
-      elsif (@picture.recipe_id != nil && @picture.recipe_id > 0)
-        redirect_to(recipe_path(@picture.recipe_id))
+      unless (@picture.valid?)
+        respond_with(@picture) # if the picture isn't valid then the user needs to try again
       else
-        respond_with(@picture)
+        if (@picture.album_id != nil && @picture.album_id > 0)
+          redirect_to(album_path(@picture.album_id))
+        elsif (@picture.recipe_id != nil && @picture.recipe_id > 0)
+          redirect_to(recipe_path(@picture.recipe_id))
+        else
+          respond_with(@picture)
+        end
       end
     end
 end
