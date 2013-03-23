@@ -46,6 +46,11 @@ class PicturesController < ApplicationController
       :disposition => "inline" )
   end
 
+  def update
+    @picture.update_attributes(params[:picture])
+    respond_or_redirect
+  end
+
   private
 
     # Since both albums and recipes contain pictures we need some special redirect/response logic.

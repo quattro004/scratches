@@ -25,9 +25,8 @@
   <% end %>
 </div>
 
-<label><em>(hover over image to pause, click to view original size)</em></label>
-
 <% if params["view"] == 'carousel' %>
+  <label><em>(hover over image to pause, click to view original size)</em></label>
   <div id="myCarousel" class="carousel slide">
     <!-- Carousel items -->
     <div class="carousel-inner">
@@ -40,8 +39,13 @@
             />
           <% end %>
           <div class="carousel-caption">
-            <p><%= picture.name %></p>
-            <h4><%= picture.description %></h4>
+            <p>
+              <h4><%= picture.description %></h4>
+            </p>
+            <p>
+              <%= picture.name %>
+              <small>- <%= picture.date_taken %></small>
+            </p>
           </div>
         </div>
       <% end %>
@@ -51,10 +55,16 @@
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
   </div>
 <% else %>
+  <label><em>(click image to view original size)</em></label>
   <ul class="thumbnails">
     <% @album.picture.each do |picture| %>
       <li class="span4">
           <div class="thumbnail">
+            <% if ((can? :edit, picture) && (picture.user_id == current_user.id || current_user.role?(:admin) )) %>
+              <%= link_to(edit_picture_path(picture, :album_id => @album.id), class: "btn btn-small btn-success") do %>
+                <i class="icon-edit icon-white"></i>
+              <% end %>
+            <% end %>
             <% if ((can? :destroy, picture) && (@album.user_id == current_user.id || current_user.role?(:admin) )) %>
               <%= link_to(picture, class: "btn btn-small btn-danger",
                 :data => { :confirm => "Are you sure you want to delete #{picture.name}?" }, :method => :delete) do %>
@@ -69,6 +79,9 @@
               />
             <% end %>
             <label class="text"><%= picture.description %></label>
+            <p>
+              <small>- <%= picture.date_taken %></small>
+            </p>
           </div>
       </li>
     <% end %>
