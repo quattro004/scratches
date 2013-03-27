@@ -26,6 +26,6 @@ private
   end
 
   def picture_contains_data
-    errors.add(:data, 'must not be blank') unless !self.data.blank?
+    errors.add('Picture data', 'must not be blank') unless !self.data.blank?
   end
 end

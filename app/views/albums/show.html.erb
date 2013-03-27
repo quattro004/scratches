@@ -36,6 +36,7 @@
             <img
               src="<%= url_for(:action => 'thumbnail', :id => picture.id, :controller => 'pictures', :height => 500, :width => 870) %>"
               alt="<%= picture.name %>"
+              title="<%= picture.name %>"
             />
           <% end %>
           <div class="carousel-caption">
@@ -43,7 +44,6 @@
               <h4><%= picture.description %></h4>
             </p>
             <p>
-              <%= picture.name %>
               <small>- <%= picture.date_taken %></small>
             </p>
           </div>
