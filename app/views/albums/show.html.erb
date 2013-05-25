@@ -11,7 +11,7 @@
   <% end %>
 
   <% if @current_album_type.name.singularize == 'Picture' %>
-    <%= link_to(new_picture_path(:album_id => @album.id), class: "btn btn-large btn-success") do %>
+    <%= link_to(new_picture_path(:imageable_id => @album.id, :imageable_type => 'Album'), class: "btn btn-large btn-success") do %>
       <i class="icon-plus icon-white"></i> Add <%= @current_album_type.name.singularize %>
     <% end %>
   <% end %>
@@ -30,7 +30,7 @@
   <div id="myCarousel" class="carousel slide">
     <!-- Carousel items -->
     <div class="carousel-inner">
-      <% @album.picture.each_with_index do |picture, index| %>
+      <% @album.pictures.each_with_index do |picture, index| %>
         <div class="<%= index == 0 ? 'active item' : 'item' %>">
            <%= link_to(picture_path(picture), class: "thumbnail") do %>
             <img
@@ -57,7 +57,7 @@
 <% else %>
   <label><em>(click image to view original size)</em></label>
   <ul class="thumbnails">
-    <% @album.picture.each do |picture| %>
+    <% @album.pictures.each do |picture| %>
       <li class="span4">
           <div class="thumbnail">
             <% if ((can? :edit, picture) && (picture.user_id == current_user.id || current_user.role?(:admin) )) %>

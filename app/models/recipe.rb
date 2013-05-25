@@ -1,12 +1,12 @@
 class Recipe < ActiveRecord::Base
-  has_many  :picture, :dependent => :destroy
-  has_many  :ingredient, :dependent => :destroy
-  has_one   :category
+  has_many :pictures, :as => :imageable, :dependent => :destroy
+  has_many :ingredient, :dependent => :destroy
+  has_one :category
   belongs_to :user
   attr_accessible :title, :instructions, :prep_time_in_minutes, :cook_time_in_minutes, :comment, :keywords, :is_public,
-    :is_secret, :yield, :original_source, :ingredient_attributes, :picture_attributes, :category_id, :preparation
+    :is_secret, :yield, :original_source, :ingredient_attributes, :pictures_attributes, :category_id, :preparation
 
-  accepts_nested_attributes_for :ingredient, :picture, :allow_destroy => true
+  accepts_nested_attributes_for :ingredient, :pictures, :allow_destroy => true
 
   validates_presence_of :title
   validates_presence_of :instructions
@@ -20,7 +20,7 @@ class Recipe < ActiveRecord::Base
   private
 
     def number_of_pictures?
-        errors.add :recipe, 'can only have a maximum of 4 pictures' unless picture.size < 5
+        errors.add :recipe, 'can only have a maximum of 4 pictures' unless pictures.size < 5
     end
 
     def number_of_ingredients?

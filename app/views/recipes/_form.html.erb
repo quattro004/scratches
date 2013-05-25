@@ -102,7 +102,7 @@
       <label class="control-label">Pictures</label>
       <% if action_name == 'edit' %>
         <ul class="thumbnails">
-          <% for picture in @recipe.picture %>
+          <% for picture in @recipe.pictures %>
             <li class="span1">
               <div class="thumbnail">
                 <% if ((can? :destroy, picture) && (@recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
@@ -123,12 +123,12 @@
           <% end %>
         </ul>
       <% else %>
-        <%= f.fields_for :picture do |builder| %>
+        <%= f.fields_for :pictures do |builder| %>
           <%= render 'picture_fields', :f => builder %>
         <% end %>
       <% end %>
       <div class="controls">
-        <%= link_to_add_fields 'Add Picture', f, :picture %>
+        <%= link_to_add_fields 'Add Picture', f, :pictures %>
       </div>
     </div>
 

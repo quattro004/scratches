@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130302164825) do
+ActiveRecord::Schema.define(:version => 20130517130546) do
 
   create_table "album_types", :force => true do |t|
     t.string   "name"
@@ -53,14 +53,16 @@ ActiveRecord::Schema.define(:version => 20130302164825) do
     t.string   "name"
     t.string   "content_type"
     t.integer  "size"
-    t.binary   "data",         :limit => 16777215
+    t.binary   "data",           :limit => 16777215
     t.integer  "recipe_id"
     t.integer  "user_id"
     t.string   "description"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "album_id"
     t.date     "date_taken"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
   end
 
   add_index "pictures", ["album_id"], :name => "index_pictures_on_album_id"

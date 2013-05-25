@@ -7,17 +7,16 @@
       <small style="float: right;">Yield: <label class="text"><em><%= @recipe.yield %></em></label></small>
     <% end %>
   </div>
-
-  <% unless @recipe.picture.empty? %>
-    <% if @recipe.picture.size > 1 %>
+  <% unless @recipe.pictures.empty? %>
+    <% if @recipe.pictures.size > 1 %>
         <label style="display:inline;"><h4>Pictures
-          <% @recipe.picture.each_with_index do |picture, index| %>
+          <% @recipe.pictures.each_with_index do |picture, index| %>
             <strong><%= link_to index + 1, picture_path(picture) %></strong>
           <% end %>
           </h4>
         </label>
     <% end %>
-    <img src="<%= url_for(:action => 'thumbnail', :id => @recipe.picture[0].id, :controller => 'pictures', :height => 256, :width => 256) %>" />
+    <img src="<%= url_for(:action => 'thumbnail', :id => @recipe.pictures[0].id, :controller => 'pictures', :height => 256, :width => 256) %>" />
   <% end %>
 
   <% unless @recipe.comment.empty? %>
@@ -51,7 +50,7 @@
     <ul>
       <% for ingredient in @recipe.ingredient %>
         <% unless ingredient.secret %>
-          <label class="text"><li><%= ingredient.amount %> <%= ingredient.name %></label></li>
+          <li><label class="text"><%= ingredient.amount %> <%= ingredient.name %></label></li>
         <% end %>
       <% end %>
     </ul>
@@ -60,7 +59,7 @@
   <label><h4>Instructions</h4>
     <ol>
       <% @recipe.instructions.split(/\r\n/).each do |instruction| %>
-        <label class="text"><li><%= instruction %></li></label>
+        <li><label class="text"><%= instruction %></label></li>
       <% end %>
     </ol>
   </label>

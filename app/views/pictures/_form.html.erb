@@ -25,7 +25,8 @@
     <%= date_select("picture", "date_taken", :order => [:month, :day, :year], :start_year => 1930, :end_year => Time.now.year) %>
   </div>
 
-  <%= f.hidden_field :album_id, :value => params[:album_id] %>
+  <%= f.hidden_field :imageable_id, :value => params[:imageable_id] %>
+  <%= f.hidden_field :imageable_type, :value => params[:imageable_type] %>
 
   <div class="actions">
     <%= f.submit nil, :class => 'btn btn-success btn-large' %>

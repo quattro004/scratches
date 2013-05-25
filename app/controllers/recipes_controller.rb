@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe.user_id = user_signed_in? ? current_user.id : 0
-    @recipe.picture.delete_all if @recipe.picture.size > 0 && !@recipe.picture[0].data
+    @recipe.pictures.delete_all if @recipe.pictures.size > 0 && !@recipe.pictures[0].data
     flash[:notice] = 'Recipe was successfully created.' if @recipe.save
     respond_with(@recipe)
   end
@@ -59,7 +59,7 @@ class RecipesController < ApplicationController
 
     def setup_defaults
       3.times { @recipe.ingredient.build }
-#      @recipe.picture.build
+      @recipe.pictures.build
       @recipe.cook_time_in_minutes = 0
       @recipe.prep_time_in_minutes = 0
       @recipe.is_public = false

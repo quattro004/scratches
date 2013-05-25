@@ -17,8 +17,8 @@
     <tbody>
       <% for recipe in @recipes %>
         <tr>
-          <% if recipe.picture[0] %>
-            <td><img src="<%= url_for(:action => 'thumbnail', :id => recipe.picture[0].id, :controller => 'pictures') %>" alt="Recipe thumbnail" /></td>
+          <% if recipe.pictures[0] %>
+            <td><img src="<%= url_for(:action => 'thumbnail', :id => recipe.pictures[0].id, :controller => 'pictures') %>" alt="Recipe thumbnail" /></td>
           <% else %>
             <td><%= image_tag('add_photo.png', :border => 0) %></td>
           <% end %>

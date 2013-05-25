@@ -1,8 +1,6 @@
 class Picture < ActiveRecord::Base
-  belongs_to :recipe
-  belongs_to :user
-  belongs_to :album
-  attr_accessible :name, :content_type, :data, :size, :uploaded_picture, :description, :user_id, :album_id, :date_taken
+  belongs_to :imageable, :polymorphic => true
+  attr_accessible :name, :content_type, :data, :size, :uploaded_picture, :description, :user_id, :album_id, :date_taken, :imageable_id, :imageable_type
 
   validate :picture_contains_data
 

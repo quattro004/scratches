@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   has_many :recipe
-  has_many :picture
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable
+  has_many :pictures, :as => :imageable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :lockable
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :approved
   validates_presence_of :name, :email
   before_create :ensure_default_role
