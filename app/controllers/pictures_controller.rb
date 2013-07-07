@@ -55,12 +55,14 @@ class PicturesController < ApplicationController
 
     # Since both albums and recipes contain pictures we need some special redirect/response logic.
     def respond_or_redirect
-      if (@picture.imageable_type == 'Album')
-        redirect_to(album_path(@picture.imageable_id))
-        return
-      elsif (@picture.imageable_type == 'Recipe')
-        redirect_to(recipe_path(@picture.imageable_id))
-        return
+      if(@picture.valid?)
+        if (@picture.imageable_type == 'Album')
+          redirect_to(album_path(@picture.imageable_id))
+          return
+        elsif (@picture.imageable_type == 'Recipe')
+          redirect_to(recipe_path(@picture.imageable_id))
+          return
+        end
       end
       respond_with(@picture)
     end

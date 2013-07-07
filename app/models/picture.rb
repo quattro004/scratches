@@ -10,6 +10,8 @@ class Picture < ActiveRecord::Base
 
   validates_size_of   :data, :maximum => 3.megabyte, :message => 'cannot be greater than 3mb'
 
+  validate :picture_doesnt_exist
+
   def uploaded_picture=(picture_field)
     self.name         = base_part_of(picture_field.original_filename)
     self.content_type = picture_field.content_type.chomp
@@ -25,5 +27,11 @@ private
 
   def picture_contains_data
     errors.add('Picture data', 'must not be blank') unless !self.data.blank?
+  end
+
+  def picture_doesnt_exist
+    if (Picture.find_by_name(self.name))
+      errors.add('A picture with this filename', 'already exists')
+    end
   end
 end
