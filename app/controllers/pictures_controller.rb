@@ -63,6 +63,9 @@ class PicturesController < ApplicationController
           redirect_to(recipe_path(@picture.imageable_id))
           return
         end
+      else
+        params[:imageable_id] = @picture.imageable_id
+        params[:imageable_type] = @picture.imageable_type
       end
       respond_with(@picture)
     end

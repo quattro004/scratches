@@ -30,7 +30,7 @@ private
   end
 
   def picture_doesnt_exist
-    if (Picture.find_by_name(self.name))
+    if (self.new_record? && Picture.find_by_name(self.name))
       errors.add('A picture with this filename', 'already exists')
     end
   end
