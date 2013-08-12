@@ -61,7 +61,8 @@
       <li class="span4">
           <div class="thumbnail">
             <% if ((can? :edit, picture) && (picture.user_id == current_user.id || current_user.role?(:admin) )) %>
-              <%= link_to(edit_picture_path(picture, :album_id => @album.id), class: "btn btn-small btn-success") do %>
+              <%= link_to(edit_picture_path(picture, :album_id => @album.id, :imageable_id => @album.id, :imageable_type => 'Album'),
+                class: "btn btn-small btn-success") do %>
                 <i class="icon-edit icon-white"></i>
               <% end %>
             <% end %>
