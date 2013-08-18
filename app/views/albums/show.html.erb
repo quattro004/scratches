@@ -30,7 +30,7 @@
   <div id="myCarousel" class="carousel slide">
     <!-- Carousel items -->
     <div class="carousel-inner">
-      <% @album.pictures.each_with_index do |picture, index| %>
+      <% @album.pictures.order('date_taken').each_with_index do |picture, index| %>
         <div class="<%= index == 0 ? 'active item' : 'item' %>">
            <%= link_to(picture_path(picture), class: "thumbnail") do %>
             <img
@@ -57,7 +57,7 @@
 <% else %>
   <label><em>(click image to view original size)</em></label>
   <ul class="thumbnails">
-    <% @album.pictures.each do |picture| %>
+    <% @album.pictures.order('date_taken').each do |picture| %>
       <li class="span4">
           <div class="thumbnail">
             <% if ((can? :edit, picture) && (picture.user_id == current_user.id || current_user.role?(:admin) )) %>
