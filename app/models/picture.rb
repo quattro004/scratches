@@ -5,8 +5,8 @@ class Picture < ActiveRecord::Base
   validate :picture_contains_data
 
   validates_format_of :content_type,
-                      :with => /^image/,
-                      :message => '--- you can only upload pictures'
+                      :with => /^image/ || /^octet-stream/,
+                      :message => '-- you can only upload pictures'
 
   validates_size_of   :data, :maximum => 3.megabyte, :message => 'cannot be greater than 3mb'
 
