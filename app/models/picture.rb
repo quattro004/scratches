@@ -5,8 +5,9 @@ class Picture < ActiveRecord::Base
   validate :picture_contains_data
 
   validates_format_of :content_type,
-                      :with => /^image/ || /^octet-stream/,
-                      :message => '-- you can only upload pictures'
+                      :with => /^image/,
+                      :message => '-- you can only upload pictures',
+                      :unless => :ends_with_image_ext # This was added because some phones send application/octet-stream instead of an image content type.
 
   validates_size_of   :data, :maximum => 3.megabyte, :message => 'cannot be greater than 3mb'
 
@@ -33,5 +34,9 @@ private
     if (self.new_record? && Picture.find_by_name(self.name))
       errors.add('A picture with this filename', 'already exists')
     end
+  end
+
+  def ends_with_image_ext
+    return self.name.downcase =~ /\A*(jpeg|jpg|gif|png)\Z/
   end
 end
