@@ -1,8 +1,2 @@
-Scratches is the code name for a sort of digital heirloom archive web application. It's an application
-that you can use to organize, store and manage your family media.
-
-.:. Dependencies .:.
-MySql
-Rmagick - and it is magic
-Devise
-CanCan
+This application provides the ability to manage your digital media (audio, video, pictures, etc.) and provides a user interface that will allow ease of retrieval. The problem it tries to solve is that in the digital age we are amassing a large quantity of digital media and while there are many solutions to store it, such as in the cloud, there aren't a lot of solutions that allow you to retrieve and view the content easily.
+Check out the [Server Setup](https://github.com/quattro004/scratches/wiki/Server-Setup)
