@@ -16,27 +16,25 @@
   <body>
     <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
-        <div class="container">
+        <section class="container">
           <%= render 'layouts/navigation' %>
-        </div>
+        </section>
       </nav>
     </header>
-    <div id="main" role="main">
-      <div class="container">
-        <div class="content">
+    <main role="main">
+      <article class="container">
+        <section class="content">
            <div class="row">
             <div class="span12">
               <%= render 'layouts/messages' %>
               <%= yield %>
             </div>
           </div>
-        </div>
-      </div> <!--! end of .container -->
-      <div class="container">
-        <footer>
-          <div style="float: right;">Copyright &copy; 2012 Reese J. Hodge IV</div>
-        </footer>
-      </div>
-    </div> <!--! end of #main -->
+        </section>
+      </article>
+      <footer class="container">
+        <div style="float: right;">Copyright &copy; 2012 Reese J. Hodge IV</div>
+      </footer>
+    </main>
   </body>
 </html>
