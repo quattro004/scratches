@@ -1,9 +1,16 @@
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-inline' }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="small-container">
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name),
+    :html => { :method => :post, :role => 'form' }) do |f| %>
 
-  <%= f.text_field :email, :placeholder => 'Email', :autofocus => true %>
+    <%= devise_error_messages! %>
 
-  <%= f.submit "Send me reset password instructions", :class => 'btn btn-success' %>
-<% end %>
+    <%= f.text_field :email, :placeholder => :email.capitalize, :class => 'recipieces-form-control',
+        :autofocus => true, :required => true %>
 
-<%= render :partial => "devise/shared/links" %>
+    <br/>
+
+    <%= f.submit "Send me reset password instructions", :class => 'button-lg-block' %>
+  <% end %>
+
+  <%= render :partial => "devise/shared/links" %>
+</div>

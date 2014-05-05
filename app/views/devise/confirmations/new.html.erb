@@ -1,12 +1,16 @@
-<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="small-container">
+  <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name),
+    :html => { :method => :post, :role => 'form' }) do |f| %>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email, :autofocus => true %>
-  </div>
+    <%= devise_error_messages! %>
 
-  <%= f.submit "Resend confirmation instructions", :class => 'btn btn-success' %>
-<% end %>
+    <div class="field">
+      <%= f.text_field :email, :placeholder => :email.capitalize, :class => 'recipieces-form-control',
+        :autofocus => true, :required => true %>
+    </div>
 
-<%= render :partial => "devise/shared/links" %>
+    <%= f.submit "Resend confirmation instructions", :class => 'button-lg-block' %>
+  <% end %>
+
+  <%= render :partial => "devise/shared/links" %>
+</div>

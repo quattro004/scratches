@@ -1,9 +1,10 @@
-<div class="controls fields form-inline">
-    <%= f.text_field :amount, :class => "input-mini", :placeholder => "Amount" %>
+<div class="field recipieces-form-inline">
 
-    <%= f.text_field :name, :placeholder => "Name" %>
+    <%= f.text_field :amount, :placeholder => :amount.capitalize, :class => "form-control-sm" %>
 
-    <%= f.label :secret, :class => "checkbox inline" do %>
+    <%= f.text_field :name, :placeholder => :name.capitalize, :class => "form-control-sm" %>
+
+    <%= f.label :secret do %>
         <%= f.check_box :secret %>Secret
     <% end %>
 

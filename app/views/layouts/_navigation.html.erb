@@ -1,95 +1,101 @@
-<ul class="nav">
-  <li class="<%= 'active' if current_page?(root_path) %>">
-    <%= link_to(root_path) do %>
-      <i class="icon-home icon-white"></i> Home
+<div class="recipieces-container">
+  <ul class="recipieces-navbar-nav">
+    <li class="<%= 'active' if current_page?(root_path) %>">
+      <%= link_to(root_path) do %>
+        <span class="icon-home"></span> Home
+      <% end %>
+    </li>
+    <% if user_signed_in? %>
+      <div class="recipieces-navbar-header-right">
+        <p class="recipieces-navbar-text">
+          <%= link_to(destroy_user_session_path, :method=>'delete') do %>
+            <span class="icon-off"></span> Log off
+          <% end %>
+         </p>
+      </div>
+      <li class="<%= 'active' if current_page?(edit_user_registration_path) %>">
+        <%= link_to(edit_user_registration_path) do %>
+          <i class="icon-cog"></i> Edit account
+        <% end %>
+      </li>
+     <li class="recipieces-dropdown <%= 'active' if current_page?(recipes_path) || current_page?(new_recipe_path) %>">
+        <a href="#" class="recipieces-dropdown-toggle" data-toggle="dropdown">
+          Recipes<b class="caret"></b>
+        </a>
+        <ul class="recipieces-dropdown-menu">
+          <li>
+            <%= link_to(recipes_path) do %>
+              <i class="icon-list"></i> List
+            <% end %>
+          </li>
+           <li>
+            <%= link_to(new_recipe_path) do %>
+              <i class="icon-add"></i> Create
+            <% end %>
+          </li>
+          <% if can? :manage, :category %>
+            <li>
+              <%= link_to (categories_path) do %>
+                <i class="icon-tags"></i> Categories
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <li class="recipieces-dropdown">
+        <a href="#" class="recipieces-dropdown-toggle" data-toggle="dropdown">
+          Users<b class="caret"></b>
+        </a>
+        <ul class="recipieces-dropdown-menu">
+          <li>
+            <%= link_to(users_path) do %>
+              <i class="icon-list"></i> List
+            <% end %>
+          </li>
+          <% if can? :manage, :user %>
+            <li>
+              <%= link_to (users_path(:approved => false)) do %>
+              <i class="icon-user"></i> Users awaiting approval
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <li class="recipieces-dropdown">
+        <a href="#" class="recipieces-dropdown-toggle" data-toggle="dropdown">
+          Albums<b class="caret"></b>
+        </a>
+         <ul class="recipieces-dropdown-menu">
+          <li>
+            <%= link_to(albums_path(:album_type => 1)) do %>
+              <i class="icon-picture"></i> Picture
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(albums_path(:album_type => 2)) do %>
+              <i class="icon-film"></i> Video
+            <% end %>
+          </li>
+          <li>
+            <%= link_to(albums_path(:album_type => 3)) do %>
+              <i class="icon-music"></i> Music
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    <% else %>
+      <div class="<%= 'active' if current_page?(new_user_session_path) %> navbar-header navbar-right">
+        <p class="recipieces-navbar-text">
+          <%= link_to(new_user_session_path) do %>
+            <i class="icon-road"></i> Login
+          <% end %>
+        </p>
+      </div>
+       <li class="<%= 'active' if current_page?(new_user_registration_path) %>">
+        <%= link_to(new_user_registration_path) do %>
+          <i class="icon-user"></i> Sign up
+        <% end %>
+      </li>
     <% end %>
-  </li>
-  <% if user_signed_in? %>
-    <li>
-      <%= link_to(destroy_user_session_path, :method=>'delete') do %>
-        <i class="icon-off icon-white"></i> Log off
-      <% end %>
-    </li>
-    <li class="<%= 'active' if current_page?(edit_user_registration_path) %>">
-      <%= link_to(edit_user_registration_path) do %>
-        <i class="icon-cog icon-white"></i> Edit account
-      <% end %>
-    </li>
-   <li class="dropdown <%= 'active' if current_page?(recipes_path) || current_page?(new_recipe_path) %>">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        Recipes<b class="caret"></b>
-      </a>
-      <ul class="dropdown-menu">
-        <li>
-          <%= link_to(recipes_path) do %>
-            <i class="icon-th-list"></i> List
-          <% end %>
-        </li>
-         <li>
-          <%= link_to(new_recipe_path) do %>
-            <i class="icon-plus"></i> Create
-          <% end %>
-        </li>
-        <% if can? :manage, :category %>
-          <li>
-            <%= link_to (categories_path) do %>
-              <i class="icon-tags"></i> Categories
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        Users<b class="caret"></b>
-      </a>
-      <ul class="dropdown-menu">
-        <li>
-          <%= link_to(users_path) do %>
-            <i class="icon-th-list"></i> List
-          <% end %>
-        </li>
-        <% if can? :manage, :user %>
-          <li>
-            <%= link_to (users_path(:approved => false)) do %>
-            <i class="icon-user"></i> Users awaiting approval
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        Albums<b class="caret"></b>
-      </a>
-       <ul class="dropdown-menu">
-        <li>
-          <%= link_to(albums_path(:album_type => 1)) do %>
-            <i class="icon-picture"></i> Picture
-          <% end %>
-        </li>
-        <li>
-          <%= link_to(albums_path(:album_type => 2)) do %>
-            <i class="icon-film"></i> Video
-          <% end %>
-        </li>
-        <li>
-          <%= link_to(albums_path(:album_type => 3)) do %>
-            <i class="icon-music"></i> Music
-          <% end %>
-        </li>
-      </ul>
-    </li>
-  <% else %>
-    <li class="<%= 'active' if current_page?(new_user_session_path) %>">
-      <%= link_to(new_user_session_path) do %>
-        <i class="icon-road icon-white"></i> Login
-      <% end %>
-    </li>
-     <li class="<%= 'active' if current_page?(new_user_registration_path) %>">
-      <%= link_to(new_user_registration_path) do %>
-        <i class="icon-user icon-white"></i> Sign up
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+  </ul>
+</div>

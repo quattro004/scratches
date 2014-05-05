@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Recipieces - ya ain't livin if ya ain't eatin good!" %></title>
-    <meta name="description" content="Recipieces goal is to be an awesome digital archive for Hodge and associated families.">
+    <meta name="description" content="Recipieces goal is to be a digital archive for Hodge and associated families.">
     <meta name="author" content="Reese J Hodge IV">
     <meta name="keywords" content="Digital archive Digital Heirloom digital media family archive" />
     <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -14,27 +14,30 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <header class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <section class="container">
+    <main role="main">
+      <nav class="recipieces-navbar" role="navigation">
+        <header class="navbar-header">
+          <button type="button" class="recipieces-navbar-toggle" data-toggle="collapse" data-target=".recipieces-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </header>
+        <section class="recipieces-navbar-collapse">
           <%= render 'layouts/navigation' %>
         </section>
       </nav>
-    </header>
-    <main role="main">
-      <article class="container">
+      <article class="recipieces-container">
         <section class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
-          </div>
+            <%= render 'layouts/messages' %>
+            <%= yield %>
         </section>
       </article>
-      <footer class="container">
-        <div style="float: right;">Copyright &copy; 2012 Reese J. Hodge IV</div>
+      <footer id="footer" class="recipieces-container">
+        <div style="float: right;">Copyright &copy; 2014 Reese J. Hodge IV</div>
       </footer>
+      <br/>
     </main>
   </body>
 </html>

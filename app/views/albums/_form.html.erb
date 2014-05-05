@@ -1,25 +1,34 @@
-<%= form_for(@album, :html => {:class => "form-inline"}) do |f| %>
-  <% if @album.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
-      <ul>
-      <% @album.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="small-container">
+  <%= form_for(@album, :html => {:role => "form"}) do |f| %>
+    <% if @album.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+        <ul>
+        <% @album.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.text_field :name, :placeholder => :name.capitalize, :class => 'recipieces-form-control',
+        :required => true, :autofocus => true %>
     </div>
+
+    <div class="field">
+      <%= f.text_field :description, :placeholder => :description.capitalize, :class => 'recipieces-form-control' %>
+    </div>
+
+    <%= f.hidden_field :album_type_id, :value => @album.album_type_id %>
+
+    <br/>
+
+    <% if action_name == 'new' %>
+      <%= f.submit "Create #{ @current_album_type.name.singularize } Album", :class => 'button-lg-block' %>
+    <% else %>
+      <%= f.submit "Update #{ @current_album_type.name.singularize } Album", :class => 'button-lg-block' %>
+    <% end %>
+
   <% end %>
-
-  <%= f.text_field :name, :class => 'input-small', :placeholder => 'Name', :autofocus => true %>
-
-  <%= f.text_field :description, :placeholder => 'Description' %>
-
-  <%= f.hidden_field :album_type_id, :value => @album.album_type_id %>
-
-  <% if action_name == 'new' %>
-    <%= f.submit "Create #{ @current_album_type.name.singularize } Album", :class => 'btn btn-success btn-large' %>
-  <% else %>
-    <%= f.submit "Update #{ @current_album_type.name.singularize } Album", :class => 'btn btn-success btn-large' %>
-  <% end %>
-
-<% end %>
+</div>

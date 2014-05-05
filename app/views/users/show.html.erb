@@ -1,16 +1,23 @@
-<label>Name:
-  <label class="text"><%= @user.name %></label>
-</label>
-<label>Email:
-  <label class="text"><%= mail_to @user.email %></label>
-</label>
-<br/>
-<% if can? :edit, :users %>
-  <%= link_to(edit_user_path(@user), class: "btn btn-large btn-success") do %>
-    <i class="icon-edit icon-white"></i> Edit
-  <% end %>
-<% end %>
+<div class="small-container">
+  <div class="field">
+    <label>Name:
+      <label class="recipieces-text"><%= @user.name %></label>
+    </label>
+  </div>
 
-<%= link_to(users_path, class: "btn btn-large btn-success") do %>
-  <i class="icon-th-list icon-white"></i> List
-<% end %>
+  <div class="field">
+   <label>Email:
+      <label class="recipieces-text"><%= mail_to @user.email %></label>
+    </label>
+  </div>
+
+  <% if can? :edit, :users %>
+    <%= link_to(edit_user_path(@user), class: "button-sm") do %>
+      <i class="icon-edit"></i> Edit
+    <% end %>
+  <% end %>
+
+  <%= link_to(users_path, class: "button-sm") do %>
+    <i class="icon-list"></i> List
+  <% end %>
+</div>

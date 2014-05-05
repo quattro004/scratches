@@ -1,77 +1,225 @@
-// Reference: http://twitter.github.com/bootstrap/index.html
+$link-color: #FFFFFF;
+$dropdown-link-hover-color: #198D19;
+$dropdown-link-hover-bg: #E0C2E0;
+$table-bg-accent: #E0C2E0;
+$table-bg-hover: #198D19;
+$carousel-control-color: #198D19;
 
-$linkColor: #FFFFFF;
-$dropdownLinkColorHover: #198D19;
-$dropdownLinkBackgroundHover: #E0C2E0;
-$tableBackgroundAccent: #E0C2E0;
-$tableBackgroundHover: #198D19;
+.icon {
+  @extend .glyphicon;
+}
+
+.icon-list {
+  @extend	.icon;
+  @extend .glyphicon-th-list;
+}
+
+.icon-view {
+  @extend	.icon;
+  @extend	.glyphicon-eye-open;
+}
+
+.icon-add {
+  @extend .icon;
+  @extend .glyphicon-plus;
+}
+
+.icon-edit {
+  @extend .icon;
+  @extend .glyphicon-edit;
+}
+
+.icon-delete {
+  @extend .icon;
+  @extend .glyphicon-trash;
+}
+
+.icon-chevron-left {
+  @extend .icon;
+  @extend .glyphicon-chevron-left;
+}
+
+.icon-chevron-right {
+  @extend .icon;
+  @extend .glyphicon-chevron-right;
+}
+
+.icon-home {
+  @extend .icon;
+  @extend .glyphicon-home;
+}
+
+.icon-off {
+  @extend .icon;
+  @extend .glyphicon-off;
+}
+
+.icon-cog {
+  @extend .icon;
+  @extend .glyphicon-cog;
+}
+
+.icon-tags {
+  @extend .icon;
+  @extend .glyphicon-tags;
+}
+
+.icon-user {
+  @extend .icon;
+  @extend .glyphicon-user;
+}
+
+.icon-picture {
+  @extend .icon;
+  @extend .glyphicon-picture;
+}
+
+.icon-film {
+  @extend .icon;
+  @extend .glyphicon-film;
+}
+
+.icon-music {
+  @extend .icon;
+  @extend .glyphicon-music;
+}
+
+.icon-road {
+  @extend .icon;
+  @extend .glyphicon-road;
+}
+
+.icon-user {
+  @extend .icon;
+  @extend .glyphicon-user;
+}
+
+.button {
+  @extend .btn;
+  @extend .btn-success;
+}
+
+.button-xs {
+  @extend .button;
+  @extend .btn-xs;
+}
+
+.button-sm {
+  @extend .button;
+  @extend .btn-sm;
+}
+
+.button-sm-danger {
+  @extend .button-sm;
+  @extend .btn-danger;
+}
+
+.button-xs-danger {
+  @extend .button-xs;
+  @extend .btn-danger;
+}
+
+.button-lg {
+  @extend .button;
+  @extend .btn-lg;
+}
+
+.button-lg-block {
+  @extend .button-lg;
+  @extend .btn-block;
+}
+
+.recipieces-table {
+  @extend .table;
+  @extend .table-striped;
+  @extend .table-condensed;
+  @extend .table-hover;
+}
+
+.recipieces-form-control {
+  @extend .form-control;
+}
+
+.recipieces-img {
+  @extend .img-responsive;
+  @extend .col-sm-offset-2;
+}
+
+.recipieces-container {
+  @extend .container;
+}
+
+.recipieces-navbar {
+  @extend .navbar;
+  @extend .navbar-inverse;
+  @extend .navbar-fixed-top;
+}
+
+.recipieces-navbar-text {
+  @extend .navbar-text;
+}
+
+.recipieces-navbar-collapse {
+  @extend .collapse;
+  @extend .navbar-collapse;
+}
+
+.recipieces-navbar-nav {
+  @extend .nav;
+  @extend .navbar-nav;
+}
+
+.recipieces-navbar-header-right {
+  @extend .navbar-header;
+  @extend .navbar-right;
+}
+
+.recipieces-navbar-toggle {
+  @extend .navbar-toggle;
+}
+
+.recipieces-dropdown {
+  @extend .dropdown;
+}
+
+.recipieces-dropdown-toggle {
+  @extend .dropdown-toggle;
+}
+
+.recipieces-dropdown-menu {
+  @extend .dropdown-menu;
+}
+
+.form-control-sm {
+  @extend .form-control;
+  @extend .input-sm;
+  width: 25px;
+}
+
+.recipieces-form-inline {
+  @extend .form-inline;
+}
+
+.recipieces-6-3-col {
+  @extend .col-xs-6;
+  @extend .col-md-3;
+}
 
 @import "bootstrap";
+
 body {
   padding-top: 60px;
   background-color: #E0C2E0;
 }
-@import "bootstrap-responsive";
-
-label {
-  font-weight: bold;
-  color: #E0C2E0;
-}
 
 .content {
   background-color: #993399;
-  padding: 20px;
-  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-  -webkit-border-radius: 6px 6px 6px 6px;
-  -moz-border-radius: 6px 6px 6px 6px;
-  border-radius: 6px 6px 6px 6px;
-  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.30);
-  -moz-box-shadow: 0 3px 4px rgba(0,0,0,.30);
-  box-shadow: 0 3px 4px rgba(0,0,0,.30);
-}
-
-footer{
-  padding:20px;
-  margin: 20px -20px 0 -20px;
-  -webkit-border-radius: 6px 6px 6px 6px;
-  -moz-border-radius: 6px 6px 6px 6px;
-  border-radius: 6px 6px 6px 6px;
-  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.30);
-  -moz-box-shadow: 0 3px 4px rgba(0,0,0,.30);
-  box-shadow: 0 3px 4px rgba(0,0,0,.30);
-  color: #993399;
-  background:url(/assets/footer.png) repeat left top;
-}
-
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
-
-#error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 14px;
-    margin: -7px;
-    margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
-  }
-  ul li {
-    font-size: 12px;
-    list-style: square;
-  }
-}
-
-td > h3 {
-  color: #25259A;
+  padding: 10px;
+  margin: 0 -15px; /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 8px 8px 4px rgba(0,0,0,.30);
+  -moz-box-shadow: 8px 8px 4px rgba(0,0,0,.30);
+  box-shadow: 8px 8px 4px rgba(0,0,0,.30);
 }

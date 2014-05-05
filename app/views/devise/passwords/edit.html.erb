@@ -1,18 +1,25 @@
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+<div class="small-container">
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name),
+    :html => { :method => :put, :role => 'form' }) do |f| %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password, :autofocus => true %>
-  </div>
+    <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+    <%= f.hidden_field :reset_password_token %>
 
-  <%= f.submit "Change my password", :class => 'btn btn-success' %>
-<% end %>
+    <div class="field">
+      <%= f.password_field :password, :placeholder => :password.capitalize, :class => 'recipieces-form-control',
+        :autofocus => true, :required => true %>
+    </div>
 
-<%= render :partial => "devise/shared/links" %>
+    <div class="field">
+      <%= f.password_field :password_confirmation, :placeholder => :password_confirmation.to_s.humanize,
+        :class => 'recipieces-form-control', :required => true %>
+    </div>
+
+    <br/>
+
+    <%= f.submit "Change my password", :class => 'button-lg-block' %>
+  <% end %>
+
+  <%= render :partial => "devise/shared/links" %>
+</div>

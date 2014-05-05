@@ -1,5 +1,7 @@
 <%= render 'form' %>
 
-<%= link_to(albums_path(:album_type => params[:album_type]), class: "btn btn-success") do %>
-  <i class="icon-th-list icon-white"></i> List <%= @current_album_type.name.singularize %> Albums
+<br/>
+
+<%= link_to(albums_path(:album_type => params[:album_type]), class: "button-xs") do %>
+  <i class="icon-list"></i> List <%= @current_album_type.name.singularize %> Albums
 <% end %>

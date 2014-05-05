@@ -1,0 +1,69 @@
+/*
+*= require_self
+*= require_tree .
+*/
+
+td > h3 {
+  color: #25259A;
+}
+
+td.center-col {
+  text-align: center;
+}
+
+.small-container {
+  width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.field {
+  padding: 3px;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 14px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+footer{
+  padding: 20px;
+  margin: 15px -20px 0 -20px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 8px 8px 4px rgba(0,0,0,.30);
+  -moz-box-shadow: 8px 8px 4px rgba(0,0,0,.30);
+  box-shadow: 7px 7px 4px rgba(0,0,0,.30);
+  color: #993399;
+  background:url(/assets/footer.png) repeat left top;
+}
+
+label {
+  font-weight: bold;
+  color: #E0C2E0;
+}

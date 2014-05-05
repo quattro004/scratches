@@ -60,8 +60,6 @@ class RecipesController < ApplicationController
     def setup_defaults
       3.times { @recipe.ingredient.build }
       @recipe.pictures.build
-      @recipe.cook_time_in_minutes = 0
-      @recipe.prep_time_in_minutes = 0
       @recipe.is_public = false
     end
 end

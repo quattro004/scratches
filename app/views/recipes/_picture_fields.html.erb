@@ -1,6 +1,7 @@
-<div class="fields controls">
-  <%= f.file_field :uploaded_picture %>
-  <span style="padding-left:80px">
-      <%= link_to_remove_fields 'Remove', f %>
-  </span>
+<div class="field">
+    <span class="button-xs">
+      <%= f.file_field :uploaded_picture %>
+    </span>
+
+    <%= link_to_remove_fields 'Remove', f %>
 </div>

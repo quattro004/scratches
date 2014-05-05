@@ -1,16 +1,25 @@
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-inline'}) do |f| %>
+<div class="small-container">
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
+    :html => { :role => 'form'}) do |f| %>
 
-    <%= f.text_field :email, :placeholder => 'Email', :autofocus => true %>
+    <div class="field">
+      <%= f.text_field :email, :placeholder => :email.capitalize, :autofocus => true, :class => 'recipieces-form-control', :required => true %>
+   </div>
 
-    <%= f.password_field :password, :placeholder => 'Password' %>
+    <div class="field">
+      <%= f.password_field :password, :placeholder => :password.capitalize, :class => 'recipieces-form-control', :required => true %>
+    </div>
 
-  <% if devise_mapping.rememberable? -%>
-      <%= f.label :remember_me, :class => "checkbox" do %>
-        <%= f.check_box :remember_me %>Remember me
-      <% end %>
-  <% end -%>
+    <div class="field">
+      <% if devise_mapping.rememberable? -%>
+          <%= f.label :remember_me do %>
+            <%= f.check_box :remember_me %> Remember me
+          <% end %>
+      <% end -%>
+    </div>
 
-  <%= f.submit "Login", :class => 'btn btn-success btn-large' %>
-<% end %>
+    <%= f.submit 'Login', :class => 'button-lg-block' %>
+  <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+  <%= render :partial => "devise/shared/links" %>
+</div>

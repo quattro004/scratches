@@ -1,28 +1,32 @@
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<div class="small-container">
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),
+      :html => { :role => 'form'}) do |f| %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, :autofocus => true %>
-  </div>
+    <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
+    <div class="field">
+      <%= f.text_field :name, :placeholder => :name.capitalize, :autofocus => true,
+        :class => 'recipieces-form-control', :required => true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+    <div class="field">
+      <%= f.text_field :email, :placeholder => :email.capitalize, :class => 'recipieces-form-control', :required => true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+    <div class="field">
+      <%= f.password_field :password, :placeholder => :password.capitalize, :class => 'recipieces-form-control', :required => true %>
+    </div>
 
-  <%= f.submit "Sign up", :class => 'btn btn-success btn-large' %>
+    <div class="field">
+      <%= f.password_field :password_confirmation, :placeholder => :password_confirmation.to_s.humanize,
+        :class => 'recipieces-form-control', :required => true %>
+    </div>
 
-<% end %>
+    <br/>
 
-<%= render :partial => "devise/shared/links" %>
+    <%= f.submit "Sign up", :class => 'button-lg-block' %>
+
+  <% end %>
+
+  <%= render :partial => "devise/shared/links" %>
+</div>

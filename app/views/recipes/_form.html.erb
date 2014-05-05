@@ -1,137 +1,107 @@
- <%= form_for(@recipe, :html => { :multipart => true, :class => "form-horizontal" }) do |f| %>
-  <% if @recipe.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
-      <ul>
-      <% @recipe.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="recipe">
+  <%= form_for(@recipe, :html => { :multipart => true, :role => 'form' }) do |f| %>
+    <% if @recipe.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+        <ul>
+        <% @recipe.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+     </div>
+   <% end %>
 
-  <fieldset>
-    <legend><h2><%= action_name.capitalize %> Recipe</h2></legend>
+    <fieldset>
+      <legend><h2><%= action_name.capitalize %> Recipe</h2></legend>
 
-    <div class="control-group">
-      <%= f.label :title, :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :title, :autofocus => true %>
+      <div class="field">
+        <%= f.text_field :title, :placeholder => :title.capitalize, :class => 'recipieces-form-control',
+          :required => true, :autofocus => true %>
       </div>
-    </div>
 
-    <div class="control-group">
-      <label class="control-label">Ingredients</label>
+      <div class="field">
+        <label>Ingredients</label>
         <%= f.fields_for :ingredient do |builder| %>
           <%= render 'ingredient_fields', :f => builder %>
         <% end %>
-      <div class="controls">
-        <%= link_to_add_fields 'Add Ingredient', f, :ingredient %>
+        <div>
+          <%= link_to_add_fields 'Add Ingredient', f, :ingredient %>
+        </div>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :preparation, :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_area :preparation, :class => "input-xxlarge", :rows => 5 %>
+      <div class="field">
+        <%= f.text_area :preparation, :placeholder => :preparation.capitalize,
+          :class => "recipieces-form-control", :rows => 5 %>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :instructions, :class => "control-label" do %>
-        Instructions
-        <span class="help-block"><label><em>(separate each by pressing Enter)</em></label></span>
-      <% end %>
-      <div class="controls">
-        <%= f.text_area :instructions, :class => "input-xxlarge", :rows => 13 %>
+      <div class="field">
+        <span class="help-block"><label><em>(separate each instruction by pressing Enter)</em></label></span>
+        <%= f.text_area :instructions, :placeholder => :instructions.capitalize,
+          :class => "recipieces-form-control", :rows => 13 %>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :category, :class => "control-label" %>
-      <div class="controls">
+      <div class="field">
         <%= collection_select(:recipe, :category_id, Category.all, :id, :name) %>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label 'Comment / Description', :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :comment, :class => "input-xxlarge" %>
+      <div class="field">
+        <%= f.text_field :comment, :placeholder => 'Comment or description', :class => "recipieces-form-control" %>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :keywords, :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :keywords, :class => "input-xlarge" %>
+      <div class="field">
+          <%= f.text_field :keywords, :placeholder => :keywords.capitalize,  :class => "recipieces-form-control" %>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :yield, :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :yield %>
+      <div class="field">
+        <%= f.text_field :yield, :placeholder => :yield.capitalize, :class => "recipieces-form-control" %>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :original_source, :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :original_source %>
+      <div class="field">
+        <%= f.text_field :original_source, :placeholder => :original_source.to_s.humanize, :class => "recipieces-form-control" %>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label 'Prep', :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :prep_time_in_minutes, :class => "input-mini" %>
-        <span class="help-inline"><label>minutes</label></span>
+      <div class="recipieces-form-inline field">
+          <%= f.text_field :prep_time_in_minutes, :placeholder => :prep_time_in_minutes.to_s.humanize,
+            :class => "recipieces-form-control" %>
+          <%= f.text_field :cook_time_in_minutes, :placeholder => :cook_time_in_minutes.to_s.humanize,
+            :class => "recipieces-form-control" %>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label 'Cook', :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :cook_time_in_minutes, :class => "input-mini" %>
-        <span class="help-inline"><label>minutes</label></span>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label">Pictures</label>
-      <% if action_name == 'edit' %>
-        <ul class="thumbnails">
-          <% for picture in @recipe.pictures %>
-            <li class="span1">
-              <div class="thumbnail">
-                <% if ((can? :destroy, picture) && (@recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
-                  <%= link_to(picture, class: "btn btn-small btn-danger",
-                    :data => { :confirm => "Are you sure you want to delete #{picture.name}?" }, :method => :delete) do %>
-                    <i class="icon-trash icon-white"></i>
-                  <% end %>
-                <% end %>
-                <%= link_to(picture_path(picture), class: "thumbnail") do %>
+      <div class="field">
+        <label>Pictures</label>
+        <% if action_name == 'edit' %>
+          <div class="row">
+            <% for picture in @recipe.pictures %>
+              <div class="recipieces-6-3-col">
+                <%= link_to(picture_path(picture)) do %>
                   <img
                     src="<%= url_for(:action => 'thumbnail', :id => picture.id, :controller => 'pictures') %>"
                     alt="<%= picture.name %>"
                     title="<%= picture.name %>"
                   />
                 <% end %>
+                <% if ((can? :destroy, picture) && (@recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
+                  <%= link_to(picture, class: "button-sm-danger",
+                    :data => { :confirm => "Are you sure you want to delete #{picture.name}?" }, :method => :delete) do %>
+                    <i class="icon-delete"></i>
+                  <% end %>
+                <% end %>
               </div>
-            </li>
+            <% end %>
+          </div>
+        <% else %>
+          <%= f.fields_for :pictures do |builder| %>
+            <%= render 'picture_fields', :f => builder %>
           <% end %>
-        </ul>
-      <% else %>
-        <%= f.fields_for :pictures do |builder| %>
-          <%= render 'picture_fields', :f => builder %>
         <% end %>
-      <% end %>
-      <div class="controls">
-        <%= link_to_add_fields 'Add Picture', f, :pictures %>
+        <div>
+          <%= link_to_add_fields 'Add Picture', f, :pictures %>
+        </div>
       </div>
-    </div>
 
-    <%= f.submit nil, :class => 'btn btn-success btn-large btn-primary' %>
-  </fieldset>
-<% end %> 
+      <br/>
+
+      <%= f.submit nil, :class => 'button-lg-block' %>
+    </fieldset>
+  <% end %>
+</div>

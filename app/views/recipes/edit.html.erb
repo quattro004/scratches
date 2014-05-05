@@ -1,9 +1,9 @@
 <%= render 'form' %>
 
-<%= link_to(@recipe, class: "btn btn-small btn-success") do %>
-  <i class="icon-eye-open icon-white"></i> View
+<%= link_to(@recipe, class: "button-sm") do %>
+  <i class="icon-view"></i> View
 <% end %>
-&nbsp;
-<%= link_to(recipes_path, class: "btn btn-small btn-success") do %>
-  <i class="icon-th-list icon-white"></i> List
+
+<%= link_to(recipes_path, class: "button-sm") do %>
+  <i class="icon-list"></i> List
 <% end %>

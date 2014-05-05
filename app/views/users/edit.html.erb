@@ -1,40 +1,42 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-  <div id="errorExplanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this category from being saved:</h2>
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+<div class="small-container">
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+    <div id="errorExplanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
     <% end %>
-    </ul>
-  </div>
+
+    <div class="field">
+      <%= f.text_field :name, :placeholder => :name.capitalize, :class => 'recipieces-form-control',
+        :required => true, :autofocus => true %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :email, :placeholder => :email.capitalize, :class => 'recipieces-form-control',
+        :required => true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :approved, :class => "checkbox" do %>
+        <%= f.check_box :approved %>Approved
+      <% end %>
+    </div>
+    <br/>
+    <div class="actions">
+      <%= f.submit nil, :class => 'button-lg-block' %>
+    </div>
   <% end %>
+</div>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, :autofocus => true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :approved, :class => "checkbox" do %>
-      <%= f.check_box :approved %>Approved
-    <% end %>
-  </div>
-  <br/>
-  <div class="actions">
-    <%= f.submit nil, :class => 'btn btn-success btn-large' %>
-  </div>
+<%= link_to(@user, class: "button-sm") do %>
+  <i class="icon-view"></i> View
 <% end %>
 
-<%= link_to(@user, class: "btn btn-small btn-success") do %>
-  <i class="icon-eye-open icon-white"></i> View
-<% end %>
-
-<%= link_to(users_path, class: "btn btn-small btn-success") do %>
-  <i class="icon-th-list icon-white"></i> List
+<%= link_to(users_path, class: "button-sm") do %>
+  <i class="icon-list"></i> List
 <% end %>

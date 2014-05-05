@@ -1,57 +1,58 @@
-<div id="recipe-list">
-  <table class="table table-striped table-bordered table-condensed">
-    <thead>
-      <tr class="recipe">
-        <th/>
-        <th><h2>Title</h2></th>
-        <th><h2>Comment/Description<h2></th>
+<table class="recipieces-table">
+  <thead>
+    <tr class="recipe">
+      <th/>
+      <th><h2>Title</h2></th>
+      <th><h2>Comment</h2></th>
+      <th></th>
+      <% if (can? :edit, :recipe) %>
         <th></th>
-        <% if (can? :edit, :recipe) %>
-          <th></th>
+      <% end %>
+      <% if (can? :destroy, :recipe) %>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% for recipe in @recipes %>
+      <tr>
+        <% if recipe.pictures[0] %>
+          <td>
+            <img src="<%= url_for(:action => 'thumbnail', :id => recipe.pictures[0].id,
+              :controller => 'pictures') %>" alt="Recipe thumbnail" />
+          </td>
+        <% else %>
+          <td><%= image_tag('add_photo.png', :border => 0) %></td>
         <% end %>
-        <% if (can? :destroy, :recipe) %>
-          <th></th>
+        <td><h3><%= recipe.title %></h3></td>
+        <td><h3><%= truncate(recipe.comment, :length => 85, :separator => ' ') %></h3></td>
+        <td>
+          <%= link_to(recipe, class: "button-sm") do %>
+            <i class="icon-view"></i> View
+          <% end %>
+        </td>
+        <% if user_signed_in? %>
+          <% if ((can? :edit, recipe) && (recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
+            <td>
+              <%= link_to(edit_recipe_path(recipe), class: "button-sm") do %>
+                <i class="icon-edit"></i> Edit
+              <% end %>
+            </td>
+          <% end %>
+          <% if ((can? :destroy, recipe) && (recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
+            <td>
+              <%= link_to(recipe, class: "button-sm-danger",
+                :data => { :confirm => "Are you sure you want to delete #{recipe.title}?" }, :method => :delete) do %>
+                <i class="icon-delete"></i> Delete
+              <% end %>
+            </td>
+          <% end %>
         <% end %>
       </tr>
-    </thead>
-    <tbody>
-      <% for recipe in @recipes %>
-        <tr>
-          <% if recipe.pictures[0] %>
-            <td><img src="<%= url_for(:action => 'thumbnail', :id => recipe.pictures[0].id, :controller => 'pictures') %>" alt="Recipe thumbnail" /></td>
-          <% else %>
-            <td><%= image_tag('add_photo.png', :border => 0) %></td>
-          <% end %>
-          <td><h3><%= recipe.title %></h3></td>
-          <td><h3><%= truncate(recipe.comment, :length => 85, :separator => ' ') %></h3></td>
-          <td>
-            <%= link_to(recipe, class: "btn btn-small btn-success") do %>
-              <i class="icon-eye-open icon-white"></i> View
-            <% end %>
-          </td>
-          <% if user_signed_in? %>
-            <% if ((can? :edit, recipe) && (recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
-              <td>
-                <%= link_to(edit_recipe_path(recipe), class: "btn btn-small btn-success") do %>
-                  <i class="icon-edit icon-white"></i> Edit
-                <% end %>
-              </td>
-            <% end %>
-            <% if ((can? :destroy, recipe) && (recipe.user_id == current_user.id || current_user.role?(:admin) )) %>
-              <td>
-                <%= link_to(recipe, class: "btn btn-small btn-danger",
-                  :data => { :confirm => "Are you sure you want to delete #{recipe.title}?" }, :method => :delete) do %>
-                  <i class="icon-trash icon-white"></i> Delete
-                <% end %>
-              </td>
-            <% end %>
-          <% end %>
-        </tr>
-      <% end %>
-     </tbody>
-  </table>
-</div>
+    <% end %>
+   </tbody>
+</table>
 
-<%= link_to(new_recipe_path, class: "btn btn-large btn-success") do %>
-  <i class="icon-plus icon-white"></i> New Recipe
+<%= link_to(new_recipe_path, class: "button-lg") do %>
+  <i class="icon-add"></i> New Recipe
 <% end %>

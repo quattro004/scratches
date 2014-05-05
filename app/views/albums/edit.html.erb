@@ -1,13 +1,14 @@
 <%= render 'form' %>
+<br/>
 
-<%= link_to(new_picture_path(:imageable_id => @album.id, :imageable_type => 'Album'), class: "btn btn-small btn-success") do %>
-  <i class="icon-plus icon-white"></i> Add <%= @current_album_type.name.singularize %>
+<%= link_to(new_picture_path(:imageable_id => @album.id, :imageable_type => 'Album'), class: "button-xs") do %>
+  <i class="icon-add"></i> Add <%= @current_album_type.name.singularize %>
 <% end %>
 
-<%= link_to(@album, class: "btn btn-small btn-success") do %>
-  <i class="icon-eye-open icon-white"></i> View
+<%= link_to(@album, class: "button-xs") do %>
+  <i class="icon-view"></i> View
 <% end %>
 
-<%= link_to(albums_path(:album_type => @current_album_type.id), class: "btn btn-success") do %>
-  <i class="icon-th-list icon-white"></i> List <%= @current_album_type.name.singularize %> Albums
+<%= link_to(albums_path(:album_type => @current_album_type.id), class: "button-xs") do %>
+  <i class="icon-list"></i> List <%= @current_album_type.name.singularize %> Albums
 <% end %>

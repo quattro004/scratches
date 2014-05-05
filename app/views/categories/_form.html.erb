@@ -1,19 +1,28 @@
-<%= form_for(@category, :html => {:class => "form-inline"}) do |f| %>
-  <% if @category.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
-    <ul>
-    <% @category.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+<div class="small-container">
+  <%= form_for(@category, :html => {:role => "form"}) do |f| %>
+    <% if @category.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+        <ul>
+        <% @category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
-    </ul>
-  </div>
+
+    <div class="field">
+      <%= f.text_field :name, :placeholder => :name.capitalize, :class => 'recipieces-form-control',
+        :required => true, :autofocus => true %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :description, :placeholder => :description.capitalize, :class => 'recipieces-form-control' %>
+    </div>
+
+    <br/>
+
+    <%= f.submit nil, :class => 'button-lg-block'%>
+
   <% end %>
-
-  <%= f.text_field :name, :class => 'input-small', :placeholder => 'Name', :autofocus => true %>
-
-  <%= f.text_field :description, :placeholder => 'Description' %>
-
-  <%= f.submit nil, :class => 'btn btn-success btn-large'%>
-
-<% end %>
+</div>

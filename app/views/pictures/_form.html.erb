@@ -1,35 +1,36 @@
- <%= form_for(@picture) do |f| %>
-  <% if @picture.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
-      <ul>
-      <% @picture.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="small-container">
+   <%= form_for(@picture, :html => {:role => "form"}) do |f| %>
+
+    <% if @picture.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
+        <ul>
+        <% @picture.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.file_field :uploaded_picture, :required => true, :autofocus => true %>
     </div>
+
+     <div class="field">
+      <%= f.text_field :description, :placeholder => :description.capitalize, :class => 'recipieces-form-control' %>
+     </div>
+
+    <div class="field">
+      <%= f.label :date_taken %>
+      <%= date_select("picture", "date_taken", :order => [:month, :day, :year], :start_year => 1930, :end_year => Time.now.year) %>
+    </div>
+
+    <%= f.hidden_field :imageable_id, :value => params[:imageable_id] %>
+    <%= f.hidden_field :imageable_type, :value => params[:imageable_type] %>
+
+    <br/>
+
+    <%= f.submit nil, :class => 'button-lg-block' %>
+
   <% end %>
-
-  <div class="field">
-    <%= f.label :picture %>
-    <%= f.file_field :uploaded_picture, :autofocus => true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :date_taken %>
-    <%= date_select("picture", "date_taken", :order => [:month, :day, :year], :start_year => 1930, :end_year => Time.now.year) %>
-  </div>
-
-  <%= f.hidden_field :imageable_id, :value => params[:imageable_id] %>
-  <%= f.hidden_field :imageable_type, :value => params[:imageable_type] %>
-
-  <div class="actions">
-    <%= f.submit nil, :class => 'btn btn-success btn-large' %>
-  </div>
-
-<% end %>
+</div>
