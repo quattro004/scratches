@@ -61,7 +61,7 @@
 <% else %>
   <label><em>(click image to view original size)</em></label>
   <div class="row">
-    <% @album.pictures.order('date_taken').each do |picture| %>
+    <% @album_pictures.order('date_taken').each do |picture| %>
       <div class="col-xs-6 col-md-4">
           <div class="thumbnail">
             <% if ((can? :edit, picture) && (picture.user_id == current_user.id || current_user.role?(:admin) )) %>
@@ -90,6 +90,9 @@
           </div>
       </div>
     <% end %>
+  </div>
+  <div class="field">
+    <%= will_paginate @album_pictures, renderer: BootstrapPagination::Rails %>
   </div>
 <% end %>
 
