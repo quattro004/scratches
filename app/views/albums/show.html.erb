@@ -33,7 +33,7 @@
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Carousel items -->
     <div class="carousel-inner">
-      <% @album.pictures.order('date_taken').each_with_index do |picture, index| %>
+      <% @album_pictures.order('date_taken').each_with_index do |picture, index| %>
         <div class="<%= index == 0 ? 'item active' : 'item' %>">
            <%= link_to(picture_path(picture), class: "thumbnail") do %>
             <img
@@ -91,10 +91,11 @@
       </div>
     <% end %>
   </div>
-  <div class="field">
-    <%= will_paginate @album_pictures, renderer: BootstrapPagination::Rails %>
-  </div>
 <% end %>
+
+<div class="field">
+  <%= will_paginate @album_pictures, renderer: BootstrapPagination::Rails %>
+</div>
 
 <%= link_to(albums_path(:album_type => @current_album_type.id), class: "button-sm") do %>
   <i class="icon-list"></i> List <%= @current_album_type.name.singularize %> Albums
