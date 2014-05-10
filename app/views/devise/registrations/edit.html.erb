@@ -20,13 +20,13 @@
     </div>
 
     <div class="field">
-      <%= f.password_field :password_confirmation, :placeholder => :password_confirmation.capitalize,
+      <%= f.password_field :password_confirmation, :placeholder => :password_confirmation.to_s.humanize.capitalize,
         :class => 'recipieces-form-control' %>
     </div>
 
     <div class="field">
       <small>(we need your current password to confirm your changes)</small>
-      <%= f.password_field :current_password, :placeholder => :current_password.capitalize,
+      <%= f.password_field :current_password, :placeholder => :current_password.to_s.humanize.capitalize,
         :class => 'recipieces-form-control' %>
     </div>
 
