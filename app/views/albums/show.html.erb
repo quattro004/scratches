@@ -29,35 +29,7 @@
 <hr/>
 
 <% if params["view"] == 'carousel' %>
-  <label><em>(hover over image to pause, click to view original size)</em></label>
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Carousel items -->
-    <div class="carousel-inner">
-      <% @album_pictures.order('date_taken').each_with_index do |picture, index| %>
-        <div class="<%= index == 0 ? 'item active' : 'item' %>">
-           <%= link_to(picture_path(picture), class: "thumbnail") do %>
-            <img
-              src="<%= url_for(:action => 'thumbnail', :id => picture.id, :controller => 'pictures', :height => 500, :width => 870) %>"
-              alt="<%= picture.name %>"
-              title="<%= picture.name %>"
-            />
-          <% end %>
-          <div class="container">
-            <div class="carousel-caption">
-              <h2><%= picture.description %></h2>
-              <p><%= picture.date_taken %></p>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="icon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="icon-chevron-right"></span>
-    </a>
-  </div>
+  <%= render partial: 'carousel', locals: { album_pictures: @album_pictures } %>
 <% else %>
   <label><em>(click image to view original size)</em></label>
   <div class="row">
