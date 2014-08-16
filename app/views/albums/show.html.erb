@@ -31,38 +31,7 @@
 <% if params["view"] == 'carousel' %>
   <%= render partial: 'carousel', locals: { album_pictures: @album_pictures } %>
 <% else %>
-  <label><em>(click image to view original size)</em></label>
-  <div class="row">
-    <% @album_pictures.order('date_taken').each do |picture| %>
-      <div class="col-xs-6 col-md-4">
-          <div class="thumbnail">
-            <% if ((can? :edit, picture) && (picture.user_id == current_user.id || current_user.role?(:admin) )) %>
-              <%= link_to(edit_picture_path(picture, :album_id => @album.id, :imageable_id => @album.id, :imageable_type => 'Album'),
-                class: "button-sm") do %>
-                <i class="icon-edit"></i>
-              <% end %>
-            <% end %>
-            <% if ((can? :destroy, picture) && (@album.user_id == current_user.id || current_user.role?(:admin) )) %>
-              <%= link_to(picture, class: "button-sm-danger",
-                :data => { :confirm => "Are you sure you want to delete #{picture.name}?" }, :method => :delete) do %>
-                <i class="icon-delete"></i>
-              <% end %>
-            <% end %>
-            <%= link_to(picture_path(picture)) do %>
-              <img
-                src="<%= url_for(:action => 'thumbnail', :id => picture.id, :controller => 'pictures', :height => 200, :width => 300) %>"
-                alt="<%= picture.name %>"
-                title="<%= picture.name %>"
-              />
-            <% end %>
-            <div class="caption">
-              <h4><%= picture.description %></h4>
-              <h5><%= picture.date_taken %></h5>
-            </div>
-          </div>
-      </div>
-    <% end %>
-  </div>
+  <%= render partial: 'thumbnails', locals: { album_pictures: @album_pictures, album: @album } %>
 <% end %>
 
 <div class="field">
