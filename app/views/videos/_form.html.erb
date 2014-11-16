@@ -1,0 +1,36 @@
+<div class="small-container">
+   <%= form_for(@video, :html => {:role => "form"}) do |f| %>
+
+    <% if @video.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+        <ul>
+        <% @video.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.file_field :uploaded_video, :required => true, :autofocus => true %>
+    </div>
+
+     <div class="field">
+      <%= f.text_field :description, :placeholder => :description.capitalize, :class => 'recipieces-form-control' %>
+     </div>
+
+    <div class="field">
+      <%= f.label :date_taken %>
+      <%= date_select("video", "date_taken", :order => [:month, :day, :year], :start_year => 1930, :end_year => Time.now.year) %>
+    </div>
+
+    <%= f.hidden_field :imageable_id, :value => params[:imageable_id] %>
+    <%= f.hidden_field :imageable_type, :value => params[:imageable_type] %>
+
+    <br/>
+
+    <%= f.submit nil, :class => 'button-lg-block' %>
+
+  <% end %>
+</div>

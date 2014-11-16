@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517130546) do
+ActiveRecord::Schema.define(:version => 20140824151537) do
 
   create_table "album_types", :force => true do |t|
     t.string   "name"
@@ -115,5 +115,23 @@ ActiveRecord::Schema.define(:version => 20130517130546) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
+
+  create_table "videos", :force => true do |t|
+    t.string   "name"
+    t.string   "content_type"
+    t.integer  "size"
+    t.binary   "data",           :limit => 2147483647
+    t.string   "description"
+    t.integer  "user_id"
+    t.date     "date_taken"
+    t.integer  "album_id"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
+  add_index "videos", ["album_id"], :name => "index_videos_on_album_id"
+  add_index "videos", ["user_id"], :name => "index_videos_on_user_id"
 
 end

@@ -1,0 +1,50 @@
+<table class="recipieces-table">
+  <thead>
+    <tr>
+      <th/>
+      <th><h2>Description<h2></th>
+      <% if (can? :edit, :video) %>
+        <th></th>
+      <% end %>
+      <% if (can? :destroy, :video) %>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% for video in @videos %>
+      <tr>
+        <td>
+          <img src="<%= url_for(:action => 'thumbnail', :id => video.id, :controller => 'videos') %>" alt="video thumbnail" />
+        </td>
+        <td><h3><%= video.description %></h3></td>
+        <td>
+          <%= link_to(video, class: "button-sm") do %>
+            <i class="icon-view"></i> View
+          <% end %>
+        </td>
+        <% if user_signed_in? %>
+          <% if ((can? :edit, video) && (video.user_id == current_user.id || current_user.role?(:admin) )) %>
+            <td>
+              <%= link_to(edit_video_path(video), class: "button-sm") do %>
+                <i class="icon-edit"></i> Edit
+              <% end %>
+            </td>
+          <% end %>
+          <% if ((can? :destroy, video) && (video.user_id == current_user.id || current_user.role?(:admin) )) %>
+            <td>
+              <%= link_to(video, class: "button-sm-danger",
+                :data => { :confirm => "Are you sure you want to delete this video?" }, :method => :delete) do %>
+                <i class="icon-delete"></i> Delete
+              <% end %>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+   </tbody>
+</table>
+
+<%= link_to(new_video_path, class: "button-lg") do %>
+  <i class="icon-add"></i> New video
+<% end %>

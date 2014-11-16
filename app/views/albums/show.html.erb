@@ -16,10 +16,13 @@
   <%= link_to(new_picture_path(:imageable_id => @album.id, :imageable_type => 'Album'), class: "button-sm") do %>
     <i class="icon-add"></i> Add <%= @current_album_type.name.singularize %>
   <% end %>
-<% end %>
-
-<%= link_to(album_path(@album, :view => 'carousel'), class: "button-sm") do %>
-  <i class="icon-view"></i> Carousel
+  <%= link_to(album_path(@album, :view => 'carousel'), class: "button-sm") do %>
+    <i class="icon-view"></i> Carousel
+  <% end %>
+<% elsif @current_album_type.name.singularize == 'Video' %>
+  <%= link_to(new_video_path(:imageable_id => @album.id, :imageable_type => 'Album'), class: "button-sm") do %>
+   <i class="icon-add"></i> Add <%= @current_album_type.name.singularize %>
+  <% end %>
 <% end %>
 
 <%= link_to(album_path(@album), class: "button-sm") do %>
@@ -31,12 +34,18 @@
 <% if params["view"] == 'carousel' %>
   <%= render partial: 'carousel', locals: { album_pictures: @album_pictures } %>
 <% else %>
-  <%= render partial: 'thumbnails', locals: { album_pictures: @album_pictures, album: @album } %>
+  <% if @current_album_type.name.singularize == 'Picture' %>
+    <%= render partial: 'thumbnails', locals: { album_pictures: @album_pictures, album: @album } %>
+    <div class="field">
+      <%= will_paginate @album_pictures, renderer: BootstrapPagination::Rails %>
+    </div>
+  <% elsif @current_album_type.name.singularize == 'Video' %>
+    <%= render partial: 'video_thumbnails', locals: { album_videos: @album_videos, album: @album } %>
+    <div class="field">
+      <%= will_paginate @album_videos, renderer: BootstrapPagination::Rails %>
+    </div>
+  <% end %>
 <% end %>
-
-<div class="field">
-  <%= will_paginate @album_pictures, renderer: BootstrapPagination::Rails %>
-</div>
 
 <%= link_to(albums_path(:album_type => @current_album_type.id), class: "button-sm") do %>
   <i class="icon-list"></i> List <%= @current_album_type.name.singularize %> Albums

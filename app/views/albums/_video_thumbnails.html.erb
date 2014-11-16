@@ -1,0 +1,25 @@
+<div class="row">
+  <% album_videos.order('date_taken').each do |video| %>
+    <div class="col-xs-6 col-md-4">
+        <div class="thumbnail">
+          <% if ((can? :edit, video) && (video.user_id == current_user.id || current_user.role?(:admin) )) %>
+            <%= link_to(edit_video_path(video, :album_id => album.id, :imageable_id => album.id, :imageable_type => 'Album'),
+              class: "button-sm") do %>
+              <i class="icon-edit"></i>
+            <% end %>
+          <% end %>
+          <% if ((can? :destroy, video) && (album.user_id == current_user.id || current_user.role?(:admin) )) %>
+            <%= link_to(video, class: "button-sm-danger",
+              :data => { :confirm => "Are you sure you want to delete #{video.name}?" }, :method => :delete) do %>
+              <i class="icon-delete"></i>
+            <% end %>
+          <% end %>
+          <%= video_tag video_path(video), :size => "320x240", :controls => true %>
+        </div>
+        <div class="caption">
+          <h4><%= video.description %></h4>
+          <h5><%= video.date_taken %></h5>
+        </div>
+    </div>
+  <% end %>
+</div>

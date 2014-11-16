@@ -1,8 +1,14 @@
 <%= render 'form' %>
 <br/>
 
-<%= link_to(new_picture_path(:imageable_id => @album.id, :imageable_type => 'Album'), class: "button-xs") do %>
-  <i class="icon-add"></i> Add <%= @current_album_type.name.singularize %>
+<% if @current_album_type.name.singularize == 'Picture' %>
+  <%= link_to(new_picture_path(:imageable_id => @album.id, :imageable_type => 'Album'), class: "button-xs") do %>
+    <i class="icon-add"></i> Add <%= @current_album_type.name.singularize %>
+  <% end %>
+<% elsif @current_album_type.name.singularize == 'Video' %>
+  <%= link_to(new_video_path(:imageable_id => @album.id, :imageable_type => 'Album'), class: "button-xs") do %>
+    <i class="icon-add"></i> Add <%= @current_album_type.name.singularize %>
+  <% end %>
 <% end %>
 
 <%= link_to(@album, class: "button-xs") do %>

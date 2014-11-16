@@ -1,7 +1,6 @@
 class AlbumsController < ApplicationController
   respond_to :html, :xml, :json
-  attr_reader :current_album_type
-  attr_reader :author_name
+  attr_reader :current_album_type, :author_name
   load_and_authorize_resource
 
   def index
@@ -12,7 +11,11 @@ class AlbumsController < ApplicationController
   def show
     get_current_album_type
     get_author_name
-    @album_pictures = @album.pictures.paginate(:page => params[:page], :per_page => 12)
+    if @current_album_type.name.singularize == 'Picture'
+      @album_pictures = @album.pictures.paginate(:page => params[:page], :per_page => 12)
+    elsif @current_album_type.name.singularize == 'Video'
+      @album_videos = @album.videos.paginate(:page => params[:page], :per_page => 12)
+    end
     respond_with(@album)
   end
 

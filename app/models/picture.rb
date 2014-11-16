@@ -1,4 +1,6 @@
 class Picture < ActiveRecord::Base
+  include ApplicationHelper
+
   belongs_to :imageable, :polymorphic => true
   attr_accessible :name, :content_type, :data, :size, :uploaded_picture, :description, :user_id, :album_id, :date_taken, :imageable_id, :imageable_type
 
@@ -14,17 +16,10 @@ class Picture < ActiveRecord::Base
   validate :picture_doesnt_exist
 
   def uploaded_picture=(picture_field)
-    self.name         = base_part_of(picture_field.original_filename)
-    self.content_type = picture_field.content_type.chomp
-    self.data         = picture_field.read
-    self.size         = picture_field.size
+    populate_album_item(self, picture_field)
   end
 
 private
-
-  def base_part_of(file_name)
-    File.basename(file_name).gsub(/[^\w._-]/, '' )
-  end
 
   def picture_contains_data
     errors.add('Picture data', 'must not be blank') unless !self.data.blank?
